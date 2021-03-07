@@ -2,17 +2,31 @@
   "name": "thera_webapp",
   "private": true,
   "dependencies": {
+    "@casl/ability": "^5.2.2",
+    "@casl/vue": "^1.1.0",
+    "@mdi/js": "^5.9.55",
     "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
-    "turbolinks": "^5.2.0",
+    "active-resource": "https://github.com/nicklandgrebe/active-resource.js.git#master",
+    "axios": "^0.21.1",
+    "core-js": "^3.9.1",
+    "portal-vue": "^2.1.7",
+    "vee-validate": "^3.4.5",
     "vue": "^2.6.12",
+    "vue-fragment": "^1.5.1",
+    "vue-i18n": "^8.23.0",
     "vue-loader": "^15.9.6",
-    "vue-template-compiler": "^2.6.12"
+    "vue-moment": "^4.1.0",
+    "vue-router": "^3.5.1",
+    "vue-template-compiler": "^2.6.12",
+    "vue-toasted": "^1.1.28",
+    "vuetify": "^2.4.5",
+    "vuex": "^3.6.2"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "raw-loader": "^4.0.2",
     "webpack-dev-server": "^3.11.2"
   }
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Thera Web App" %></title>
+
+    <%#= favicon_pack_tag 'media/assets/favicon.ico' %>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'admin', media: 'all' %>
+    <%= javascript_pack_tag 'admin' %>
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <%= content_tag :div,
+      nil,
+      id: "app",
+      data: { current_user: { id: @current_user.id, username: @current_user.username, groups: @current_user.cached_groups } }
+    %>
+  </body>
+</html>

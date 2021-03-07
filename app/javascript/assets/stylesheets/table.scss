@@ -1,0 +1,40 @@
+@import "@/assets/stylesheets/_variables.scss";
+
+.theme--light.v-data-table > .v-data-table__wrapper > table {
+  thead {
+    background: $primary-color;
+
+    tr > th {
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  tbody > tr {
+    &:hover {
+      background-color: rgba(0, 177, 199, 0.1) !important;
+    }
+
+    &:last-child > td {
+      border-bottom: thin solid rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+// ::v-deep .v-data-table > .v-data-table__wrapper > table {
+//   border-spacing: 0px 10px;
+// }
+
+::v-deep tbody tr:hover {
+  cursor: pointer;
+}
+
+.actions {
+  border-bottom: thin solid rgba(0, 0, 0, 0.12);
+}
+
+// FIXME
+td.object-actions {
+  width: 200px;
+}
