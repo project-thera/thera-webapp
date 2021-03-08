@@ -5,6 +5,7 @@ const INITIAL_STATE = { page: 1 };
 export default {
   namespaced: true,
   state: {
+    adminExercises: INITIAL_STATE,
     adminGroups: INITIAL_STATE,
     adminUsers: INITIAL_STATE,
   },

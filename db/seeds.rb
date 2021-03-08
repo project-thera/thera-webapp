@@ -8,6 +8,8 @@
 
 sysadmin = Group.create(name: Group::SYSADMIN)
 admin = Group.create(name: Group::ADMIN)
+supervisor = Group.create(name: Group::SUPERVISOR)
+patient = Group.create(name: Group::PATIENT)
 
 users = User.create([
   {
@@ -25,3 +27,62 @@ users = User.create([
     groups: [sysadmin]
   }
 ])
+
+supervisor1 = User.create(
+  username: 'supervisor1',
+  password: 'dev',
+  email: 'supervisor1@thera.com.ar',
+  fullname: 'Sheev Palpatine',
+  groups: [supervisor]
+)
+
+supervisor2 = User.create(
+  username: 'supervisor2',
+  password: 'dev',
+  email: 'supervisor2@thera.com.ar',
+  fullname: 'Obi-Wan Kenobi',
+  groups: [supervisor]
+)
+
+patient1 = User.create(
+  username: 'patient1',
+  password: 'dev',
+  email: 'patient1@thera.com.ar',
+  fullname: 'Anakin Skywalker',
+  groups: [supervisor],
+  supervisor: supervisor1
+)
+
+patient2 = User.create(
+  username: 'patient2',
+  password: 'dev',
+  email: 'patient2@thera.com.ar',
+  fullname: 'Luke Skywalker',
+  groups: [supervisor],
+  supervisor: supervisor2
+)
+
+patient3 = User.create(
+  username: 'patient3',
+  password: 'dev',
+  email: 'patient3@thera.com.ar',
+  fullname: 'Leia Organa',
+  groups: [supervisor],
+  supervisor: supervisor2
+)
+
+(1..100).each do |i|
+  Exercise.create(
+    name: "Exercise ##{i}",
+    klass_name: "Exercise#{i}Class"
+  )
+end
+
+routine1 = Routine.create(
+  supervisor: supervisor1,
+  patient: patient1
+)
+
+routine1.routine_exercises.create(
+  exercise: Exercise.first
+)

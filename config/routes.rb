@@ -16,7 +16,10 @@ Rails.application.routes.draw do
         get :current, on: :collection
       end
   
-      jsonapi_resources :groups, concerns: :soft_deletable  
+      jsonapi_resources :groups, concerns: :soft_deletable
+
+      jsonapi_resources :exercises, concerns: :soft_deletable
+      jsonapi_resources :routines, concerns: :soft_deletable  
     end
   end
 

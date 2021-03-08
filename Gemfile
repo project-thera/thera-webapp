@@ -58,6 +58,7 @@ end
 gem 'devise'
 gem 'devise-i18n'
 gem 'discard', '~> 1.2'
+gem 'faker'
 gem 'jsonapi-authorization'
 gem 'jsonapi-utils'
 gem 'pundit'

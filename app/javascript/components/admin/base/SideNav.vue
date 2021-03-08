@@ -84,44 +84,51 @@ export default {
   props: {
     drawer: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       // Logo,
       isOpen: null,
-      links: [],
+      links: [
+        {
+          icon: this.$vuetify.icons.values.account,
+          title: this.$t("views.menu.exercises"),
+          route: "admin-exercises",
+          if: this.$can("index", "Exercise"),
+        },
+      ],
       adminLinks: [
         {
           icon: this.$vuetify.icons.values.account,
           title: this.$t("views.menu.users"),
           route: "admin-users",
-          if: this.$can("index", "User")
+          if: this.$can("index", "User"),
         },
         {
           icon: this.$vuetify.icons.values.accountGroup,
           title: this.$t("views.menu.groups"),
           route: "admin-groups",
-          if: this.$can("index", "Group")
-        }
+          if: this.$can("index", "Group"),
+        },
       ],
-      title: this.$t("views.app.title")
+      title: this.$t("views.app.title"),
     };
   },
   computed: {
     visibleLinks() {
-      return this.links.filter(item => item.if);
+      return this.links.filter((item) => item.if);
     },
     visibleAdminLinks() {
-      return this.adminLinks.filter(item => item.if);
-    }
+      return this.adminLinks.filter((item) => item.if);
+    },
   },
   watch: {
     drawer() {
       this.isOpen = !this.isOpen;
-    }
-  }
+    },
+  },
 };
 </script>
 

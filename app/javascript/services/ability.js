@@ -16,7 +16,12 @@ export default function defineAbilityFor(user) {
 
       can("index", "Group");
 
-      can("index", "Announcement");
+      can("index", "Exercise");
+      can("update", "Exercise");
+      can("create", "Exercise");
+      can("discard", "Exercise", { discarded: false });
+      can("undiscard", "Exercise", { discarded: true });
+      can("destroy", "Exercise");
     }
 
     if (user.hasGroup("Administrator")) {

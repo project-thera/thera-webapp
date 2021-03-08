@@ -5,6 +5,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable  :registerable, :recoverable, :rememberable, :validatable
   devise :database_authenticatable, :trackable
 
+  # https://stackoverflow.com/questions/56617857/how-do-i-create-a-self-referential-association-table-rails-migration
+  # FIXME Add supervisors and patients scopes
+  belongs_to :supervisor, class_name: 'User', inverse_of: :patients, required: false
+  has_many :patients, class_name: 'User', inverse_of: :supervisor
+
+  has_many :supervised_routines, class_name: 'Routine', inverse_of: :supervisor
+  has_many :routines, inverse_of: :patient
+
   has_and_belongs_to_many :groups
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
@@ -29,6 +37,14 @@ class User < ApplicationRecord
 
   def admin?
     cached_groups.include? Group::ADMIN
+  end
+
+  def supervisor?
+    cached_groups.include? Group::SUPERVISOR
+  end
+
+  def patient?
+    cached_groups.include? Group::PATIENT
   end
 
   def active_for_authentication?

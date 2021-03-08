@@ -3,6 +3,8 @@ class Group < ApplicationRecord
 
   SYSADMIN = 'System Administrator'.freeze
   ADMIN = 'Administrator'.freeze
+  SUPERVISOR = 'Supervisor'.freeze
+  PATIENT = 'Patient'.freeze
 
   has_and_belongs_to_many :users
 
