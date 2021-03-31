@@ -3,7 +3,10 @@ class User < ApplicationRecord
   #  has_paper_trail
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable  :registerable, :recoverable, :rememberable, :validatable
-  devise :database_authenticatable, :trackable
+  devise :database_authenticatable,
+    :trackable
+    # ,:jwt_authenticatable,
+    # jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
 
   # https://stackoverflow.com/questions/56617857/how-do-i-create-a-self-referential-association-table-rails-migration
   # FIXME Add supervisors and patients scopes
