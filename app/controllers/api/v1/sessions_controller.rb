@@ -2,6 +2,14 @@ class Api::V1::SessionsController < Devise::SessionsController
   skip_before_action :verify_authenticity_token, only: [:create]
   after_action :set_csrf_headers, only: :create
 
+  # DELETE /resource/sign_out
+  # def destroy
+  #   signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+  #   set_flash_message! :notice, :signed_out if signed_out
+  #   yield if block_given?
+  #   respond_to_on_destroy
+  # end
+
   # # POST /resource/sign_in
   # def create
   #   self.resource = warden.authenticate!(auth_options)
@@ -17,7 +25,7 @@ class Api::V1::SessionsController < Devise::SessionsController
     if user && user.valid_password?(sign_in_params[:password])
       sign_in(user, resource)
 
-      render json: { email: user.email }, status: :ok
+      render json: { success: true, email: user.email }, status: :ok
     else
       render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
     end
