@@ -37,3 +37,8 @@ yarn-debug.log*
 
 docker-compose.yml
 /config/database.yml
+
+/docker/production/.env
+!/docker/production/.env.example
+
+/config/credentials/production.key
