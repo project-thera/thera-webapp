@@ -13,4 +13,8 @@ class Group < ApplicationRecord
   def to_s
     name
   end
+
+  def self.patient
+    Group.find_by! name: PATIENT
+  end
 end

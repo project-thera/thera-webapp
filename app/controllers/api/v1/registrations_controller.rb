@@ -4,6 +4,12 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
 
   respond_to :json
   
+  def build_resource(hash = {})
+    super(hash)
+
+    self.resource.add_patient_group
+  end
+
   def respond_with(resource, opts = {})
     if resource.errors.present?
       render json: { errors: resource.errors } # Triggers the appropriate serializer

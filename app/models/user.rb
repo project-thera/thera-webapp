@@ -60,6 +60,10 @@ class User < ApplicationRecord
     super && !discarded?
   end
 
+  def add_patient_group
+    self.groups << Group.patient
+  end
+
   # def cas_extra_attributes=(extra_attributes)
   #   self.fullname = extra_attributes.try(:[], 'fullname')
   #   self.email = extra_attributes.try(:[], 'email')
