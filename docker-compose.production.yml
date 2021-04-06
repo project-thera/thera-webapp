@@ -28,6 +28,7 @@ services:
     restart: unless-stopped
     volumes:
       - web_gems:/usr/local/bundle
+      - web_logs:/usr/local/app/logs
       - web_modules:/usr/local/app/node_modules
       - web_uploads:/usr/local/app/private/uploads
     depends_on:
@@ -38,5 +39,6 @@ services:
 volumes:
   db_data:
   web_gems:
+  web_logs:
   web_modules:
   web_uploads:
