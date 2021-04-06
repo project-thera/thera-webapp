@@ -17,6 +17,7 @@ users = User.create([
     password: 'dev',
     email: 'daniffig@gmail.com',
     fullname: 'Lucio Di Giacomo Noack',
+    confirmed_at: DateTime.now,
     groups: [sysadmin]
   },
   {
@@ -24,6 +25,7 @@ users = User.create([
     password: 'dev',
     email: 'matiasarrech@gmail.com',
     fullname: 'Matías Arrech',
+    confirmed_at: DateTime.now,
     groups: [sysadmin]
   }
 ])
@@ -33,6 +35,7 @@ supervisor1 = User.create(
   password: 'dev',
   email: 'supervisor1@thera.com.ar',
   fullname: 'Sheev Palpatine',
+  confirmed_at: DateTime.now,
   groups: [supervisor]
 )
 
@@ -41,6 +44,7 @@ supervisor2 = User.create(
   password: 'dev',
   email: 'supervisor2@thera.com.ar',
   fullname: 'Obi-Wan Kenobi',
+  confirmed_at: DateTime.now,
   groups: [supervisor]
 )
 
@@ -49,6 +53,7 @@ patient1 = User.create(
   password: 'dev',
   email: 'patient1@thera.com.ar',
   fullname: 'Anakin Skywalker',
+  confirmed_at: DateTime.now,
   groups: [supervisor],
   supervisor: supervisor1
 )
@@ -58,6 +63,7 @@ patient2 = User.create(
   password: 'dev',
   email: 'patient2@thera.com.ar',
   fullname: 'Luke Skywalker',
+  confirmed_at: DateTime.now,
   groups: [supervisor],
   supervisor: supervisor2
 )
@@ -67,6 +73,7 @@ patient3 = User.create(
   password: 'dev',
   email: 'patient3@thera.com.ar',
   fullname: 'Leia Organa',
+  confirmed_at: DateTime.now,
   groups: [supervisor],
   supervisor: supervisor2
 )

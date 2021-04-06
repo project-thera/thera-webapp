@@ -4,7 +4,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable  :registerable, :recoverable, :rememberable, :validatable
   devise :database_authenticatable,
-    :trackable
+    :trackable,
+    :confirmable,
+    :registerable,
+    :recoverable
+    
     # ,:jwt_authenticatable,
     # jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
 
@@ -19,6 +23,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :groups
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :fullname, presence: true
+  validates :email, presence: true, email: true, uniqueness: { case_sensitive: false }
 
   scope :list, -> { includes :groups }
 

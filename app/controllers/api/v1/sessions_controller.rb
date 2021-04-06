@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < Devise::SessionsController
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:new, :create]
   after_action :set_csrf_headers, only: :create
 
   # DELETE /resource/sign_out
@@ -19,15 +19,25 @@ class Api::V1::SessionsController < Devise::SessionsController
   #   respond_with resource, location: after_sign_in_path_for(resource)
   # end
 
-  def create
-    user = User.find_by_email(sign_in_params[:email])
+  # def create
+  #   user = User.find_by_email(sign_in_params[:email])
 
-    if user && user.valid_password?(sign_in_params[:password])
-      sign_in(user, resource)
+  #   if user && user.valid_password?(sign_in_params[:password])
+  #     sign_in(user, resource)
 
-      render json: { success: true, email: user.email }, status: :ok
+  #     render json: { success: true, email: user.email }, status: :ok
+  #   else
+  #     render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
+  #   end
+  # end
+
+  respond_to :json
+
+  def respond_with(resource, opts = {})
+    if resource.id.present?
+      render json: resource
     else
-      render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
+      render json: { errors: { 'email or password' => ['is invalid'] } }
     end
   end
 
