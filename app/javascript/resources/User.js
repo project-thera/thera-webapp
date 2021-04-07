@@ -1,6 +1,9 @@
 import APILibrary from "@/resources/APILibrary";
 import BaseResource, { PAGE_SIZE } from "@/resources/BaseResource";
 
+import "./Group";
+import "./Routine";
+
 class User extends BaseResource {
   // required by active-resource
   // https://github.com/nicklandgrebe/active-resource.js/issues/47
@@ -20,7 +23,7 @@ class User extends BaseResource {
       "groupIds"
     );
 
-    this.hasMany("groups");
+    this.hasMany("groups", "routines");
   }
 
   toString() {

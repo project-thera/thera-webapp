@@ -15,12 +15,15 @@ Rails.application.routes.draw do
       devise_for :users
 
       jsonapi_resources :users, concerns: :soft_deletable do
+        jsonapi_relationships
+
         get :current, on: :collection
       end
   
       jsonapi_resources :groups, concerns: :soft_deletable
 
       jsonapi_resources :exercises, concerns: :soft_deletable
+
       jsonapi_resources :routines, concerns: :soft_deletable  
     end
   end

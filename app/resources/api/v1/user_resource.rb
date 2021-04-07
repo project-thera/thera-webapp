@@ -13,6 +13,8 @@ class Api::V1::UserResource < Api::V1::BaseResource
   # ransack_filters :username_cont
 
   has_many :groups
+  has_many :supervised_routines
+  has_many :routines
 
   filter :patients, apply: ->(records, value, _options) {
     if ActiveModel::Type::Boolean.new.cast(value[0])

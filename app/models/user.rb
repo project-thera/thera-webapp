@@ -17,8 +17,14 @@ class User < ApplicationRecord
   belongs_to :supervisor, class_name: 'User', inverse_of: :patients, required: false
   has_many :patients, class_name: 'User', inverse_of: :supervisor
 
-  has_many :supervised_routines, class_name: 'Routine', inverse_of: :supervisor
-  has_many :routines, inverse_of: :patient
+  has_many :supervised_routines,
+    class_name: 'Routine',
+    inverse_of: :supervisor,
+    foreign_key: 'supervisor_id'
+
+  has_many :routines,
+    inverse_of: :patient,
+    foreign_key: 'patient_id'
 
   has_and_belongs_to_many :groups
 
