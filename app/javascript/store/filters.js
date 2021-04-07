@@ -8,6 +8,7 @@ export default {
     adminExercises: INITIAL_STATE,
     adminGroups: INITIAL_STATE,
     adminUsers: INITIAL_STATE,
+    adminPatients: INITIAL_STATE,
   },
   mutations: {
     add(state, { key, filters }) {

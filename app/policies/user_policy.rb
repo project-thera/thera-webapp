@@ -3,14 +3,16 @@ class UserPolicy < ApplicationPolicy
     def resolve
       if user.sysadmin? || user.admin?
         scope
+      elsif user.supervisor?
+        scope.kept.patients
       else
-        scope.kept
+        scope.none
       end
     end
   end
 
   def index?
-    user.sysadmin? || user.admin?
+    user.sysadmin? || user.admin? || user.supervisor?
   end
 
   def new?

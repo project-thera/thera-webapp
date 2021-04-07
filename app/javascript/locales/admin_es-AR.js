@@ -53,6 +53,7 @@ export default {
         home: "Inicio",
         dashboard: "Inicio",
         exercises: "Ejercicios",
+        patients: "Pacientes",
         users: "Usuarios",
         groups: "Grupos",
         changePassword: "Cambiar contraseña",

@@ -14,6 +14,8 @@ export default function defineAbilityFor(user) {
       can("undiscard", "User", { discarded: true });
       can("destroy", "User");
 
+      can("index", "Patient");
+
       can("index", "Group");
 
       can("index", "Exercise");
@@ -24,10 +26,10 @@ export default function defineAbilityFor(user) {
       can("destroy", "Exercise");
     }
 
-    if (user.hasGroup("Administrator")) {
-    }
+    if (user.hasGroup("Supervisor")) {
+      can("index", "Patient");
 
-    if (user.hasGroup("Operador")) {
+      can("index", "Exercise");
     }
   });
 }

@@ -1,5 +1,5 @@
 import APILibrary from "@/resources/APILibrary";
-import BaseResource from "@/resources/BaseResource";
+import BaseResource, {PAGE_SIZE} from "@/resources/BaseResource";
 
 class User extends BaseResource {
   // required by active-resource
@@ -25,6 +25,19 @@ class User extends BaseResource {
 
   toString() {
     return `${this.username}`;
+  }
+
+  static async listPatients(params) {
+    const { page, ...filters } = params;
+
+    const res = await this.where(filters)
+      .where({ patients: true })
+      .order({ updatedAt: "desc" })
+      .perPage(PAGE_SIZE)
+      .page(page)
+      .all();
+
+    return res;
   }
 }
 

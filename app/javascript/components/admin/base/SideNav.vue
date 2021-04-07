@@ -98,6 +98,12 @@ export default {
           route: "admin-exercises",
           if: this.$can("index", "Exercise"),
         },
+        {
+          icon: this.$vuetify.icons.values.account,
+          title: this.$t("views.menu.patients"),
+          route: "admin-patients",
+          if: this.$can("index", "Patient"),
+        },
       ],
       adminLinks: [
         {

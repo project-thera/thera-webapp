@@ -4,5 +4,6 @@ class Api::V1::GroupResource < Api::V1::BaseResource
     :updated_at,
     :discarded_at
 
+  filters :name
   # ransack_filters :name_cont
 end

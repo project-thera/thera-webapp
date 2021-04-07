@@ -13,4 +13,13 @@ class Api::V1::UserResource < Api::V1::BaseResource
   # ransack_filters :username_cont
 
   has_many :groups
+
+  filter :patients, apply: ->(records, value, _options) {
+    if ActiveModel::Type::Boolean.new.cast(value[0])
+      return records.patients
+    end
+
+    records
+    
+  }
 end

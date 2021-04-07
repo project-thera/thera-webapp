@@ -27,6 +27,7 @@ class User < ApplicationRecord
   validates :email, presence: true, email: true, uniqueness: { case_sensitive: false }
 
   scope :list, -> { includes :groups }
+  scope :patients, -> { list.where(groups: { name: Group::PATIENT }) }
 
   def to_s
     username
@@ -64,19 +65,11 @@ class User < ApplicationRecord
     self.groups << Group.patient
   end
 
-  # def cas_extra_attributes=(extra_attributes)
-  #   self.fullname = extra_attributes.try(:[], 'fullname')
-  #   self.email = extra_attributes.try(:[], 'email')
-  # end
-#  def user_password
-#    UserPassword.new user: self
-#  end
+  #  def can_enable?
+  #    deleted?
+  #  end
 
-#  def can_enable?
-#    deleted?
-#  end
-
-#  def can_disable?
-#    !deleted?
-#  end
+  #  def can_disable?
+  #    !deleted?
+  #  end
 end
