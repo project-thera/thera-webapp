@@ -32,6 +32,7 @@ import "@/plugins/date";
 import "@/plugins/moment";
 import "@/plugins/portal";
 import "@/plugins/vee-validate";
+import "@/plugins/vue-horizontal";
 
 import i18n from "@/plugins/admin/i18n";
 import routes from "@/plugins/admin/routes";
@@ -74,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     i18n,
     router: routes,
     store: store,
-    render: (h) => h(App),
+    render: h => h(App)
   }).$mount("#app");
 
   document.body.appendChild(app.$el);

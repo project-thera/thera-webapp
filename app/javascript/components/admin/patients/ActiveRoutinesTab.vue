@@ -1,6 +1,20 @@
 <template>
   <fragment>
     <p>Rutinas activas</p>
+    <VueHorizontal responsive>
+      <section
+        v-for="exercice in patient
+          .routines()
+          .target()
+          .first()
+          .exercises()
+          .target().__collection"
+        :key="exercice.id"
+      >
+        <h3>{{ exercice.name }}</h3>
+        <p>{{ exercice.name }}</p>
+      </section>
+    </VueHorizontal>
   </fragment>
 </template>
 
@@ -14,7 +28,8 @@ export default {
       required: true
     }
   },
-  data() {
+  data({ patient }) {
+    console.log(patient);
     return {};
   }
 };

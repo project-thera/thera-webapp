@@ -54,7 +54,7 @@ patient1 = User.create(
   email: 'patient1@thera.com.ar',
   fullname: 'Anakin Skywalker',
   confirmed_at: DateTime.now,
-  groups: [supervisor],
+  groups: [patient],
   supervisor: supervisor1
 )
 
@@ -64,7 +64,7 @@ patient2 = User.create(
   email: 'patient2@thera.com.ar',
   fullname: 'Luke Skywalker',
   confirmed_at: DateTime.now,
-  groups: [supervisor],
+  groups: [patient],
   supervisor: supervisor2
 )
 
@@ -74,22 +74,23 @@ patient3 = User.create(
   email: 'patient3@thera.com.ar',
   fullname: 'Leia Organa',
   confirmed_at: DateTime.now,
-  groups: [supervisor],
+  groups: [patient],
   supervisor: supervisor2
 )
-
-(1..100).each do |i|
-  Exercise.create(
-    name: "Exercise ##{i}",
-    klass_name: "Exercise#{i}Class"
-  )
-end
 
 routine1 = Routine.create(
   supervisor: supervisor1,
   patient: patient1
 )
 
-routine1.routine_exercises.create(
-  exercise: Exercise.first
-)
+(1..100).each do |i|
+  exercise = Exercise.create(
+    name: "Exercise ##{i}",
+    klass_name: "Exercise#{i}Class"
+  )
+
+  routine1.routine_exercises.create(
+    exercise: exercise
+  )
+end
+

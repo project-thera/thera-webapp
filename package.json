@@ -15,6 +15,7 @@
     "vee-validate": "^3.4.5",
     "vue": "^2.6.12",
     "vue-fragment": "^1.5.1",
+    "vue-horizontal": "^0.8.8",
     "vue-i18n": "^8.23.0",
     "vue-loader": "^15.9.6",
     "vue-moment": "^4.1.0",
