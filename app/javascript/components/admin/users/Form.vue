@@ -71,13 +71,13 @@ export default {
   props: {
     user: {
       type: User,
-      default: () => User.build(),
-    },
+      default: () => User.build()
+    }
   },
   data: ({ user }) => {
     return {
       object: user.attributes(),
-      groups: [],
+      groups: []
     };
   },
   created() {
@@ -101,7 +101,7 @@ export default {
           this.$refs.form.setErrors(this.user.getErrors());
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>

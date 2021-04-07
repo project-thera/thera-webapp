@@ -23,7 +23,8 @@ class User extends BaseResource {
       "groupIds"
     );
 
-    this.hasMany("groups", "routines");
+    this.hasMany("groups");
+    this.hasMany("routines");
   }
 
   toString() {

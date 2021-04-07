@@ -1,6 +1,8 @@
 import APILibrary from "@/resources/APILibrary";
 import BaseResource from "@/resources/BaseResource";
 
+import "./Exercise";
+
 class Routine extends BaseResource {
   // required by active-resource
   // https://github.com/nicklandgrebe/active-resource.js/issues/47
@@ -12,9 +14,10 @@ class Routine extends BaseResource {
   static modelName = "Routine";
 
   static define() {
-    this.attributes("name", "discarded");
-
     this.belongsTo("patient", { className: "User" });
+    this.belongsTo("supervisor", { className: "User" });
+
+    this.hasMany("exercises");
   }
 }
 

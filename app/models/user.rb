@@ -20,11 +20,11 @@ class User < ApplicationRecord
   has_many :supervised_routines,
     class_name: 'Routine',
     inverse_of: :supervisor,
-    foreign_key: 'supervisor_id'
+    foreign_key: :supervisor_id
 
   has_many :routines,
     inverse_of: :patient,
-    foreign_key: 'patient_id'
+    foreign_key: :patient_id
 
   has_and_belongs_to_many :groups
 
