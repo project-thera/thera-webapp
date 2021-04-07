@@ -23,9 +23,9 @@ class Base extends APILibrary.Base {
     const backendErrors = this.__errors.__errors;
     const toUnderscore = this.klass().toUnderscore;
 
-    Object.keys(backendErrors).forEach((key) => {
+    Object.keys(backendErrors).forEach(key => {
       const errors = [];
-      backendErrors[key].forEach((value) => {
+      backendErrors[key].forEach(value => {
         errors.push(
           value.message.replace(`${toUnderscore(value.field)} - `, "")
         );
@@ -45,9 +45,9 @@ class Base extends APILibrary.Base {
     const backendErrors = this.__errors.__errors;
     const toUnderscore = this.klass().toUnderscore;
 
-    Object.keys(backendErrors).forEach((key) => {
+    Object.keys(backendErrors).forEach(key => {
       const errors = [];
-      backendErrors[key].forEach((value) => {
+      backendErrors[key].forEach(value => {
         errors.push(
           value.message.replace(`${toUnderscore(value.field)} - `, "")
         );

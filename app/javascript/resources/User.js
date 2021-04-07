@@ -1,5 +1,5 @@
 import APILibrary from "@/resources/APILibrary";
-import BaseResource, {PAGE_SIZE} from "@/resources/BaseResource";
+import BaseResource, { PAGE_SIZE } from "@/resources/BaseResource";
 
 class User extends BaseResource {
   // required by active-resource
@@ -17,7 +17,7 @@ class User extends BaseResource {
       "discarded",
       "lastSignInAt",
       "lastSignInIp",
-      "groupIds",
+      "groupIds"
     );
 
     this.hasMany("groups");

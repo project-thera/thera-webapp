@@ -8,6 +8,6 @@ export default createResourceLibrary(
   // base url for your server
   "/api/v1",
   {
-    headers: { "X-CSRF-Token": crsfToken.content },
+    headers: { "X-CSRF-Token": crsfToken.content }
   }
 );
