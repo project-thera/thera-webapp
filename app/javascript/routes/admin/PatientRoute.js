@@ -1,26 +1,26 @@
-import Index from "@/pages/admin/users/Index";
-import New from "@/pages/admin/users/New";
-import Edit from "@/pages/admin/users/Edit";
+import Index from "@/pages/admin/patients/Index";
+// import AddRoutine from "@/pages/admin/patients/AddRoutine";
+import Show from "@/pages/admin/patients/Show";
 
-const userRoutes = [
+const patientRoutes = [
   {
-    path: "/admin/usuarios",
-    name: "admin-users",
+    path: "/admin/pacientes",
+    name: "admin-patients",
     component: Index,
-    meta: { resource: "User" },
+    meta: { resource: "Patient" }
   },
+  // {
+  //   path: "/admin/pacientes/agregar-rutina",
+  //   name: "admin-patients-add-routine",
+  //   component: AddRoutine,
+  //   meta: { resource: "Patient", action: "addRoutine" },
+  // },
   {
-    path: "/admin/usuarios/crear",
-    name: "admin-users-new",
-    component: New,
-    meta: { resource: "User", action: "create" },
-  },
-  {
-    path: "/admin/usuarios/:id/editar",
-    name: "admin-users-edit",
-    component: Edit,
-    meta: { resource: "User", action: "update" },
-  },
+    path: "/admin/pacientes/:id",
+    name: "admin-patients-show",
+    component: Show,
+    meta: { resource: "Patient", action: "show" }
+  }
 ];
 
-export default userRoutes;
+export default patientRoutes;

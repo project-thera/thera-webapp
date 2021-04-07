@@ -20,9 +20,8 @@
       <v-simple-table>
         <thead>
           <tr>
-            <th>{{ $t("attributes.patient.username") }}</th>
+            <th>{{ $t("attributes.patient.fullname") }}</th>
             <th>{{ $t("attributes.patient.lastSignInAt") }}</th>
-            <th>{{ $t("attributes.patient.lastSignInIp") }}</th>
             <th></th>
           </tr>
         </thead>
@@ -35,7 +34,7 @@
             @click="
               $can('show', patient) &&
                 $router.push({
-                  name: 'patients-show',
+                  name: 'admin-patients-show',
                   params: { id: patient.id },
                 })
             "
@@ -44,10 +43,9 @@
               <v-icon v-if="patient.discarded">{{
                 $vuetify.icons.values.delete
               }}</v-icon>
-              {{ patient.username }}
+              {{ patient.fullname }}
             </td>
             <td>{{ parseDate(patient.lastSignInAt) }}</td>
-            <td>{{ patient.lastSignInIp }}</td>
             <td class="object-actions text-right d-none d-md-table-cell">
               <ObjectActions v-if="selectedRow === patient.id" :patient="patient" />
               <div v-else>{{ $minifyUpdatedAt(patient.updatedAt) }}</div>
@@ -94,7 +92,7 @@ export default {
     parseDate(date) {
       if (!date) return "";
       return this.$moment(date).format("DD/MM/YYYY hh:mm:ss");
-    },
+    }
   },
 };
 </script>

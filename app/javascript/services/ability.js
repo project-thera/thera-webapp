@@ -1,7 +1,7 @@
 import { defineAbility } from "@casl/ability";
 
 export default function defineAbilityFor(user) {
-  return defineAbility((can) => {
+  return defineAbility(can => {
     user.hasGroup = function(groupName) {
       return this.groups.includes(groupName);
     };
@@ -13,8 +13,10 @@ export default function defineAbilityFor(user) {
       can("discard", "User", { discarded: false });
       can("undiscard", "User", { discarded: true });
       can("destroy", "User");
+      can("show", "User");
 
       can("index", "Patient");
+      can("show", "Patient");
 
       can("index", "Group");
 
@@ -28,6 +30,10 @@ export default function defineAbilityFor(user) {
 
     if (user.hasGroup("Supervisor")) {
       can("index", "Patient");
+      can("show", "Patient");
+      can("addRoutine", "Patient");
+
+      can("show", "User");
 
       can("index", "Exercise");
     }
