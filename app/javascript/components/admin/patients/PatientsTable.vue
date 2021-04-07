@@ -20,8 +20,8 @@
       <v-simple-table>
         <thead>
           <tr>
-            <th>{{ $t("attributes.patient.fullname") }}</th>
-            <th>{{ $t("attributes.patient.lastSignInAt") }}</th>
+            <th>{{ $t("attributes.user.fullname") }}</th>
+            <th>{{ $t("attributes.user.lastSignInAt") }}</th>
             <th></th>
           </tr>
         </thead>

@@ -2,7 +2,7 @@ export default {
   esAR: {
     views: {
       app: {
-        title: "Avisos BO",
+        title: "Avisos BO"
       },
       commons: {
         sortBy: "Ordenar por",
@@ -10,7 +10,7 @@ export default {
         filters: "Filtros",
         date: {
           from: "Desde",
-          to: "Hasta",
+          to: "Hasta"
         },
         undiscarded: "Activo",
         discarded: "Eliminado",
@@ -18,7 +18,7 @@ export default {
           "¿Esta seguro que desea %{action}? Esta acción no se puede deshacer",
         emptyList: "No hay elementos disponibles para mostrar",
         unresolvedObservations: "Tiene observaciones pendientes",
-        updatedSometimeAgoBySomeone: "actualizado %{sometime} por %{someone}",
+        updatedSometimeAgoBySomeone: "actualizado %{sometime} por %{someone}"
       },
       actions: {
         show: "Ver",
@@ -44,9 +44,9 @@ export default {
           alertAction: "La acción no podrá deshacerse.",
           success: "La operación se realizó con éxito",
           successDownload: "La descarga se realizó con éxito",
-          downloadError: "Hubo un error en la descarga",
+          downloadError: "Hubo un error en la descarga"
         },
-        reject: "Rechazar",
+        reject: "Rechazar"
       },
       menu: {
         administration: "Administración",
@@ -56,116 +56,122 @@ export default {
         patients: "Pacientes",
         users: "Usuarios",
         groups: "Grupos",
-        changePassword: "Cambiar contraseña",
+        changePassword: "Cambiar contraseña"
       },
       base: {
         headers: {
           id: "ID",
           state: "Estado",
           actions: "Acciones",
-          enabled: "¿Activo?",
-        },
+          enabled: "¿Activo?"
+        }
       },
       exercises: {
         index: {
-          title: "Ejercicios",
+          title: "Ejercicios"
         },
         new: {
-          title: "Nuevo ejercicio",
-        },
+          title: "Nuevo ejercicio"
+        }
+      },
+      patients: {
+        index: {
+          title: "Pacientes",
+          search: "Buscar pacientes"
+        }
       },
       users: {
         index: {
           title: "Usuarios",
-          search: "Buscar usuarios",
+          search: "Buscar usuarios"
         },
         headers: {
           username: "Nombre",
           confirmed: "¿Confirmado?",
           lastAccess: "Último acceso",
-          lastIP: "Última IP",
+          lastIP: "Última IP"
         },
         new: {
-          title: "Nuevo usuario",
+          title: "Nuevo usuario"
         },
         edit: {
-          title: "Editar usuario %{user}",
+          title: "Editar usuario %{user}"
         },
         create: {
-          notice: "El usuario %{user} fue creado exitosamente.",
+          notice: "El usuario %{user} fue creado exitosamente."
         },
         update: {
-          notice: "El usuario %{user} fue actualizado exitosamente.",
+          notice: "El usuario %{user} fue actualizado exitosamente."
         },
         destroy: {
-          notice: "El usuario %{user} fue eliminado definitivamente.",
+          notice: "El usuario %{user} fue eliminado definitivamente."
         },
         discard: {
-          notice: "El usuario %{user} fue eliminado exitosamente.",
+          notice: "El usuario %{user} fue eliminado exitosamente."
         },
         undiscard: {
-          notice: "El usuario %{user} fue restaurado exitosamente.",
+          notice: "El usuario %{user} fue restaurado exitosamente."
         },
         change_password: {
-          title: "Cambiar contraseña",
+          title: "Cambiar contraseña"
         },
         update_password: {
-          notice: "La contraseña se ha actualizado exitosamente.",
-        },
+          notice: "La contraseña se ha actualizado exitosamente."
+        }
       },
       groups: {
         index: {
           title: "Grupos",
-          search: "Buscar grupos",
+          search: "Buscar grupos"
         },
         headers: {
-          name: "Nombre",
+          name: "Nombre"
         },
         new: {
-          title: "Nuevo grupo",
+          title: "Nuevo grupo"
         },
         edit: {
-          title: "Editar grupo %{group}",
+          title: "Editar grupo %{group}"
         },
         create: {
-          notice: "El grupo %{group} fue creado exitosamente.",
+          notice: "El grupo %{group} fue creado exitosamente."
         },
         update: {
-          notice: "El grupo %{group} fue actualizado exitosamente.",
+          notice: "El grupo %{group} fue actualizado exitosamente."
         },
         destroy: {
           notice: "El grupo %{group} fue eliminado definitivamente.",
           alert:
-            "El grupo %{group} no puede ser eliminado porque tiene usuarios relacionados.",
+            "El grupo %{group} no puede ser eliminado porque tiene usuarios relacionados."
         },
         discard: {
-          notice: "El grupo %{group} fue eliminado exitosamente.",
+          notice: "El grupo %{group} fue eliminado exitosamente."
         },
         undiscard: {
-          notice: "El grupo %{group} fue restaurado exitosamente.",
-        },
-      },
+          notice: "El grupo %{group} fue restaurado exitosamente."
+        }
+      }
     },
     models: {
       user: {
         one: "Usuario",
-        other: "Usuarios",
+        other: "Usuarios"
       },
       group: {
         one: "Grupo",
-        other: "Grupos",
-      },
+        other: "Grupos"
+      }
     },
     attributes: {
       common: {
-        createdAt: "Fecha de creación",
+        createdAt: "Fecha de creación"
       },
       base: {
-        state: "Estado",
+        state: "Estado"
       },
       exercise: {
         name: "Nombre",
-        klassName: "Clase",
+        klassName: "Clase"
       },
       user: {
         username: "Nombre de usuario",
@@ -173,11 +179,11 @@ export default {
         email: "Correo electrónico",
         lastSignInAt: "Último inicio de sesión",
         lastSignInIp: "Última dirección IP",
-        groups: "Grupos",
+        groups: "Grupos"
       },
       group: {
-        name: "Nombre de grupo",
-      },
-    },
-  },
+        name: "Nombre de grupo"
+      }
+    }
+  }
 };

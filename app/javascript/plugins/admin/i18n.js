@@ -6,5 +6,5 @@ Vue.use(VueI18n);
 
 export default new VueI18n({
   locale: "esAR",
-  messages: esAR,
+  messages: esAR
 });
