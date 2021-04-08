@@ -28,7 +28,9 @@ import {
   mdiFilterRemoveOutline,
   mdiFilter,
   mdiFilterMenu,
-  mdiTextBoxMultipleOutline
+  mdiTextBoxMultipleOutline,
+  mdiEye,
+  mdiArchiveArrowDown
 } from "@mdi/js";
 
 export default new Vuetify({
@@ -54,7 +56,9 @@ export default new Vuetify({
       filterRemoveOutline: mdiFilterRemoveOutline,
       filter: mdiFilter,
       filterMenu: mdiFilterMenu,
-      textBoxMultipleOutline: mdiTextBoxMultipleOutline
+      textBoxMultipleOutline: mdiTextBoxMultipleOutline,
+      eye: mdiEye,
+      archiveArrowDown: mdiArchiveArrowDown
     }
   },
   theme: {

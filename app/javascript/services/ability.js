@@ -7,6 +7,8 @@ export default function defineAbilityFor(user) {
     };
 
     if (user.hasGroup("System Administrator")) {
+      can("index", "Group");
+
       can("index", "User");
       can("update", "User");
       can("create", "User");
@@ -20,7 +22,7 @@ export default function defineAbilityFor(user) {
       can("show", "Patient");
       can("addRoutine", "Patient");
 
-      can("index", "Group");
+      can("show", "Routine");
 
       can("index", "Exercise");
       can("update", "Exercise");
@@ -34,6 +36,8 @@ export default function defineAbilityFor(user) {
       can("index", "Patient");
       can("show", "Patient");
       can("addRoutine", "Patient");
+
+      can("show", "Routine");
 
       can("show", "User");
       can("addRoutine", "User");

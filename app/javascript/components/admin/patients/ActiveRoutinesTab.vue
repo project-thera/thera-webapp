@@ -9,7 +9,7 @@
         :key="routine.id"
         cols="12"
         sm="12"
-        md="4"
+        md="3"
       >
         <v-hover v-slot="{ hover }">
           <v-card
@@ -17,32 +17,24 @@
             :class="{ 'on-hover': hover }"
             class="ma-4 pa-4"
           >
-            <v-row>
-              <v-col cols="4">
-                <v-card-title>Rutina #{{ routine.id }}</v-card-title>
-                <v-card-subtitle
-                  >Creada el {{ routine.created_at }}</v-card-subtitle
-                >
-              </v-col>
-              <v-col cols="8">
-                <v-list>
-                  <v-list-item
-                    v-for="routineExercise in routine
-                      .routineExercises()
-                      .toArray()"
-                    :key="routineExercise.id"
+            <v-card-title>Rutina #{{ routine.id }}</v-card-title>
+            <v-card-subtitle
+              >Creada el {{ routine.created_at }}</v-card-subtitle
+            >
+            <v-list>
+              <v-list-item
+                v-for="routineExercise in routine.routineExercises().toArray()"
+                :key="routineExercise.id"
+              >
+                <v-list-item-content class="pa-0">
+                  <v-list-item-title
+                    >{{ routineExercise.exercise().name }} ({{
+                      routineExercise.repetitions
+                    }})</v-list-item-title
                   >
-                    <v-list-item-content class="pa-0">
-                      <v-list-item-title
-                        >{{ routineExercise.exercise().name }} ({{
-                          routineExercise.repetitions
-                        }})</v-list-item-title
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-              </v-col>
-            </v-row>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
             <v-card-actions>
               <v-btn
                 v-if="$can('show', routine)"
@@ -55,15 +47,17 @@
                   })
                 "
               >
-                <v-icon medium>{{ $vuetify.icons.values.eye }}</v-icon>
+                <v-icon big>{{ $vuetify.icons.values.eye }}</v-icon>
               </v-btn>
 
-              <v-btn color="primary">
-                Finalizar
+              <v-btn icon>
+                <v-icon medium>{{
+                  $vuetify.icons.values.archiveArrowDown
+                }}</v-icon>
               </v-btn>
 
-              <v-btn text>
-                Borrar
+              <v-btn icon>
+                <v-icon medium>{{ $vuetify.icons.values.delete }}</v-icon>
               </v-btn>
             </v-card-actions>
           </v-card>
