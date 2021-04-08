@@ -8,50 +8,66 @@
           .toArray()"
         :key="routine.id"
         cols="12"
-        sm="3"
+        sm="12"
         md="4"
       >
-        <v-card elevation="2" class="ma-4 pa-4">
-          <v-row>
-            <v-col cols="4">
-              <v-card-title>Rutina #{{ routine.id }}</v-card-title>
-              <v-card-subtitle
-                >Creada el {{ routine.created_at }}</v-card-subtitle
-              >
-            </v-col>
-            <v-col cols="8">
-              <v-list>
-                <v-list-item
-                  v-for="routineExercise in routine
-                    .routineExercises()
-                    .toArray()"
-                  :key="routineExercise.id"
+        <v-hover v-slot="{ hover }">
+          <v-card
+            :elevation="hover ? 8 : 2"
+            :class="{ 'on-hover': hover }"
+            class="ma-4 pa-4"
+          >
+            <v-row>
+              <v-col cols="4">
+                <v-card-title>Rutina #{{ routine.id }}</v-card-title>
+                <v-card-subtitle
+                  >Creada el {{ routine.created_at }}</v-card-subtitle
                 >
-                  <v-list-item-content class="pa-0">
-                    <v-list-item-title
-                      >{{ routineExercise.exercise().name }} ({{
-                        routineExercise.repetitions
-                      }})</v-list-item-title
-                    >
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-col>
-          </v-row>
-          <v-card-actions>
-            <v-btn color="primary">
-              Ver
-            </v-btn>
+              </v-col>
+              <v-col cols="8">
+                <v-list>
+                  <v-list-item
+                    v-for="routineExercise in routine
+                      .routineExercises()
+                      .toArray()"
+                    :key="routineExercise.id"
+                  >
+                    <v-list-item-content class="pa-0">
+                      <v-list-item-title
+                        >{{ routineExercise.exercise().name }} ({{
+                          routineExercise.repetitions
+                        }})</v-list-item-title
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-col>
+            </v-row>
+            <v-card-actions>
+              <v-btn
+                v-if="$can('show', routine)"
+                icon
+                :title="$t('views.actions.show')"
+                @click.stop="
+                  $router.push({
+                    name: 'admin-routines-show',
+                    params: { id: routine.id }
+                  })
+                "
+              >
+                <v-icon medium>{{ $vuetify.icons.values.eye }}</v-icon>
+              </v-btn>
 
-            <v-btn color="primary">
-              Finalizar
-            </v-btn>
+              <v-btn color="primary">
+                Finalizar
+              </v-btn>
 
-            <v-btn text>
-              Borrar
-            </v-btn>
-          </v-card-actions>
-        </v-card>
+              <v-btn text>
+                Borrar
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-hover>
       </v-col>
     </v-row>
     <v-btn
