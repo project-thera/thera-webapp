@@ -25,6 +25,7 @@
               <v-list-item
                 v-for="routineExercise in routine.routineExercises().toArray()"
                 :key="routineExercise.id"
+                :style="{ minHeight: '28px' }"
               >
                 <v-list-item-content class="pa-0">
                   <v-list-item-title
