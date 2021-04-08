@@ -5,6 +5,7 @@
         <v-col cols="12" md="8">
           <ValidationProvider
             v-slot="{ errors }"
+            rules="required"
             vid="routineExerciseDescription"
           >
             <v-select
@@ -20,11 +21,12 @@
         <v-col cols="12" md="4">
           <ValidationProvider
             v-slot="{ errors }"
-            rules="required"
+            rules="required|min_value:1"
             vid="repetitions"
           >
             <v-text-field
               v-model="attributes.repetitions"
+              type="number"
               :label="$t('attributes.routineExercise.repetitions')"
               :error-messages="errors"
             />

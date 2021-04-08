@@ -100,7 +100,12 @@ export default {
       routine,
       object: routine.attributes(),
       routineExercisesAttributes: Object.assign(
-        [],
+        [
+          Object.assign(
+            { _destroy: 0 },
+            RoutineExercise.build({ repetitions: 1 }).attributes()
+          )
+        ],
         routine.routineExercisesAttributes
       ),
       exercises: []
