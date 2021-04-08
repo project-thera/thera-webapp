@@ -21,7 +21,7 @@
         <v-col cols="12" md="4">
           <ValidationProvider
             v-slot="{ errors }"
-            rules="required|min_value:1"
+            rules="required|min_value:1|integer"
             vid="repetitions"
           >
             <v-text-field
@@ -39,14 +39,8 @@
 </template>
 
 <script>
-import RoutineExercise from "@/resources/RoutineExercise";
-
 export default {
   props: {
-    // routineExercise: {
-    //   type: Object,
-    //   default: () => RoutineExercise.build()
-    // },
     attributes: {
       type: Object,
       default: () => {}

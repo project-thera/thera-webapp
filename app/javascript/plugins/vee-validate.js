@@ -6,7 +6,8 @@ import {
   email,
   ext,
   min_value,
-  max_value
+  max_value,
+  integer
 } from "vee-validate/dist/rules";
 
 import { extend } from "vee-validate";
@@ -22,6 +23,11 @@ extend("min_value", {
 extend("max_value", {
   ...max_value,
   message: "valor no permitido"
+});
+
+extend("integer", {
+  ...integer,
+  message: "debe ser un número entero"
 });
 
 extend("numeric", {
