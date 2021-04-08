@@ -19,7 +19,7 @@
           >
             <v-card-title>Rutina #{{ routine.id }}</v-card-title>
             <v-card-subtitle
-              >Creada el {{ routine.created_at }}</v-card-subtitle
+              >Creada {{ $minifyUpdatedAt(routine.createdAt) }}</v-card-subtitle
             >
             <v-list>
               <v-list-item
