@@ -15,6 +15,7 @@ class Api::V1::RoutineExerciseResource < Api::V1::BaseResource
       id: _model.id,
       routine_id: _model.routine_id,
       exercise_id: _model.exercise_id,
+      repetitions: _model.repetitions,
     }
   end
 end
