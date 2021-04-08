@@ -19,7 +19,7 @@ export default {
     };
   },
   created() {
-    User.includes({ routines: ["exercises"] })
+    User.includes({ routines: { routineExercises: ["exercise"] } })
       .find(this.$route.params.id)
       .then(patient => {
         this.patient = patient;

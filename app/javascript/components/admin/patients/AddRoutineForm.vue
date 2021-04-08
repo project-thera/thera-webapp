@@ -94,12 +94,6 @@ export default {
       patientId: patient.id
     });
 
-    // const routine2 = Routine.create({
-    //   supervisorId: `${patient.supervisorId}`,
-    //   patientId: patient.id
-    // });
-    // console.log(routine2);
-
     // const routine = patient.routines().build();
 
     return {
@@ -128,7 +122,7 @@ export default {
     removeRoutineExercise(index) {
       Vue.set(this.routineExercisesAttributes[index], "_destroy", 1);
     },
-    //
+    // TODO move to ajax request
     async loadExercises() {
       const exercises = await Exercise.perPage(50).all();
       this.exercises = exercises.toArray();

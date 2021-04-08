@@ -21,7 +21,7 @@ class Routine extends BaseResource {
     // this.belongsTo("supervisor", { className: "User" });
 
     this.hasMany("exercises");
-    // this.hasMany("routineExercises");
+    this.hasMany("routineExercises");
   }
 }
 

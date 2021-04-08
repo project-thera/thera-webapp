@@ -83,7 +83,21 @@ routine1 = Routine.create(
   patient: patient1
 )
 
-(1..100).each do |i|
+routine2 = Routine.create(
+  supervisor: supervisor1,
+  patient: patient1
+)
+
+exercises_count = 50
+
+(1..exercises_count).each do |i|
+  exercise = Exercise.create(
+    name: "Exercise ##{i}",
+    klass_name: "Exercise#{i}Class"
+  )
+end
+
+(exercises_count..(exercises_count + 10)).each do |i|
   exercise = Exercise.create(
     name: "Exercise ##{i}",
     klass_name: "Exercise#{i}Class"
@@ -92,5 +106,8 @@ routine1 = Routine.create(
   routine1.routine_exercises.create(
     exercise: exercise
   )
-end
 
+  routine2.routine_exercises.create(
+    exercise: exercise
+  )
+end
