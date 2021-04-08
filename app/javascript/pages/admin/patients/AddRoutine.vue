@@ -1,17 +1,17 @@
 <template>
-  <div v-if="patient">
-    <h2>Paciente {{ patient.fullname }}</h2>
-    <Tabs :patient="patient" />
-  </div>
+  <Suspense :object="patient">
+    <h1>Agregar Rutina</h1>
+    <AddRoutineForm :patient="patient" />
+  </Suspense>
 </template>
 
 <script>
+import AddRoutineForm from "@/components/admin/patients/AddRoutineForm";
 import User from "@/resources/User";
-import Tabs from "@/components/admin/patients/Tabs";
 
 export default {
   components: {
-    Tabs
+    AddRoutineForm
   },
   data() {
     return {

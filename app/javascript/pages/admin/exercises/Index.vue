@@ -27,15 +27,15 @@ import ExerciseResource from "@/resources/Exercise";
 
 export default {
   components: {
-    ExercisesTable,
+    ExercisesTable
   },
   data: () => {
     return {
-      exercises: null,
+      exercises: null
     };
   },
   watch: {
-    $route: "loadExercises",
+    $route: "loadExercises"
   },
   created() {
     this.loadExercises();
@@ -50,13 +50,13 @@ export default {
     async loadExercises() {
       this.$store.dispatch("filters/add", {
         key: "adminExercises",
-        filters: this.$route.query,
+        filters: this.$route.query
       });
 
       this.exercises = await ExerciseResource.list(
         this.$store.state.filters.adminExercises
       );
-    },
-  },
+    }
+  }
 };
 </script>

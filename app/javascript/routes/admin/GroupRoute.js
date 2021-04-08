@@ -5,8 +5,8 @@ const groupRoutes = [
     path: "/admin/grupos",
     name: "admin-groups",
     component: Index,
-    meta: { resource: "Group" },
-  },
+    meta: { resource: "Group" }
+  }
 ];
 
 export default groupRoutes;

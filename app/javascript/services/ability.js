@@ -14,9 +14,11 @@ export default function defineAbilityFor(user) {
       can("undiscard", "User", { discarded: true });
       can("destroy", "User");
       can("show", "User");
+      can("addRoutine", "User");
 
       can("index", "Patient");
       can("show", "Patient");
+      can("addRoutine", "Patient");
 
       can("index", "Group");
 
@@ -34,6 +36,7 @@ export default function defineAbilityFor(user) {
       can("addRoutine", "Patient");
 
       can("show", "User");
+      can("addRoutine", "User");
 
       can("index", "Exercise");
     }

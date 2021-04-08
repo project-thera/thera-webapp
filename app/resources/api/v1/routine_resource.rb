@@ -10,4 +10,9 @@ class Api::V1::RoutineResource < Api::V1::BaseResource
   has_one :supervisor
 
   has_many :exercises
+  has_many :routine_exercises
+
+  attributes :supervisor_id, :patient_id
+
+  accepts_nested_attributes_for_has_many :routine_exercises, Api::V1::RoutineExerciseResource
 end

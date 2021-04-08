@@ -27,15 +27,15 @@ import UserResource from "@/resources/User";
 
 export default {
   components: {
-    PatientsTable,
+    PatientsTable
   },
   data: () => {
     return {
-      patients: null,
+      patients: null
     };
   },
   watch: {
-    $route: "loadPatients",
+    $route: "loadPatients"
   },
   created() {
     this.loadPatients();
@@ -50,13 +50,13 @@ export default {
     async loadPatients() {
       this.$store.dispatch("filters/add", {
         key: "adminPatients",
-        filters: this.$route.query,
+        filters: this.$route.query
       });
 
       this.patients = await UserResource.listPatients(
         this.$store.state.filters.adminPatients
       );
-    },
-  },
+    }
+  }
 };
 </script>

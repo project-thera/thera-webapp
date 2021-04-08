@@ -2,6 +2,7 @@ import APILibrary from "@/resources/APILibrary";
 import BaseResource from "@/resources/BaseResource";
 
 import "./Exercise";
+import "./RoutineExercise";
 
 class Routine extends BaseResource {
   // required by active-resource
@@ -14,10 +15,13 @@ class Routine extends BaseResource {
   static modelName = "Routine";
 
   static define() {
-    this.belongsTo("patient", { className: "User" });
-    this.belongsTo("supervisor", { className: "User" });
+    this.attributes("id", "supervisorId", "patientId");
+
+    // this.belongsTo("patient", { className: "User" });
+    // this.belongsTo("supervisor", { className: "User" });
 
     this.hasMany("exercises");
+    // this.hasMany("routineExercises");
   }
 }
 

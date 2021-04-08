@@ -20,8 +20,11 @@ class User extends BaseResource {
       "discarded",
       "lastSignInAt",
       "lastSignInIp",
+      "supervisorId",
       "groupIds"
     );
+
+    this.belongsTo("supervisor", { className: "User" });
 
     this.hasMany("groups");
     this.hasMany("routines");

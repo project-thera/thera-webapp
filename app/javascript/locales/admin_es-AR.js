@@ -78,6 +78,10 @@ export default {
         index: {
           title: "Pacientes",
           search: "Buscar pacientes"
+        },
+        addRoutineForm: {
+          addRoutineExercise: "Agregar ejercicio",
+          removeRoutineExercise: "Borrar ejercicio"
         }
       },
       users: {
@@ -172,6 +176,14 @@ export default {
       exercise: {
         name: "Nombre",
         klassName: "Clase"
+      },
+      routine: {
+        routineExercises: "Ejercicios"
+      },
+      routineExercise: {
+        repetitions: "Repeticiones",
+        exercise: "Ejercicio",
+        exerciseId: "Ejercicio"
       },
       user: {
         username: "Nombre de usuario",

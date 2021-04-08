@@ -6,4 +6,6 @@ class Routine < ApplicationRecord
 
   has_many :routine_exercises
   has_many :exercises, through: :routine_exercises, inverse_of: :routines
+
+  accepts_nested_attributes_for :routine_exercises, allow_destroy: true, reject_if: :all_blank
 end

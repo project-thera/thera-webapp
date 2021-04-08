@@ -11,19 +11,19 @@ import Form from "@/components/admin/users/Form";
 
 export default {
   components: {
-    Form,
+    Form
   },
   data() {
     return {
-      user: null,
+      user: null
     };
   },
   created() {
     User.includes("groups")
       .find(this.$route.params.id)
-      .then((user) => {
+      .then(user => {
         this.user = user;
       });
-  },
+  }
 };
 </script>

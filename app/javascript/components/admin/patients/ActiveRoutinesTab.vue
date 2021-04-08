@@ -1,7 +1,10 @@
 <template>
   <fragment>
     <v-card
-      v-for="routine in patient.routines().target().__collection"
+      v-for="routine in patient
+        .routines()
+        .target()
+        .toArray()"
       :key="routine.id"
       elevation="2"
       class="ma-4 pa-4"
@@ -12,10 +15,12 @@
       <v-card-text>
         <VueHorizontal responsive class="ma-4">
           <v-card
-            v-for="exercise in routine.exercises().target().__collection"
+            v-for="exercise in routine.exercises().toArray()"
             :key="exercise.id"
             elevation="2"
-            class="ma-4"
+            class="ma-1"
+            min-width="0"
+            width="140"
           >
             <v-card-title>{{ exercise.name }}</v-card-title>
             <v-card-subtitle>Repeticiones {{ 1 }}</v-card-subtitle>
@@ -31,11 +36,25 @@
           Finalizar
         </v-btn>
 
-        <v-btn>
+        <v-btn text>
           Borrar
         </v-btn>
       </v-card-actions>
     </v-card>
+
+    <v-btn
+      v-if="$can('addRoutine', patient)"
+      color="primary"
+      :title="$t('views.actions.edit')"
+      @click.stop="
+        $router.push({
+          name: 'admin-patients-add-routine',
+          params: { id: patient.id }
+        })
+      "
+    >
+      Agregar Rutina
+    </v-btn>
   </fragment>
 </template>
 
@@ -48,10 +67,6 @@ export default {
       type: User,
       required: true
     }
-  },
-  data({ patient }) {
-    console.log(patient);
-    return {};
   }
 };
 </script>

@@ -35,7 +35,7 @@
               $can('show', patient) &&
                 $router.push({
                   name: 'admin-patients-show',
-                  params: { id: patient.id },
+                  params: { id: patient.id }
                 })
             "
           >
@@ -47,7 +47,10 @@
             </td>
             <td>{{ parseDate(patient.lastSignInAt) }}</td>
             <td class="object-actions text-right d-none d-md-table-cell">
-              <ObjectActions v-if="selectedRow === patient.id" :patient="patient" />
+              <ObjectActions
+                v-if="selectedRow === patient.id"
+                :patient="patient"
+              />
               <div v-else>{{ $minifyUpdatedAt(patient.updatedAt) }}</div>
             </td>
           </tr>
@@ -62,23 +65,23 @@ import ObjectActions from "@/components/admin/patients/ObjectActions";
 
 export default {
   components: {
-    ObjectActions,
+    ObjectActions
   },
   props: {
     patients: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
   data({ patients }) {
     return {
       selectedRow: 0,
       selectedRows: [],
-      patientsArray: patients.toArray(),
+      patientsArray: patients.toArray()
     };
   },
   mounted() {
-    this.$bus.$on("toggle-select-all", (allSelected) =>
+    this.$bus.$on("toggle-select-all", allSelected =>
       allSelected ? this.selectAll() : (this.selectedRows = [])
     );
   },
@@ -87,13 +90,13 @@ export default {
   },
   methods: {
     selectAll() {
-      this.selectedRows = this.groupsArray.map((group) => group.id);
+      this.selectedRows = this.groupsArray.map(group => group.id);
     },
     parseDate(date) {
       if (!date) return "";
       return this.$moment(date).format("DD/MM/YYYY hh:mm:ss");
     }
-  },
+  }
 };
 </script>
 

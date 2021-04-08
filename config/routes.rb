@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       jsonapi_resources :exercises, concerns: :soft_deletable
 
       jsonapi_resources :routines, concerns: :soft_deletable  
+
+      jsonapi_resources :routine_exercises, concerns: :soft_deletable  
     end
   end
 

@@ -1,11 +1,11 @@
 export default {
   namespaced: true,
   state: {
-    currentUser: null,
+    currentUser: null
   },
   mutations: {
     setCurrentUser(state, currentUser) {
       state.currentUser = { ...currentUser };
-    },
-  },
+    }
+  }
 };

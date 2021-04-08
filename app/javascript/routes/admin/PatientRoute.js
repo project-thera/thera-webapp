@@ -1,5 +1,5 @@
 import Index from "@/pages/admin/patients/Index";
-// import AddRoutine from "@/pages/admin/patients/AddRoutine";
+import AddRoutine from "@/pages/admin/patients/AddRoutine";
 import Show from "@/pages/admin/patients/Show";
 
 const patientRoutes = [
@@ -9,12 +9,12 @@ const patientRoutes = [
     component: Index,
     meta: { resource: "Patient" }
   },
-  // {
-  //   path: "/admin/pacientes/agregar-rutina",
-  //   name: "admin-patients-add-routine",
-  //   component: AddRoutine,
-  //   meta: { resource: "Patient", action: "addRoutine" },
-  // },
+  {
+    path: "/admin/pacientes/:id/agregar-rutina",
+    name: "admin-patients-add-routine",
+    component: AddRoutine,
+    meta: { resource: "Patient", action: "addRoutine" }
+  },
   {
     path: "/admin/pacientes/:id",
     name: "admin-patients-show",
