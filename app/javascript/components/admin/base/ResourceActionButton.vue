@@ -9,20 +9,20 @@ export default {
   props: {
     resource: {
       type: Object,
-      required: true,
+      required: true
     },
     method: {
       type: String,
-      default: "post",
+      default: "post"
     },
     action: {
       type: String,
-      required: true,
+      required: true
     },
     message: {
       type: String,
-      default: "La operación se realizo con éxito",
-    },
+      default: "La operación se realizo con éxito"
+    }
   },
   methods: {
     callAction: function() {
@@ -52,7 +52,7 @@ export default {
           }
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>

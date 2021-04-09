@@ -1,13 +1,13 @@
 <template>
   <fragment>
     <v-tabs v-model="tab">
-      <v-tab v-for="item in items" :key="item">
+      <v-tab v-for="item in Object.keys(tabToComponent)" :key="item">
         {{ item }}
       </v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tab">
-      <v-tab-item v-for="item in items" :key="item">
+      <v-tab-item v-for="item in Object.keys(tabToComponent)" :key="item">
         <v-card flat>
           <component :is="tabToComponent[item]" :patient="patient" />
         </v-card>
@@ -21,12 +21,14 @@ import User from "@/resources/User";
 import ActiveRoutinesTab from "./ActiveRoutinesTab";
 import ArchivedRoutinesTab from "./ArchivedRoutinesTab";
 import FileTab from "./FileTab";
+import TrackingTab from "./TrackingTab";
 
 export default {
   components: {
     ActiveRoutinesTab,
     ArchivedRoutinesTab,
-    FileTab
+    FileTab,
+    TrackingTab
   },
   props: {
     patient: {
@@ -37,11 +39,11 @@ export default {
   data() {
     return {
       tab: null,
-      items: ["Rutinas Activas", "Rutinas Archivadas", "Ficha"],
       tabToComponent: {
         "Rutinas Activas": "ActiveRoutinesTab",
-        "Rutinas Archivadas": "ArchivedRoutinesTab",
-        Ficha: "FileTab"
+        Ficha: "FileTab",
+        Seguimiento: "TrackingTab",
+        "Rutinas Archivadas": "ArchivedRoutinesTab"
       }
     };
   }

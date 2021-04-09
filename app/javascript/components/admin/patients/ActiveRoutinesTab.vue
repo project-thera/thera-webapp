@@ -32,6 +32,7 @@ export default {
       const routineCollection = await this.patient
         .routines()
         .includes({ routineExercises: ["exercise"] })
+        .where({ discarded: false })
         .page(pageNumber)
         .perPage(this.perPage)
         .all();
