@@ -11,7 +11,7 @@ class Api::V1::UserResource < Api::V1::BaseResource
   # attribute :discarded, delegate: :discarded?
   # attribute :group_ids, format: :ids
 
-  # ransack_filters :username_cont
+  ransack_filters :username_cont
 
   has_many :groups
   has_many :supervised_routines

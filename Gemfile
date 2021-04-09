@@ -64,4 +64,4 @@ gem 'faker'
 gem 'jsonapi-authorization'
 gem 'jsonapi-utils'
 gem 'pundit'
-
+gem 'ransack'

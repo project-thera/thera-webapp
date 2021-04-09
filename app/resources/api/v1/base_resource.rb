@@ -4,6 +4,31 @@ class Api::V1::BaseResource < JSONAPI::Resource
 
   abstract
 
+  def self.ransack_filters(*names)
+    self.const_set('RANSACK_FILTERS', names.freeze)
+
+    options = names.extract_options!
+    names.each do |name| 
+      filter name, options
+    end
+  end
+
+  def self.apply_filter(records, filter, value, options)
+    if self.const_defined?('RANSACK_FILTERS') && self::RANSACK_FILTERS.include?(filter)
+      if needs_array?(filter)
+        records.ransack({filter => value}).result
+      else
+        records.ransack({filter => value.first}).result
+      end
+    else
+      super(records, filter, value)
+    end
+  end
+
+  def self.needs_array?(filter)
+    ::Ransack.predicates[::Ransack::Predicate.detect_from_string(filter.to_s)].wants_array 
+  end
+
   ##
   # This method generates dinamically the necessary methods to make embedded objects work with JSONAPI. 
   # Keep in mind that embebedd objects are not supported by default in JSONAPI.
