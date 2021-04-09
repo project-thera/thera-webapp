@@ -18,6 +18,8 @@ Rails.application.routes.draw do
         jsonapi_relationships
 
         get :current, on: :collection
+        post :start_supervision, on: :member
+        post :stop_supervision, on: :member
       end
   
       jsonapi_resources :groups, concerns: :soft_deletable

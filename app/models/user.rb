@@ -71,6 +71,18 @@ class User < ApplicationRecord
     self.groups << Group.patient
   end
 
+  def start_supervision(context)
+    self.supervisor = context[:user]
+
+    save
+  end
+
+  def stop_supervision
+    self.supervisor_id = nil
+
+    save
+  end
+
   #  def can_enable?
   #    deleted?
   #  end

@@ -41,6 +41,8 @@ export default {
         unresolve: "Volver a estado pendiente",
         archive: "Archivar",
         unarchive: "Desarchivar",
+        startSupervision: "Agregar a mis pacientes",
+        stopSupervision: "Dejar de supervisar",
         messages: {
           confirm: "¿Desea continuar?",
           alertAction: "La acción no podrá deshacerse.",
@@ -70,7 +72,8 @@ export default {
       },
       exercises: {
         index: {
-          title: "Ejercicios"
+          title: "Ejercicios",
+          search: "Buscar ejercicios"
         },
         new: {
           title: "Nuevo ejercicio"
@@ -84,6 +87,12 @@ export default {
         addRoutineForm: {
           addRoutineExercise: "Agregar ejercicio",
           removeRoutineExercise: "Borrar ejercicio"
+        },
+        stopSupervision: {
+          notice: "Se ha dejado de supervisar el paciente %{patient}."
+        },
+        startSupervision: {
+          notice: "Se ha comenzado supervisar el paciente %{patient}."
         }
       },
       routines: {

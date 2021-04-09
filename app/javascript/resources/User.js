@@ -17,6 +17,7 @@ class User extends BaseResource {
   static define() {
     this.attributes(
       "username",
+      "fullname",
       "discarded",
       "lastSignInAt",
       "lastSignInIp",
@@ -32,6 +33,10 @@ class User extends BaseResource {
 
   toString() {
     return `${this.username}`;
+  }
+
+  patientToString() {
+    return `${this.fullname}`;
   }
 
   static async listPatients(params) {

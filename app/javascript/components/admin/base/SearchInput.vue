@@ -16,6 +16,7 @@
             {{ $vuetify.icons.values.close }}
           </v-icon>
         </v-btn>
+        <slot name="append" />
         <template v-if="$slots.default">
           <FilterMenu v-if="smAndUp" :show-badge="showBadge">
             <slot />

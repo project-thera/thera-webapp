@@ -8,7 +8,7 @@ export default {
     adminExercises: INITIAL_STATE,
     adminGroups: INITIAL_STATE,
     adminUsers: INITIAL_STATE,
-    adminPatients: INITIAL_STATE,
+    adminPatients: INITIAL_STATE
   },
   mutations: {
     add(state, { key, filters }) {
@@ -45,7 +45,7 @@ export default {
     },
     clear(state, key) {
       Vue.set(state, key, INITIAL_STATE);
-    },
+    }
   },
   actions: {
     add({ commit }, payload) {
@@ -56,6 +56,6 @@ export default {
     },
     clear({ commit }, key) {
       commit("clear", key);
-    },
-  },
+    }
+  }
 };

@@ -25,6 +25,23 @@ class Api::V1::UserResource < Api::V1::BaseResource
     end
 
     records
-    
   }
+
+
+  filter :own_patients, 
+    verify: ->(values, context) {
+      if ActiveModel::Type::Boolean.new.cast(values[0])
+        return context[:user].id
+      end
+
+      return nil
+    },
+    apply: ->(records, value, _options) {
+      unless value == nil
+        return records.where(supervisor_id: value)
+      end
+
+      records
+    }
+
 end

@@ -3,7 +3,7 @@
     <portal to="search-input">
       <SearchInput
         route="admin-patients"
-        :placeholder="$t('views.users.index.search')"
+        :placeholder="$t('views.patients.index.search')"
         search-param="usernameCont"
         :filters="$store.state.filters.adminPatients"
       />
@@ -15,6 +15,11 @@
 
     <v-row no-gutters>
       <Suspense :object="patients">
+        <v-switch
+          v-model="ownPatients"
+          label="Mostrar solo mis pacientes"
+          @change="loadPatients"
+        />
         <PatientsTable :patients="patients" />
       </Suspense>
     </v-row>
@@ -31,7 +36,8 @@ export default {
   },
   data: () => {
     return {
-      patients: null
+      patients: null,
+      ownPatients: true
     };
   },
   watch: {
@@ -53,9 +59,12 @@ export default {
         filters: this.$route.query
       });
 
-      this.patients = await UserResource.listPatients(
-        this.$store.state.filters.adminPatients
-      );
+      const filters = {
+        ...this.$store.state.filters.adminPatients,
+        ownPatients: this.ownPatients
+      };
+
+      this.patients = await UserResource.listPatients(filters);
     }
   }
 };

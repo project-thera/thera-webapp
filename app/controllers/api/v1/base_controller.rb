@@ -1,6 +1,7 @@
 class Api::V1::BaseController < ApiController
   include JSONAPI::Utils
   include MemberableApiActions
+  include MemberableApiActionsWithContext
   include ActionController::RequestForgeryProtection
 
   protect_from_forgery with: :exception
@@ -21,8 +22,6 @@ class Api::V1::BaseController < ApiController
 
     jsonapi_render_errors json: errors, status: :forbidden
   end
-
-  private 
 
   def context
     { user: current_user }

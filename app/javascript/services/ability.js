@@ -1,9 +1,10 @@
 import { defineAbility } from "@casl/ability";
 
 export default function defineAbilityFor(user) {
-  return defineAbility(can => {
+  return defineAbility((can, cannot) => {
     const discardCondition = { discarded: false };
     const undiscardCondition = { discarded: true };
+    const startSupervisionCondition = { supervisorId: null };
 
     user.hasGroup = function(groupName) {
       return this.groups.includes(groupName);
@@ -20,6 +21,9 @@ export default function defineAbilityFor(user) {
       can("destroy", "User");
       can("show", "User");
       can("addRoutine", "User");
+      can("startSupervision", "User", startSupervisionCondition);
+      can("stopSupervision", "User");
+      cannot("stopSupervision", "User", startSupervisionCondition);
 
       can("index", "Patient");
       can("show", "Patient");
@@ -39,22 +43,25 @@ export default function defineAbilityFor(user) {
     }
 
     if (user.hasGroup("Supervisor")) {
+      const supervisorCondition = { supervisor_id: user.id };
+
+      can("startSupervision", "User", startSupervisionCondition);
+      can("stopSupervision", "User", supervisorCondition);
+
       can("index", "Patient");
       can("show", "Patient");
       can("addRoutine", "Patient");
 
-      const routineSupervisorCondition = { supervisor_id: user.id };
-
       can("show", "Routine");
       can("discard", "Routine", {
         ...discardCondition,
-        ...routineSupervisorCondition
+        ...supervisorCondition
       });
       can("undiscard", "Routine", {
         ...undiscardCondition,
-        ...routineSupervisorCondition
+        ...supervisorCondition
       });
-      can("destroy", "Routine", routineSupervisorCondition);
+      can("destroy", "Routine", supervisorCondition);
 
       can("show", "User");
       can("addRoutine", "User");

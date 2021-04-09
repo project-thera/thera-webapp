@@ -47,11 +47,11 @@ class UserPolicy < ApplicationPolicy
     record.undiscarded? && softable?
   end
 
-  def can_change_email?
-    record.email? && user.sysadmin?
+  def start_supervision?
+    user.sysadmin? || user.admin? || (user.supervisor? && record.supervisor_id.nil?)
   end
 
-  def can_change?(attribute)
-    record.send("can_change_#{attribute}?") && user.sysadmin?
+  def stop_supervision?
+    user.sysadmin? || user.admin? || (user.supervisor? && (user.id == record.supervisor_id))
   end
 end

@@ -44,12 +44,4 @@ class RoutineExercisePolicy < ApplicationPolicy
   def discard?
     record.undiscarded? && softable?
   end
-
-  def can_change_email?
-    record.email? && user.sysadmin?
-  end
-
-  def can_change?(attribute)
-    record.send("can_change_#{attribute}?") && user.sysadmin?
-  end
 end
