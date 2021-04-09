@@ -16,7 +16,7 @@
                 :class="{ 'on-hover': hover }"
                 class="ma-4 pa-4"
               >
-                <v-card-title>Rutina #{{ routine.id }}</v-card-title>
+                <v-card-title>{{ routine.toString() }}</v-card-title>
                 <v-card-subtitle
                   >Creada
                   {{ $minifyUpdatedAt(routine.createdAt) }}</v-card-subtitle
@@ -58,14 +58,30 @@
                     :resource="routine"
                     :title="'Archivar'"
                     :message="
-                      $t('views.routine.discard.notice', {
-                        routine: routine.id
+                      $t('views.routines.discard.notice', {
+                        routine: routine.toString()
                       })
                     "
                     action="discard"
                   >
                     <v-icon medium>{{
                       $vuetify.icons.values.archiveArrowDown
+                    }}</v-icon>
+                  </ResourceActionButton>
+
+                  <ResourceActionButton
+                    v-if="$can('undiscard', routine)"
+                    :resource="routine"
+                    :title="$t('views.actions.unarchive')"
+                    :message="
+                      $t('views.routines.undiscard.notice', {
+                        routine: routine.toString()
+                      })
+                    "
+                    action="undiscard"
+                  >
+                    <v-icon medium>{{
+                      $vuetify.icons.values.archiveArrowUp
                     }}</v-icon>
                   </ResourceActionButton>
 
@@ -138,6 +154,12 @@ export default {
       console: console,
       page: 1
     };
+  },
+  mounted() {
+    this.$bus.$on("update:resource", () => this.loadRoutines(this.page));
+  },
+  beforeDestroy() {
+    this.$bus.$off("update:resource");
   },
   async created() {
     this.loadRoutines(this.page);

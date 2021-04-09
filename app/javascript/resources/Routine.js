@@ -23,6 +23,10 @@ class Routine extends BaseResource {
     this.hasMany("exercises");
     this.hasMany("routineExercises");
   }
+
+  toString() {
+    return `Rutina #${this.id}`;
+  }
 }
 
 export default APILibrary.createResource(Routine);

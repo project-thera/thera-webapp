@@ -39,6 +39,8 @@ export default {
         menu: "Menu",
         resolve: "Resolver",
         unresolve: "Volver a estado pendiente",
+        archive: "Archivar",
+        unarchive: "Desarchivar",
         messages: {
           confirm: "¿Desea continuar?",
           alertAction: "La acción no podrá deshacerse.",
@@ -82,6 +84,14 @@ export default {
         addRoutineForm: {
           addRoutineExercise: "Agregar ejercicio",
           removeRoutineExercise: "Borrar ejercicio"
+        }
+      },
+      routines: {
+        discard: {
+          notice: "La rutina %{routine} ha sido archivada existosamente."
+        },
+        undiscard: {
+          notice: "La rutina %{routine} ha sido desarchivada existosamente."
         }
       },
       users: {
