@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
       if user.sysadmin? || user.admin?
         scope
       elsif user.supervisor?
-        scope.kept.patients
+        scope.kept.owned_or_without_supervision_patients(user)
       else
         scope.none
       end

@@ -34,6 +34,9 @@ class User < ApplicationRecord
 
   scope :list, -> { includes :groups }
   scope :patients, -> { list.where(groups: { name: Group::PATIENT }) }
+  scope :owned_or_without_supervision_patients, -> (user) { 
+    patients.where("#{table_name}.supervisor_id = ? OR supervisor_id IS NULL", user.id)
+  }
 
   def to_s
     username
