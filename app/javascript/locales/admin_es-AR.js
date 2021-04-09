@@ -92,6 +92,9 @@ export default {
         },
         undiscard: {
           notice: "La rutina %{routine} ha sido desarchivada existosamente."
+        },
+        destroy: {
+          notice: "La rutina %{routine} fue eliminada definitivamente."
         }
       },
       users: {

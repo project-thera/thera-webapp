@@ -56,7 +56,7 @@
                   <ResourceActionButton
                     v-if="$can('discard', routine)"
                     :resource="routine"
-                    :title="'Archivar'"
+                    :title="$t('views.actions.archive')"
                     :message="
                       $t('views.routines.discard.notice', {
                         routine: routine.toString()
@@ -89,7 +89,11 @@
                     v-if="$can('destroy', routine)"
                     :resource="routine"
                     :title="$t('views.actions.destroy')"
-                    :message="$t('views.actions.destroy')"
+                    :message="
+                      $t('views.routines.destroy.notice', {
+                        routine: routine.toString()
+                      })
+                    "
                     action="destroy"
                   >
                     <v-icon medium>{{
