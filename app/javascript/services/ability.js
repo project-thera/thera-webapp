@@ -49,8 +49,8 @@ export default function defineAbilityFor(user) {
       can("stopSupervision", "User", supervisorCondition);
 
       can("index", "Patient");
-      can("show", "Patient");
-      can("addRoutine", "Patient");
+      can("show", "Patient", supervisorCondition);
+      can("addRoutine", "Patient", supervisorCondition);
 
       can("show", "Routine");
       can("discard", "Routine", {
@@ -62,9 +62,6 @@ export default function defineAbilityFor(user) {
         ...supervisorCondition
       });
       can("destroy", "Routine", supervisorCondition);
-
-      can("show", "User");
-      can("addRoutine", "User");
 
       can("index", "Exercise");
     }
