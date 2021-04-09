@@ -213,7 +213,8 @@ export default {
         email: "Correo electrónico",
         lastSignInAt: "Último inicio de sesión",
         lastSignInIp: "Última dirección IP",
-        groups: "Grupos"
+        groups: "Grupos",
+        supervisor: "Supervisor"
       },
       group: {
         name: "Nombre de grupo"

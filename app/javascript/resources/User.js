@@ -32,7 +32,7 @@ class User extends BaseResource {
   }
 
   toString() {
-    return `${this.username}`;
+    return `${this.fullname}`;
   }
 
   patientToString() {
@@ -43,6 +43,7 @@ class User extends BaseResource {
     const { page, ...filters } = params;
 
     const res = await this.where(filters)
+      .includes("supervisor")
       .where({ patients: true })
       .order({ updatedAt: "desc" })
       .perPage(PAGE_SIZE)

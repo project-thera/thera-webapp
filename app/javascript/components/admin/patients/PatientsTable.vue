@@ -22,6 +22,7 @@
           <tr>
             <th>{{ $t("attributes.user.fullname") }}</th>
             <th>{{ $t("attributes.user.lastSignInAt") }}</th>
+            <th>{{ $t("attributes.user.supervisor") }}</th>
             <th></th>
           </tr>
         </thead>
@@ -46,6 +47,14 @@
               {{ patient.fullname }}
             </td>
             <td>{{ parseDate(patient.lastSignInAt) }}</td>
+            <td>
+              <template v-if="patient.supervisor()">
+                {{ patient.supervisor() }}
+              </template>
+              <template v-else>
+                <v-chip>Sin supervisor</v-chip>
+              </template>
+            </td>
             <td class="object-actions text-right d-none d-md-table-cell">
               <ObjectActions
                 v-if="selectedRow === patient.id"
