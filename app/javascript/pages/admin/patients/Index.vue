@@ -34,10 +34,16 @@ export default {
   components: {
     PatientsTable
   },
-  data: () => {
+  data: ({
+    $store: {
+      state: {
+        user: { currentUser }
+      }
+    }
+  }) => {
     return {
       patients: null,
-      ownPatients: true
+      ownPatients: currentUser.hasGroup("Supervisor")
     };
   },
   watch: {
