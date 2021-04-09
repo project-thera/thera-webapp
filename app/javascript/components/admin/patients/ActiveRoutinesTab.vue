@@ -2,10 +2,7 @@
   <fragment>
     <v-row>
       <v-col
-        v-for="routine in patient
-          .routines()
-          .target()
-          .toArray()"
+        v-for="routine in routines"
         :key="routine.id"
         cols="12"
         sm="12"
@@ -78,6 +75,10 @@
     >
       Agregar Rutina
     </v-btn>
+
+    <div class="text-center">
+      <v-pagination v-model="page" :length="pageCount" @input="paginate" />
+    </div>
   </fragment>
 </template>
 
@@ -89,6 +90,37 @@ export default {
     patient: {
       type: User,
       required: true
+    }
+  },
+  data({ patient }) {
+    console.log(patient);
+
+    return {
+      routines: [],
+      page: 1,
+      perPage: 4,
+      pageCount: 1
+    };
+  },
+  async created() {
+    this.loadRoutines(this.page);
+  },
+  methods: {
+    paginate(pageNumber) {
+      this.loadRoutines(pageNumber);
+    },
+    async loadRoutines(pageNumber) {
+      const routineCollection = await this.patient
+        .routines()
+        .includes({ routineExercises: ["exercise"] })
+        .page(pageNumber)
+        .perPage(this.perPage)
+        .all();
+
+      this.routines = routineCollection.toArray();
+      this.pageCount = Math.ceil(
+        routineCollection.meta().recordCount / this.perPage
+      );
     }
   }
 };

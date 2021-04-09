@@ -15,7 +15,7 @@ import Form from "@/components/admin/users/Form";
 
 export default {
   components: {
-    Form,
-  },
+    Form
+  }
 };
 </script>
