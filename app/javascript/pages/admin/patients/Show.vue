@@ -1,8 +1,10 @@
 <template>
-  <div v-if="patient">
-    <h2>Paciente {{ patient.fullname }}</h2>
-    <Tabs :patient="patient" />
-  </div>
+  <Suspense :object="patient">
+    <div v-if="patient">
+      <h2>Paciente {{ patient.fullname }}</h2>
+      <Tabs :patient="patient" />
+    </div>
+  </Suspense>
 </template>
 
 <script>

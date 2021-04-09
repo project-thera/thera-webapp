@@ -19,13 +19,13 @@
 <script>
 import User from "@/resources/User";
 import ActiveRoutinesTab from "./ActiveRoutinesTab";
-import OldRoutinesTab from "./OldRoutinesTab";
+import ArchivedRoutinesTab from "./ArchivedRoutinesTab";
 import FileTab from "./FileTab";
 
 export default {
   components: {
     ActiveRoutinesTab,
-    OldRoutinesTab,
+    ArchivedRoutinesTab,
     FileTab
   },
   props: {
@@ -37,10 +37,10 @@ export default {
   data() {
     return {
       tab: null,
-      items: ["Rutinas Activas", "Rutinas Anteriores", "Ficha"],
+      items: ["Rutinas Activas", "Rutinas Archivadas", "Ficha"],
       tabToComponent: {
         "Rutinas Activas": "ActiveRoutinesTab",
-        "Rutinas Anteriores": "OldRoutinesTab",
+        "Rutinas Archivadas": "ArchivedRoutinesTab",
         Ficha: "FileTab"
       }
     };

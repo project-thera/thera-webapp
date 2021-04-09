@@ -87,14 +87,10 @@ export default {
     }
   },
   data: ({ patient }) => {
-    console.log(patient);
-
     const routine = Routine.build({
       supervisorId: `${patient.supervisorId}`,
       patientId: patient.id
     });
-
-    // const routine = patient.routines().build();
 
     return {
       routine,
@@ -116,7 +112,6 @@ export default {
   },
   methods: {
     addRoutineExercise() {
-      console.log(this.routine);
       this.routineExercisesAttributes.push(
         Object.assign(
           { _destroy: 0 },
@@ -141,7 +136,6 @@ export default {
           // state: 'draft',
         });
         try {
-          console.log(this.routine);
           await this.routine.save();
 
           this.loading = false;

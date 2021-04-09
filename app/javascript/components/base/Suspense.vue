@@ -10,8 +10,8 @@ export default {
   props: {
     object: {
       type: [Array, Object],
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>
