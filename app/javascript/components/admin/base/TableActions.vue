@@ -97,27 +97,27 @@ export default {
   props: {
     route: {
       type: String,
-      required: true,
+      required: true
     },
     filters: {
       type: Object,
-      required: true,
+      required: true
     },
     resources: {
       type: Object,
-      required: true,
+      required: true
     },
     selectedRows: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data({ resources, filters: { page } }) {
     return {
       allSelected: false,
       currentPage: page,
       page: page,
-      recordCount: resources.meta().recordCount,
+      recordCount: resources.meta().recordCount
     };
   },
   computed: {
@@ -135,7 +135,7 @@ export default {
     },
     endItem() {
       return Math.min(this.startItem + PAGE_SIZE - 1, this.recordCount);
-    },
+    }
   },
   watch: {
     filters: function(newFilters) {
@@ -144,7 +144,7 @@ export default {
     },
     resources: function(newResources) {
       this.recordCount = newResources.meta().recordCount;
-    },
+    }
   },
   methods: {
     selectAll() {
@@ -155,7 +155,7 @@ export default {
     goToPage() {
       this.$router.push({
         name: this.route,
-        query: { ...this.filters, page: this.page },
+        query: { ...this.filters, page: this.page }
       });
     },
     next() {
@@ -163,7 +163,7 @@ export default {
 
       this.$router.push({
         name: this.route,
-        query: { ...filters, page: page + 1 },
+        query: { ...filters, page: page + 1 }
       });
     },
     prev() {
@@ -171,10 +171,10 @@ export default {
 
       this.$router.push({
         name: this.route,
-        query: { ...filters, page: page - 1 },
+        query: { ...filters, page: page - 1 }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

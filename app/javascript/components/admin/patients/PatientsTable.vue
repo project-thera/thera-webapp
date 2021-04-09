@@ -4,7 +4,7 @@
       <TableActions
         :resources="patients"
         route="admin-patients"
-        :filters="this.$store.state.filters.adminPatients"
+        :filters="$store.state.filters.adminPatients"
       >
         <template #actions>
           <AddButton

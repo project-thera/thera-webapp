@@ -16,11 +16,11 @@
         <!-- <v-img class="mx-2 brand-logo" contain :src="Logo" /> -->
       </router-link>
 
-      <!-- <v-spacer /> -->
+      <v-spacer />
 
-      <!-- <portal-target name="search-input" /> -->
+      <portal-target name="search-input" />
 
-      <!-- <v-spacer /> -->
+      <v-spacer />
 
       <UserMenu />
     </v-app-bar>
