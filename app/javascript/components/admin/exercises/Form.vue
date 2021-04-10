@@ -29,6 +29,7 @@
                   :items="exerciseTypes"
                   :label="$t('attributes.exercise.klassName')"
                   :error-messages="errors"
+                  @change="resetExerciseSteps"
                 />
               </ValidationProvider>
             </v-col>
@@ -115,6 +116,9 @@ export default {
     };
   },
   methods: {
+    resetExerciseSteps() {
+      this.exerciseStepsAttributes = [];
+    },
     addExerciseStep() {
       this.exerciseStepsAttributes.push({ goal: null, time: 1000 });
     },
