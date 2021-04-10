@@ -49,9 +49,9 @@ supervisor2 = User.create(
 )
 
 patient1 = User.create(
-  username: 'patient1',
+  username: 'paciente1',
   password: 'dev',
-  email: 'patient1@thera.com.ar',
+  email: 'paciente1@thera.com.ar',
   fullname: 'Anakin Skywalker',
   confirmed_at: DateTime.now,
   groups: [patient],
@@ -59,9 +59,9 @@ patient1 = User.create(
 )
 
 patient2 = User.create(
-  username: 'patient2',
+  username: 'paciente2',
   password: 'dev',
-  email: 'patient2@thera.com.ar',
+  email: 'paciente2@thera.com.ar',
   fullname: 'Luke Skywalker',
   confirmed_at: DateTime.now,
   groups: [patient],
@@ -69,9 +69,9 @@ patient2 = User.create(
 )
 
 patient3 = User.create(
-  username: 'patient3',
+  username: 'paciente3',
   password: 'dev',
-  email: 'patient3@thera.com.ar',
+  email: 'paciente3@thera.com.ar',
   fullname: 'Leia Organa',
   confirmed_at: DateTime.now,
   groups: [patient],
@@ -94,14 +94,14 @@ exercises_count = 50
 
 (1..exercises_count).each do |i|
   exercise = Exercise.create(
-    name: "Exercise ##{i}",
+    name: "Ejercicio ##{i}",
     exercise_type: exercise_types[i % exercise_types.length]
   )
 end
 
 (exercises_count..(exercises_count + 10)).each do |i|
   exercise = Exercise.create(
-    name: "Exercise ##{i}",
+    name: "Ejercicio ##{i}",
     exercise_type: exercise_types[i % exercise_types.length]
   )
 
