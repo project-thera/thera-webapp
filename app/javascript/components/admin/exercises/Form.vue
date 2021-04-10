@@ -161,12 +161,15 @@ export default {
     };
   },
   methods: {
+    defaultStep() {
+      return { goal: null, time: 1000 };
+    },
     resetExerciseSteps(value) {
-      this.exerciseStepsAttributes = [];
+      this.exerciseStepsAttributes = [this.defaultStep];
       this.goals = exerciseTypeGoalOptions[value];
     },
     addExerciseStep() {
-      this.exerciseStepsAttributes.push({ goal: null, time: 1000 });
+      this.exerciseStepsAttributes.push(this.defaultStep);
     },
     removeExerciseStep(index) {
       this.exerciseStepsAttributes.splice(index, index);
