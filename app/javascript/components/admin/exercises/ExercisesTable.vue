@@ -45,9 +45,15 @@
               }}</v-icon>
               {{ exercise.name }}
             </td>
+            <td>
+              {{ exercise.klassName }}
+            </td>
             <td class="object-actions text-right d-none d-md-table-cell">
-              <!-- <ObjectActions v-if="selectedRow === exercise.id" :exercise="exercise" /> -->
-              <!-- <div v-else>{{ $minifyUpdatedAt(exercise.updatedAt) }}</div> -->
+              <ObjectActions
+                v-if="selectedRow === exercise.id"
+                :exercise="exercise"
+              />
+              <div v-else>{{ $minifyUpdatedAt(exercise.updatedAt) }}</div>
             </td>
           </tr>
         </tbody>

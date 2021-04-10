@@ -12,7 +12,7 @@ class Exercise extends BaseResource {
   static modelName = "Exercise";
 
   static define() {
-    this.attributes("name", "klass_name", "createdAt", "updatedAt");
+    this.attributes("name", "klass_name", "steps", "createdAt", "updatedAt");
   }
 
   toString() {

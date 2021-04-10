@@ -83,6 +83,12 @@
               </div>
             </v-col>
           </v-row>
+          <v-row>
+            <v-col cols="12">
+              <SaveButton />
+              <DiscardButton :to="{ name: 'admin-exercises' }" />
+            </v-col>
+          </v-row>
         </v-container>
       </v-form>
     </ValidationObserver>
@@ -104,6 +110,14 @@ export default {
     }
   },
   data: ({ exercise }) => {
+    let exerciseStepsAttributes;
+
+    try {
+      exerciseStepsAttributes = JSON.parse(exercise.steps);
+    } catch (e) {
+      exerciseStepsAttributes = [];
+    }
+
     return {
       object: exercise.attributes(),
       exerciseTypes: [
@@ -111,8 +125,8 @@ export default {
         "Soplido",
         "Reconocimiento de voz"
       ],
-      exerciseStepsAttributes: [], // JSON.parse(exercise.steps)
-      goals: []
+      exerciseStepsAttributes,
+      goals: ["Lengua afuera"]
     };
   },
   methods: {
