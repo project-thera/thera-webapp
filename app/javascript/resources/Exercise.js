@@ -1,6 +1,8 @@
 import APILibrary from "@/resources/APILibrary";
 import BaseResource from "@/resources/BaseResource";
 
+import { exerciseTypes } from "@/data/exercise-types";
+
 class Exercise extends BaseResource {
   // required by active-resource
   // https://github.com/nicklandgrebe/active-resource.js/issues/47
@@ -12,11 +14,22 @@ class Exercise extends BaseResource {
   static modelName = "Exercise";
 
   static define() {
-    this.attributes("name", "klass_name", "steps", "createdAt", "updatedAt");
+    this.attributes(
+      "name",
+      "exercise_type",
+      "description",
+      "steps",
+      "createdAt",
+      "updatedAt"
+    );
   }
 
   toString() {
     return `${this.name}`;
+  }
+
+  exerciseTypeToString() {
+    return exerciseTypes[this.exerciseType];
   }
 }
 

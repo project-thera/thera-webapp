@@ -93,14 +93,14 @@ exercises_count = 50
 (1..exercises_count).each do |i|
   exercise = Exercise.create(
     name: "Exercise ##{i}",
-    klass_name: "Exercise#{i}Class"
+    exercise_type: "Exercise#{i}Class"
   )
 end
 
 (exercises_count..(exercises_count + 10)).each do |i|
   exercise = Exercise.create(
     name: "Exercise ##{i}",
-    klass_name: "Exercise#{i}Class"
+    exercise_type: "Exercise#{i}Class"
   )
 
   routine1.routine_exercises.create(

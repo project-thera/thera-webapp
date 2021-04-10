@@ -3,15 +3,26 @@
     <v-card class="d-flex pa-4" outlined tile>
       <v-row>
         <v-col cols="12" md="8">
-          <ValidationProvider v-slot="{ errors }" rules="required" vid="goal">
-            <v-select
-              v-model="attributes.goal"
-              :items="goals"
-              :label="$t('attributes.exerciseStep.goal')"
-              item-value="id"
-              :error-messages="errors"
-            />
-          </ValidationProvider>
+          <template v-if="goals">
+            <ValidationProvider v-slot="{ errors }" rules="required" vid="goal">
+              <v-select
+                v-model="attributes.goal"
+                :items="goals"
+                :label="$t('attributes.exerciseStep.goal')"
+                item-value="id"
+                :error-messages="errors"
+              />
+            </ValidationProvider>
+          </template>
+          <template v-else>
+            <ValidationProvider v-slot="{ errors }" rules="required" vid="goal">
+              <v-text-field
+                v-model="attributes.goal"
+                :label="$t('attributes.exerciseStep.goal')"
+                :error-messages="errors"
+              />
+            </ValidationProvider>
+          </template>
         </v-col>
 
         <v-col cols="12" md="4">

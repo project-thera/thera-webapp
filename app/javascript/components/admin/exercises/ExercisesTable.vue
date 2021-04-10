@@ -21,7 +21,7 @@
         <thead>
           <tr>
             <th>{{ $t("attributes.exercise.name") }}</th>
-            <th>{{ $t("attributes.exercise.klassName") }}</th>
+            <th>{{ $t("attributes.exercise.exerciseType") }}</th>
             <th></th>
           </tr>
         </thead>
@@ -46,7 +46,7 @@
               {{ exercise.name }}
             </td>
             <td>
-              {{ exercise.klassName }}
+              {{ exercise.exerciseTypeToString() }}
             </td>
             <td class="object-actions text-right d-none d-md-table-cell">
               <ObjectActions

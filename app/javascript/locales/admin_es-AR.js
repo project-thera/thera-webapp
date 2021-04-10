@@ -81,6 +81,9 @@ export default {
         form: {
           removeExerciseStep: "Remover paso",
           addExerciseStep: "Agregar paso"
+        },
+        destroy: {
+          notice: "El ejercicio %{exercise} fue eliminado definitivamente."
         }
       },
       patients: {
@@ -201,8 +204,9 @@ export default {
       },
       exercise: {
         name: "Nombre",
-        klassName: "Clase",
-        exerciseSteps: "Pasos"
+        exerciseType: "Tipo",
+        exerciseSteps: "Pasos",
+        description: "Descripción"
       },
       exerciseStep: {
         goal: "Objetivo",

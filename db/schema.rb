@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_025554) do
+ActiveRecord::Schema.define(version: 2021_04_10_161225) do
 
   create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
-    t.string "klass_name"
+    t.string "exercise_type"
+    t.string "description"
+    t.text "steps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -50,6 +52,8 @@ ActiveRecord::Schema.define(version: 2021_04_06_025554) do
     t.bigint "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_routines_on_discarded_at"
     t.index ["patient_id"], name: "index_routines_on_patient_id"
     t.index ["supervisor_id"], name: "index_routines_on_supervisor_id"
   end
