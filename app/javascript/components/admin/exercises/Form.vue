@@ -133,8 +133,8 @@ export default {
       this.loading = true;
       if (this.$refs.form.validate()) {
         this.exercise.assignAttributes({
-          ...this.object
-          //routineExercisesAttributes: this.routineExercisesAttributes
+          ...this.object,
+          steps: JSON.stringify(this.exerciseStepsAttributes)
         });
         try {
           await this.exercise.save();
