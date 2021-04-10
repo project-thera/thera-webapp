@@ -115,11 +115,7 @@
 import ExerciseStepForm from "./ExerciseStepForm";
 import Exercise from "@/resources/Exercise";
 
-import {
-  exerciseTypeOptions,
-  exerciseTypeGoalOptions,
-  objectToOptions
-} from "@/data/exercise-types";
+import { exerciseTypeAndGoalsOptions } from "@/data/exercise-types";
 
 export default {
   components: {
@@ -133,6 +129,10 @@ export default {
   },
   data: instance => {
     const { exercise } = instance;
+    const {
+      exerciseTypeOptions,
+      exerciseTypeGoalOptions
+    } = exerciseTypeAndGoalsOptions(instance.$serverParameters);
 
     let exerciseStepsAttributes;
     let goals = null;
@@ -153,10 +153,9 @@ export default {
 
     return {
       object: exercise.attributes(),
-      exerciseTypeOptions: objectToOptions(
-        instance.$serverParameters.exercise_types
-      ),
       exerciseStepsAttributes,
+      exerciseTypeOptions,
+      exerciseTypeGoalOptions,
       goals
     };
   },
@@ -165,11 +164,11 @@ export default {
       return { goal: null, time: 1000 };
     },
     resetExerciseSteps(value) {
-      this.exerciseStepsAttributes = [this.defaultStep];
-      this.goals = exerciseTypeGoalOptions[value];
+      this.exerciseStepsAttributes = [this.defaultStep()];
+      this.goals = this.exerciseTypeGoalOptions[value];
     },
     addExerciseStep() {
-      this.exerciseStepsAttributes.push(this.defaultStep);
+      this.exerciseStepsAttributes.push(this.defaultStep());
     },
     removeExerciseStep(index) {
       this.exerciseStepsAttributes.splice(index, index);

@@ -21,7 +21,8 @@
       data: { 
         current_user: { id: @current_user.id, username: @current_user.username, groups: @current_user.cached_groups },
         parameters: {
-          exercise_types: Exercise.exercise_types
+          exercise_types: Exercise.exercise_types,
+          exercise_type_goals: Exercise.exercise_type_goals,
         }
       }
     %>

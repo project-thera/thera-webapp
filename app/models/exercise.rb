@@ -1,3 +1,5 @@
+require_relative '../data/classification_labels'
+
 class Exercise < ApplicationRecord
   include Discard::Model
   
@@ -10,5 +12,23 @@ class Exercise < ApplicationRecord
       speech: "Reconocimiento de voz",
       classification: "Reconocimiento facial"
     }
+  end
+
+  def self.blow_exercise_goals
+    [true, false]
+  end
+
+  def self.speech_exercise_goals
+    nil
+  end
+
+  def self.classification_exercise_goals
+    ClassificationLabels.goals
+  end
+
+  def self.exercise_type_goals
+    exercise_types.keys.map do | exercise_type |
+      { exercise_type => send(:"#{exercise_type}_exercise_goals") }
+    end
   end
 end
