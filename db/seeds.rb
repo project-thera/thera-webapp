@@ -88,19 +88,21 @@ routine2 = Routine.create(
   patient: patient1
 )
 
+exercise_types = Exercise.exercise_types.keys
+
 exercises_count = 50
 
 (1..exercises_count).each do |i|
   exercise = Exercise.create(
     name: "Exercise ##{i}",
-    exercise_type: "Exercise#{i}Class"
+    exercise_type: exercise_types[i % exercise_types.length]
   )
 end
 
 (exercises_count..(exercises_count + 10)).each do |i|
   exercise = Exercise.create(
     name: "Exercise ##{i}",
-    exercise_type: "Exercise#{i}Class"
+    exercise_type: exercise_types[i % exercise_types.length]
   )
 
   routine1.routine_exercises.create(

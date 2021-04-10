@@ -49,6 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentUser = JSON.parse(container.dataset.currentUser);
   const abilities = defineAbilityFor(currentUser);
 
+  Vue.prototype.$serverParameters = JSON.parse(container.dataset.parameters);
+
   store.commit("user/setCurrentUser", currentUser);
 
   Vue.use(abilitiesPlugin, abilities);

@@ -117,7 +117,8 @@ import Exercise from "@/resources/Exercise";
 
 import {
   exerciseTypeOptions,
-  exerciseTypeGoalOptions
+  exerciseTypeGoalOptions,
+  objectToOptions
 } from "@/data/exercise-types";
 
 export default {
@@ -130,13 +131,19 @@ export default {
       default: () => Exercise.build()
     }
   },
-  data: ({ exercise }) => {
+  data: instance => {
+    const { exercise } = instance;
+
     let exerciseStepsAttributes;
     let goals = null;
 
     try {
       exerciseStepsAttributes = JSON.parse(exercise.steps);
     } catch (e) {
+      exerciseStepsAttributes = null;
+    }
+
+    if (!exerciseStepsAttributes) {
       exerciseStepsAttributes = [];
     }
 
@@ -146,8 +153,9 @@ export default {
 
     return {
       object: exercise.attributes(),
-      // type: exercise.exerciseType,
-      exerciseTypeOptions,
+      exerciseTypeOptions: objectToOptions(
+        instance.$serverParameters.exercise_types
+      ),
       exerciseStepsAttributes,
       goals
     };

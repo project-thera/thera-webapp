@@ -46,7 +46,7 @@
               {{ exercise.name }}
             </td>
             <td>
-              {{ exercise.exerciseTypeToString() }}
+              {{ $serverParameters.exercise_types[exercise.exerciseType] }}
             </td>
             <td class="object-actions text-right d-none d-md-table-cell">
               <ObjectActions

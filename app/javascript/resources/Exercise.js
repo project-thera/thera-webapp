@@ -27,10 +27,6 @@ class Exercise extends BaseResource {
   toString() {
     return `${this.name}`;
   }
-
-  exerciseTypeToString() {
-    return exerciseTypes[this.exerciseType];
-  }
 }
 
 export default APILibrary.createResource(Exercise);
