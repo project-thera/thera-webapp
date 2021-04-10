@@ -5,5 +5,5 @@ class Api::V1::GroupResource < Api::V1::BaseResource
     :discarded_at
 
   filters :name
-  # ransack_filters :name_cont
+  ransack_filters :name_cont
 end

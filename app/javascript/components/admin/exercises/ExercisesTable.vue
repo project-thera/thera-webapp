@@ -4,7 +4,7 @@
       <TableActions
         :resources="exercises"
         route="admin-exercises"
-        :filters="this.$store.state.filters.adminExercises"
+        :filters="$store.state.filters.adminExercises"
       >
         <template #actions>
           <AddButton
@@ -35,7 +35,7 @@
               $can('show', exercise) &&
                 $router.push({
                   name: 'exercises-show',
-                  params: { id: exercise.id },
+                  params: { id: exercise.id }
                 })
             "
           >
@@ -61,23 +61,23 @@ import ObjectActions from "@/components/admin/exercises/ObjectActions";
 
 export default {
   components: {
-    ObjectActions,
+    ObjectActions
   },
   props: {
     exercises: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
   data({ exercises }) {
     return {
       selectedRow: 0,
       selectedRows: [],
-      exercisesArray: exercises.toArray(),
+      exercisesArray: exercises.toArray()
     };
   },
   mounted() {
-    this.$bus.$on("toggle-select-all", (allSelected) =>
+    this.$bus.$on("toggle-select-all", allSelected =>
       allSelected ? this.selectAll() : (this.selectedRows = [])
     );
   },
@@ -86,13 +86,13 @@ export default {
   },
   methods: {
     selectAll() {
-      this.selectedRows = this.exercisesArray.map((exercise) => exercise.id);
+      this.selectedRows = this.exercisesArray.map(exercise => exercise.id);
     },
     parseDate(date) {
       if (!date) return "";
       return this.$moment(date).format("DD/MM/YYYY hh:mm:ss");
-    },
-  },
+    }
+  }
 };
 </script>
 

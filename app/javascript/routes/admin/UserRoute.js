@@ -7,20 +7,20 @@ const userRoutes = [
     path: "/admin/usuarios",
     name: "admin-users",
     component: Index,
-    meta: { resource: "User" },
+    meta: { resource: "User" }
   },
   {
     path: "/admin/usuarios/crear",
     name: "admin-users-new",
     component: New,
-    meta: { resource: "User", action: "create" },
+    meta: { resource: "User", action: "create" }
   },
   {
     path: "/admin/usuarios/:id/editar",
     name: "admin-users-edit",
     component: Edit,
-    meta: { resource: "User", action: "update" },
-  },
+    meta: { resource: "User", action: "update" }
+  }
 ];
 
 export default userRoutes;

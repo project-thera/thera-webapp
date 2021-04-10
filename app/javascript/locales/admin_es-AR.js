@@ -77,6 +77,10 @@ export default {
         },
         new: {
           title: "Nuevo ejercicio"
+        },
+        form: {
+          removeExerciseStep: "Remover paso",
+          addExerciseStep: "Agregar paso"
         }
       },
       patients: {
@@ -197,7 +201,12 @@ export default {
       },
       exercise: {
         name: "Nombre",
-        klassName: "Clase"
+        klassName: "Clase",
+        exerciseSteps: "Pasos"
+      },
+      exerciseStep: {
+        goal: "Objetivo",
+        time: "Tiempo"
       },
       routine: {
         routineExercises: "Ejercicios"
