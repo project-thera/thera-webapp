@@ -31,4 +31,12 @@ class Exercise < ApplicationRecord
       { exercise_type => send(:"#{exercise_type}_exercise_goals") }
     end
   end
+
+  def as_routine_intent_data(state = 'completed')
+    {
+      id: id,
+      name: name,
+      state: state
+    }
+  end
 end

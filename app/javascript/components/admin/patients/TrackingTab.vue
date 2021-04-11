@@ -43,7 +43,7 @@
           </v-menu>
         </v-toolbar>
       </v-sheet>
-      <v-sheet height="600">
+      <v-sheet height="800">
         <v-calendar
           ref="calendar"
           v-model="focus"
@@ -51,6 +51,12 @@
           :events="events"
           :event-color="getEventColor"
           :type="type"
+          event-overlap-mode="column"
+          :hide-header="false"
+          :interval-minutes="0"
+          :interval-height="0"
+          :interval-count="0"
+          :event-overlap-threshold="0"
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
@@ -93,6 +99,7 @@
 
 <script>
 import User from "@/resources/User";
+import RoutineIntent from "@/resources/RoutineIntent";
 
 export default {
   props: {
@@ -161,19 +168,28 @@ export default {
 
       nativeEvent.stopPropagation();
     },
-    updateRange({ start, end }) {
-      console.log("UPDATE");
+    async updateRange({ start, end }) {
       const events = [];
 
       const min = new Date(`${start.date}T00:00:00`);
       const max = new Date(`${end.date}T23:59:59`);
 
-      events.push({
-        name: "Rutina #1",
-        start: min,
-        color: this.colors[this.random(0, this.colors.length - 1)],
-        timed: true
-      });
+      const routineIntents = (
+        await this.patient
+          .routineIntents()
+          .includes("routine")
+          .where({ finishedAtLteq: max, finishedAtGteq: min })
+          .all()
+      ).toArray();
+
+      for (const routineIntent of routineIntents) {
+        events.push({
+          name: routineIntent.routine().toString(),
+          start: new Date(routineIntent.finishedAt),
+          color: this.colors[this.random(0, this.colors.length - 1)],
+          timed: false
+        });
+      }
 
       this.events = events;
     },

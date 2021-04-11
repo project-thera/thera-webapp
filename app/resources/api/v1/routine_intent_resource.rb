@@ -6,4 +6,6 @@ class Api::V1::RoutineIntentResource < Api::V1::BaseResource
     :data
 
   has_one :routine
+
+  ransack_filters :finished_at_lteq, :finished_at_gteq
 end

@@ -3,6 +3,7 @@ import BaseResource, { PAGE_SIZE } from "@/resources/BaseResource";
 
 import "./Group";
 import "./Routine";
+import "./RoutineIntent";
 
 class User extends BaseResource {
   // required by active-resource
@@ -29,6 +30,7 @@ class User extends BaseResource {
 
     this.hasMany("groups");
     this.hasMany("routines");
+    this.hasMany("routineIntents");
   }
 
   toString() {
