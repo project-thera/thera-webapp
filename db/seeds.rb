@@ -90,7 +90,7 @@ routine2 = Routine.create(
 
 exercise_types = Exercise.exercise_types.keys
 
-exercises_count = 50
+exercises_count = 20
 
 (1..exercises_count).each do |i|
   exercise = Exercise.create(

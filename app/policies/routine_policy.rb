@@ -3,8 +3,12 @@ class RoutinePolicy < ApplicationPolicy
     def resolve
       if user.sysadmin? || user.admin?
         scope
+      elsif user.supervisor?
+        scope.supervised_by(user)
+      elsif user.patient?
+        scope.owned_by(user)
       else
-        scope.kept
+        scope.none
       end
     end
   end

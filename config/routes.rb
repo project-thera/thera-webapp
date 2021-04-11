@@ -23,12 +23,10 @@ Rails.application.routes.draw do
       end
   
       jsonapi_resources :groups, concerns: :soft_deletable
-
-      jsonapi_resources :exercises, concerns: :soft_deletable
-
       jsonapi_resources :routines, concerns: :soft_deletable  
-
-      jsonapi_resources :routine_exercises, concerns: :soft_deletable  
+      jsonapi_resources :exercises
+      jsonapi_resources :routine_exercises
+      jsonapi_resources :routine_intents  
     end
   end
 

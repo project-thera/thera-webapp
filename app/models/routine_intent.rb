@@ -1,6 +1,5 @@
-class RoutineExercise < ApplicationRecord
+class RoutineIntent < ApplicationRecord
   belongs_to :routine, required: true
-  belongs_to :exercise, required: true
 
   scope :supervised_by, -> (user) {
     joins(:routine).where(routines: { supervisor: user })

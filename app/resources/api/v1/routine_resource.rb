@@ -10,6 +10,7 @@ class Api::V1::RoutineResource < Api::V1::BaseResource
 
   has_many :exercises
   has_many :routine_exercises
+  has_many :routine_intents
 
   attributes :supervisor_id, :patient_id
 
