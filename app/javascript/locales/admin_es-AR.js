@@ -213,6 +213,7 @@ export default {
         time: "Tiempo"
       },
       routine: {
+        dailyLimit: "Limite diario",
         routineExercises: "Ejercicios"
       },
       routineExercise: {

@@ -6,7 +6,7 @@ class CreateRoutineExercises < ActiveRecord::Migration[6.0]
 
       t.integer :repetitions, default: 1
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

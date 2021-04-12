@@ -3,12 +3,29 @@
     <ValidationObserver ref="form" v-slot="{ handleSubmit }">
       <v-form @submit.prevent="handleSubmit(onSubmit)">
         <v-container fluid>
+          <v-row>
+            <v-col cols="12" md="4">
+              <ValidationProvider
+                v-slot="{ errors }"
+                rules="required|min_value:1|integer"
+                vid="dailyLimit"
+              >
+                <v-text-field
+                  v-model="object.dailyLimit"
+                  type="number"
+                  :label="$t('attributes.routine.dailyLimit')"
+                  :error-messages="errors"
+                />
+              </ValidationProvider>
+            </v-col>
+          </v-row>
           <v-row no-gutters>
             <v-col cols="12">
               <h3 class="mb-2 pr-2 text-uppercase">
                 {{ $t("attributes.routine.routineExercises") }}
               </h3>
             </v-col>
+
             <v-col cols="auto">
               <v-btn
                 color="success"
@@ -94,7 +111,7 @@ export default {
 
     return {
       routine,
-      object: routine.attributes(),
+      object: { ...{ dailyLimit: 1 }, ...routine.attributes() },
       routineExercisesAttributes: Object.assign(
         [
           Object.assign(

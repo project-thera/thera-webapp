@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2021_04_12_132107) do
 
   create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "exercise_type"
+    t.string "name", null: false
+    t.string "exercise_type", null: false
     t.string "description"
     t.text "steps"
     t.datetime "created_at", precision: 6, null: false
@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(version: 2021_04_12_132107) do
   create_table "routines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "supervisor_id", null: false
     t.bigint "patient_id", null: false
+    t.integer "daily_limit", limit: 1, default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
-    t.index ["discarded_at"], name: "index_routines_on_discarded_at"
     t.index ["patient_id"], name: "index_routines_on_patient_id"
     t.index ["supervisor_id"], name: "index_routines_on_supervisor_id"
   end
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 2021_04_12_132107) do
     t.datetime "discarded_at"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
@@ -92,8 +94,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_132107) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 
