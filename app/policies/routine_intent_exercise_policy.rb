@@ -1,4 +1,4 @@
-class RoutineIntentPolicy < ApplicationPolicy
+class RoutineIntentExercisePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.sysadmin? || user.admin?

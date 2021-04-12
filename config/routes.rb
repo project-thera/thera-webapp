@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       jsonapi_resources :exercises
       jsonapi_resources :routine_exercises
       jsonapi_resources :routine_intents
+      jsonapi_resources :routine_intent_exercises
     end
   end
 

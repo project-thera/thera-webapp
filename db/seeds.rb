@@ -109,12 +109,10 @@ end
     exercise: exercise
   )
 
-  RoutineIntent.create(
+  routineInten1 = RoutineIntent.create(
     routine: routine1,
     finished_at: DateTime.now + i.minutes,
-    data: {
-      exercises: [exercise.as_routine_intent_data]
-    }.to_json
+    routine_intent_exercises: [RoutineIntentExercise.new(exercise: exercise)]
   )
 
   routine2.routine_exercises.create(
@@ -124,8 +122,6 @@ end
   RoutineIntent.create(
     routine: routine2,
     finished_at: DateTime.now + (i + 1).minutes,
-    data: {
-      exercises: [exercise.as_routine_intent_data]
-    }.to_json
+    routine_intent_exercises: [RoutineIntentExercise.new(exercise: exercise)]
   )
 end

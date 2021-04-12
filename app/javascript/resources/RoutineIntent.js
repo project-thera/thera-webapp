@@ -2,6 +2,7 @@ import APILibrary from "@/resources/APILibrary";
 import BaseResource from "@/resources/BaseResource";
 
 import "./Routine";
+import "./RoutineIntentExercise";
 
 class RoutineIntent extends BaseResource {
   // required by active-resource
@@ -14,9 +15,11 @@ class RoutineIntent extends BaseResource {
   static modelName = "RoutineIntent";
 
   static define() {
-    this.attributes("data", "finished_at", "createdAt", "updatedAt");
+    this.attributes("finished_at", "createdAt", "updatedAt");
 
     this.belongsTo("routine");
+
+    this.hasMany("routineIntentExercises");
   }
 }
 

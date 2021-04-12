@@ -69,27 +69,45 @@
           offset-x
         >
           <v-card color="grey lighten-4" min-width="350px" flat>
-            <v-toolbar :color="selectedEvent.color" dark>
-              <v-btn icon>
-                <v-icon>mdi-pencil</v-icon>
-              </v-btn>
-              <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
-              <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </v-toolbar>
-            <v-card-text>
-              <span v-html="selectedEvent.details"></span>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn text color="secondary" @click="selectedOpen = false">
-                Cancel
-              </v-btn>
-            </v-card-actions>
+            <template v-if="selectedEvent">
+              <v-toolbar :color="selectedEvent.color" dark>
+                <v-btn icon>
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-toolbar-title v-html="selectedEvent.name" />
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>mdi-heart</v-icon>
+                </v-btn>
+                <v-btn icon>
+                  <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+              </v-toolbar>
+              <v-card-text>
+                <v-list>
+                  <v-list-item
+                    v-for="routineIntentExercise in selectedEvent.routineIntent
+                      .routineIntentExercises()
+                      .toArray()"
+                    :key="routineIntentExercise.id"
+                    :style="{ minHeight: '28px' }"
+                  >
+                    <v-list-item-content class="pa-0">
+                      <v-list-item-title
+                        >{{ routineIntentExercise.exercise().name }} ({{
+                          routineIntentExercise.status
+                        }})</v-list-item-title
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn text color="secondary" @click="selectedOpen = false">
+                  Cancel
+                </v-btn>
+              </v-card-actions>
+            </template>
           </v-card>
         </v-menu>
       </v-sheet>
@@ -99,7 +117,6 @@
 
 <script>
 import User from "@/resources/User";
-import RoutineIntent from "@/resources/RoutineIntent";
 
 export default {
   props: {
@@ -116,7 +133,7 @@ export default {
       week: "Semana",
       day: "Día"
     },
-    selectedEvent: {},
+    selectedEvent: null,
     selectedElement: null,
     selectedOpen: false,
     events: [],
@@ -177,7 +194,7 @@ export default {
       const routineIntents = (
         await this.patient
           .routineIntents()
-          .includes("routine")
+          .includes("routine", { routineIntentExercises: ["exercise"] })
           .where({ finishedAtLteq: max, finishedAtGteq: min })
           .all()
       ).toArray();
@@ -187,7 +204,8 @@ export default {
           name: routineIntent.routine().toString(),
           start: new Date(routineIntent.finishedAt),
           color: this.colors[this.random(0, this.colors.length - 1)],
-          timed: false
+          timed: false,
+          routineIntent: routineIntent
         });
       }
 

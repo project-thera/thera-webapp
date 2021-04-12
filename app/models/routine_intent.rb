@@ -1,7 +1,7 @@
 class RoutineIntent < ApplicationRecord
   belongs_to :routine, required: true
 
-  validates :data, presence: true
+  has_many :routine_intent_exercises
 
   scope :supervised_by, -> (user) {
     joins(:routine).where(routines: { supervisor: user })

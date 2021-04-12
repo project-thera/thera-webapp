@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_10_215331) do
+ActiveRecord::Schema.define(version: 2021_04_12_132107) do
 
   create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -47,10 +47,17 @@ ActiveRecord::Schema.define(version: 2021_04_10_215331) do
     t.index ["routine_id"], name: "index_routine_exercises_on_routine_id"
   end
 
+  create_table "routine_intent_exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "routine_intent_id"
+    t.bigint "exercise_id"
+    t.integer "status", limit: 1, default: 1, comment: "skipped: 0, completed: 1"
+    t.index ["exercise_id"], name: "index_routine_intent_exercises_on_exercise_id"
+    t.index ["routine_intent_id"], name: "index_routine_intent_exercises_on_routine_intent_id"
+  end
+
   create_table "routine_intents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "routine_id", null: false
     t.datetime "finished_at"
-    t.text "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["routine_id"], name: "index_routine_intents_on_routine_id"
