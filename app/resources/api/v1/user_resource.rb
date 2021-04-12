@@ -19,6 +19,7 @@ class Api::V1::UserResource < Api::V1::BaseResource
   has_many :routine_intents
 
   has_one :supervisor
+  has_one :game_reward
 
   filter :patients, apply: ->(records, value, _options) {
     if ActiveModel::Type::Boolean.new.cast(value[0])

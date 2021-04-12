@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_132107) do
+ActiveRecord::Schema.define(version: 2021_04_12_221908) do
 
   create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 2021_04_12_132107) do
     t.text "steps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "game_rewards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "credits", default: 0, null: false
+    t.integer "robots", default: 0, null: false
+    t.text "current_robot"
   end
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -48,8 +54,8 @@ ActiveRecord::Schema.define(version: 2021_04_12_132107) do
   end
 
   create_table "routine_intent_exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "routine_intent_id"
-    t.bigint "exercise_id"
+    t.bigint "routine_intent_id", null: false
+    t.bigint "exercise_id", null: false
     t.integer "status", limit: 1, default: 1, comment: "skipped: 0, completed: 1"
     t.index ["exercise_id"], name: "index_routine_intent_exercises_on_exercise_id"
     t.index ["routine_intent_id"], name: "index_routine_intent_exercises_on_routine_intent_id"
@@ -76,8 +82,9 @@ ActiveRecord::Schema.define(version: 2021_04_12_132107) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "username", null: false
-    t.string "fullname"
+    t.string "fullname", null: false
     t.bigint "supervisor_id"
+    t.bigint "game_reward_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
@@ -94,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_132107) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.index ["game_reward_id"], name: "index_users_on_game_reward_id"
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 

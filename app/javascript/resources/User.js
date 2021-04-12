@@ -4,6 +4,7 @@ import BaseResource, { PAGE_SIZE } from "@/resources/BaseResource";
 import "./Group";
 import "./Routine";
 import "./RoutineIntent";
+import "./GameReward";
 
 class User extends BaseResource {
   // required by active-resource
@@ -27,6 +28,7 @@ class User extends BaseResource {
     );
 
     this.belongsTo("supervisor", { className: "User" });
+    this.belongsTo("gameReward");
 
     this.hasMany("groups");
     this.hasMany("routines");
@@ -45,7 +47,7 @@ class User extends BaseResource {
     const { page, ...filters } = params;
 
     const res = await this.where(filters)
-      .includes("supervisor")
+      .includes("supervisor", "gameReward")
       .where({ patients: true })
       .order({ updatedAt: "desc" })
       .perPage(PAGE_SIZE)
