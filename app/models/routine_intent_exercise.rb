@@ -3,11 +3,11 @@ class RoutineIntentExercise < ApplicationRecord
   belongs_to :routine_intent, required: true
   belongs_to :exercise, required: true
 
-  # scope :supervised_by, -> (user) {
-  #   joins(:routine).where(routines: { supervisor: user })
-  # }
+  scope :supervised_by, -> (user) {
+    joins(routine_intent: :routine).where(routine_intents: { routines: { supervisor: user } })
+  }
 
-  # scope :owned_by, -> (user) {
-  #   joins(:routine).where(routines: { patient: user })
-  # }
+  scope :owned_by, -> (user) {
+    joins(routine_intent: :routine).where(routine_intents: { routines: { patient: user } })
+  }
 end
