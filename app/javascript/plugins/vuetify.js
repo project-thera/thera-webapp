@@ -36,7 +36,9 @@ import {
   mdiArchiveArrowUp,
   mdiAccountPlus,
   mdiAccountMinus,
-  mdiMenuDown
+  mdiMenuDown,
+  mdiSkipNext,
+  mdiCheck
 } from "@mdi/js";
 
 export default new Vuetify({
@@ -72,7 +74,9 @@ export default new Vuetify({
       archiveArrowUp: mdiArchiveArrowUp,
       accountPlus: mdiAccountPlus,
       accountMinus: mdiAccountMinus,
-      menuDown: mdiMenuDown
+      menuDown: mdiMenuDown,
+      check: mdiCheck,
+      skipNext: mdiSkipNext
     }
   },
   theme: {

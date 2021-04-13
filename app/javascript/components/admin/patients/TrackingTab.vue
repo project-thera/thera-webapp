@@ -79,10 +79,22 @@
                     :style="{ minHeight: '28px' }"
                   >
                     <v-list-item-content class="pa-0">
-                      <v-list-item-title
-                        >{{ routineIntentExercise.exercise().name }} ({{
-                          routineIntentExercise.status
-                        }})</v-list-item-title
+                      <v-list-item-title>
+                        <template
+                          v-if="routineIntentExercise.status === 'completed'"
+                        >
+                          <v-icon color="green" title="Completado">
+                            {{ $vuetify.icons.values.check }}
+                          </v-icon>
+                        </template>
+                        <template v-else>
+                          <v-icon title="Salteado">
+                            {{ $vuetify.icons.values.skipNext }}
+                          </v-icon>
+                        </template>
+                        {{
+                          routineIntentExercise.exercise().name
+                        }}</v-list-item-title
                       >
                     </v-list-item-content>
                   </v-list-item>
