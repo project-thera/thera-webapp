@@ -9,7 +9,6 @@
                 v-model="attributes.goal"
                 :items="goals"
                 :label="$t('attributes.exerciseStep.goal')"
-                item-value="id"
                 :error-messages="errors"
               />
             </ValidationProvider>
