@@ -80,17 +80,9 @@ users = User.create([
   }
 ])
 
-patients_without_supervision = create_patients('sin_supervision', count: USERS_COUNT)
-supervisors_wihout_patient = create_supervisors('sin_pacientes', count: USERS_COUNT)
+create_patients('sin_supervision', count: USERS_COUNT)
+create_supervisors('sin_pacientes', count: USERS_COUNT)
+create_patients('sin_confirmar', count: USERS_COUNT, confirmed: false)
 
 supervisor_with_patients = create_supervisors('con_pacientes')
-patients_with_supervisor = create_patients('con_supervision', count: USERS_COUNT, supervisor: supervisor_with_patients)
-
-# patients_with_supervisor.each do | patient |
-#   Routine.create(
-#     supervisor: supervisor_with_patients,
-#     patient: patient
-#   )
-# end
-
-patients = create_patients('sin_confirmar', count: USERS_COUNT, confirmed: false)
+create_patients('con_supervision', count: USERS_COUNT, supervisor: supervisor_with_patients)

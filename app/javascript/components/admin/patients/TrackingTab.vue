@@ -25,7 +25,7 @@
               <v-btn outlined color="grey darken-2" v-bind="attrs" v-on="on">
                 <span>{{ typeToLabel[type] }}</span>
                 <v-icon right>
-                  mdi-menu-down
+                  {{ $vuetify.icons.values.menuDown }}
                 </v-icon>
               </v-btn>
             </template>
@@ -52,11 +52,6 @@
           :event-color="getEventColor"
           :type="type"
           event-overlap-mode="column"
-          :hide-header="false"
-          :interval-minutes="0"
-          :interval-height="0"
-          :interval-count="0"
-          :event-overlap-threshold="0"
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
@@ -71,17 +66,8 @@
           <v-card color="grey lighten-4" min-width="350px" flat>
             <template v-if="selectedEvent">
               <v-toolbar :color="selectedEvent.color" dark>
-                <v-btn icon>
-                  <v-icon>mdi-pencil</v-icon>
-                </v-btn>
-                <v-toolbar-title v-html="selectedEvent.name" />
+                <v-toolbar-title>{{ selectedEvent.name }}</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
               </v-toolbar>
               <v-card-text>
                 <v-list>
@@ -104,7 +90,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-btn text color="secondary" @click="selectedOpen = false">
-                  Cancel
+                  Cerrar
                 </v-btn>
               </v-card-actions>
             </template>
@@ -203,8 +189,11 @@ export default {
         events.push({
           name: routineIntent.routine().toString(),
           start: new Date(routineIntent.startedAt),
+          end: routineIntent.finishedAt
+            ? new Date(routineIntent.finishedAt)
+            : null,
           color: this.colors[this.random(0, this.colors.length - 1)],
-          timed: false,
+          timed: true,
           routineIntent: routineIntent
         });
       }
