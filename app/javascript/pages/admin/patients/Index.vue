@@ -14,14 +14,14 @@
     </h1>
 
     <v-row no-gutters>
-      <Suspense :object="patients">
+      <SkeletonSuspense :object="patients">
         <v-switch
           v-model="ownPatients"
           label="Mostrar solo mis pacientes"
           @change="loadPatients"
         />
         <PatientsTable :patients="patients" />
-      </Suspense>
+      </SkeletonSuspense>
     </v-row>
   </div>
 </template>

@@ -14,9 +14,9 @@
     </h1>
 
     <v-row no-gutters>
-      <Suspense :object="users">
+      <SkeletonSuspense :object="users">
         <UsersTable :users="users" />
-      </Suspense>
+      </SkeletonSuspense>
     </v-row>
   </div>
 </template>

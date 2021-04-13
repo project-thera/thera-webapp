@@ -14,9 +14,9 @@
     </h1>
 
     <v-row no-gutters>
-      <Suspense :object="groups">
+      <SkeletonSuspense :object="groups">
         <GroupsTable :groups="groups" />
-      </Suspense>
+      </SkeletonSuspense>
     </v-row>
   </div>
 </template>
