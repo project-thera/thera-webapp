@@ -51,7 +51,7 @@
           :events="events"
           :event-color="getEventColor"
           :type="type"
-          event-overlap-mode="column"
+          event-overlap-mode="stack"
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
@@ -112,7 +112,6 @@ export default {
     }
   },
   data: instance => {
-    console.log(instance.$t("attributes.routineIntent.statuses"));
     return {
       focus: "",
       type: "month",
@@ -125,15 +124,6 @@ export default {
       selectedElement: null,
       selectedOpen: false,
       events: [],
-      // colors: [
-      //   "blue",
-      //   "indigo",
-      //   "deep-purple",
-      //   "cyan",
-      //   "green",
-      //   "orange",
-      //   "grey darken-1"
-      // ],
       categories: Object.values(
         instance.$t("attributes.routineIntent.statuses")
       )
@@ -148,7 +138,7 @@ export default {
       this.type = "day";
     },
     getEventColor(event) {
-      return event.routineIntent.finished() ? "green" : "grey darken-1";
+      return event.color;
     },
     setToday() {
       this.focus = "";
@@ -202,6 +192,7 @@ export default {
           category: this.$t(
             `attributes.routineIntent.statuses.${routineIntent.status()}`
           ),
+          color: routineIntent.finished() ? "green" : "grey darken-1",
           routineIntent: routineIntent
         });
       }
