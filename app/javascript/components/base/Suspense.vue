@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <v-container fluid>
     <LoadingIcon v-if="object == null" />
     <slot v-else />
-  </div>
+  </v-container>
 </template>
 
 <script>
