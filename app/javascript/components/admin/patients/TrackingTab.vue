@@ -63,14 +63,14 @@
           :activator="selectedElement"
           offset-x
         >
-          <v-card color="grey lighten-4" min-width="350px" flat>
+          <v-card color="grey lighten-5" min-width="350px" flat>
             <template v-if="selectedEvent">
               <v-toolbar :color="selectedEvent.color" dark>
                 <v-toolbar-title>{{ selectedEvent.name }}</v-toolbar-title>
                 <v-spacer></v-spacer>
               </v-toolbar>
               <v-card-text>
-                <v-list>
+                <v-list color="transparent">
                   <v-list-item
                     v-for="routineIntentExercise in selectedEvent.routineIntent
                       .routineIntentExercises()
@@ -111,28 +111,34 @@ export default {
       required: true
     }
   },
-  data: () => ({
-    focus: "",
-    type: "month",
-    typeToLabel: {
-      month: "Mes",
-      week: "Semana",
-      day: "Día"
-    },
-    selectedEvent: null,
-    selectedElement: null,
-    selectedOpen: false,
-    events: [],
-    colors: [
-      "blue",
-      "indigo",
-      "deep-purple",
-      "cyan",
-      "green",
-      "orange",
-      "grey darken-1"
-    ]
-  }),
+  data: instance => {
+    console.log(instance.$t("attributes.routineIntent.statuses"));
+    return {
+      focus: "",
+      type: "month",
+      typeToLabel: {
+        month: "Mes",
+        week: "Semana",
+        day: "Día"
+      },
+      selectedEvent: null,
+      selectedElement: null,
+      selectedOpen: false,
+      events: [],
+      // colors: [
+      //   "blue",
+      //   "indigo",
+      //   "deep-purple",
+      //   "cyan",
+      //   "green",
+      //   "orange",
+      //   "grey darken-1"
+      // ],
+      categories: Object.values(
+        instance.$t("attributes.routineIntent.statuses")
+      )
+    };
+  },
   mounted() {
     this.$refs.calendar.checkChange();
   },
@@ -142,7 +148,7 @@ export default {
       this.type = "day";
     },
     getEventColor(event) {
-      return event.color;
+      return event.routineIntent.finished() ? "green" : "grey darken-1";
     },
     setToday() {
       this.focus = "";
@@ -192,8 +198,10 @@ export default {
           end: routineIntent.finishedAt
             ? new Date(routineIntent.finishedAt)
             : null,
-          color: this.colors[this.random(0, this.colors.length - 1)],
           timed: true,
+          category: this.$t(
+            `attributes.routineIntent.statuses.${routineIntent.status()}`
+          ),
           routineIntent: routineIntent
         });
       }

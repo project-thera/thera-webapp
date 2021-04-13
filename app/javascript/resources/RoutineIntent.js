@@ -21,6 +21,18 @@ class RoutineIntent extends BaseResource {
 
     this.hasMany("routineIntentExercises");
   }
+
+  status() {
+    return this.finishedAt ? "finished" : "unfinished";
+  }
+
+  finished() {
+    return this.finishedAt;
+  }
+
+  static statuses() {
+    return ["finished", "unfinished"];
+  }
 }
 
 export default APILibrary.createResource(RoutineIntent);

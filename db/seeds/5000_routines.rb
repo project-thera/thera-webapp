@@ -1,8 +1,8 @@
 puts "Seeding routines..."
 
 ROUTINES_COUNT = 20
-ROUTINE_INTENTS_COUNT = 20
-ROUTINE_EXERCISES_COUNT = 20
+ROUTINE_EXERCISES_COUNT = 15
+ROUTINE_INTENTS_COUNT = 40
 
 def random_exercises(count: 1)
   Exercise.order('RAND()').limit(rand(1..count))

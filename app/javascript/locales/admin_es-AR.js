@@ -221,6 +221,13 @@ export default {
         exercise: "Ejercicio",
         exerciseId: "Ejercicio"
       },
+      routineIntent: {
+        statuses: {
+          finished: "Terminada",
+          unfinished: "Sin terminar"
+        },
+        status: "Estado"
+      },
       user: {
         username: "Nombre de usuario",
         fullname: "Nombre completo",
