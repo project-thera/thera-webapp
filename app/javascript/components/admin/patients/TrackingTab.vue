@@ -195,14 +195,14 @@ export default {
         await this.patient
           .routineIntents()
           .includes("routine", { routineIntentExercises: ["exercise"] })
-          .where({ finishedAtLteq: max, finishedAtGteq: min })
+          .where({ startedAtLteq: max, startedAtGteq: min })
           .all()
       ).toArray();
 
       for (const routineIntent of routineIntents) {
         events.push({
           name: routineIntent.routine().toString(),
-          start: new Date(routineIntent.finishedAt),
+          start: new Date(routineIntent.startedAt),
           color: this.colors[this.random(0, this.colors.length - 1)],
           timed: false,
           routineIntent: routineIntent

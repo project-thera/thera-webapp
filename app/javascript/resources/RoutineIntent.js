@@ -15,7 +15,7 @@ class RoutineIntent extends BaseResource {
   static modelName = "RoutineIntent";
 
   static define() {
-    this.attributes("finished_at", "createdAt", "updatedAt");
+    this.attributes("startedAt", "finishedAt", "createdAt", "updatedAt");
 
     this.belongsTo("routine");
 

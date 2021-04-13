@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_221908) do
 
   create_table "routine_intents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "routine_id", null: false
+    t.datetime "started_at", null: false
     t.datetime "finished_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

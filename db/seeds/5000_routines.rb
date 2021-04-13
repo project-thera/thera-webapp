@@ -10,8 +10,11 @@ end
 
 def random_routine_intents(exercises, count: 1)
   rand(1..count).times.collect do
+    started_at = Faker::Time.backward(days: 30)
+
     RoutineIntent.new(
-      finished_at: Faker::Time.backward(days: 30),
+      started_at: started_at,
+      finished_at: [true, false].sample ? started_at + 5.minutes : nil,
       routine_intent_exercises: exercises.map { | exercise |
         RoutineIntentExercise.new(
           exercise: exercise,
