@@ -166,6 +166,7 @@ export default {
     resetExerciseSteps(value) {
       this.exerciseStepsAttributes = [this.defaultStep()];
       this.goals = this.exerciseTypeGoalOptions[value];
+      console.log(this.goals);
     },
     addExerciseStep() {
       this.exerciseStepsAttributes.push(this.defaultStep());

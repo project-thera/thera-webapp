@@ -6,16 +6,20 @@ class Exercise < ApplicationRecord
   has_many :routine_exercises
   has_many :routines, through: :routine_exercises, inverse_of: :exercises
 
+  EXERCISE_TYPE_BLOW = 'blow'.freeze
+  EXERCISE_TYPE_SPEECH = 'speech'.freeze
+  EXERCISE_TYPE_CLASSIFICATION = 'classification'.freeze
+
   def self.exercise_types
     {
-      blow: "Soplido",
-      speech: "Reconocimiento de voz",
-      classification: "Reconocimiento facial"
+      EXERCISE_TYPE_BLOW => "Soplido",
+      EXERCISE_TYPE_SPEECH => "Reconocimiento de voz",
+      EXERCISE_TYPE_CLASSIFICATION => "Reconocimiento facial"
     }
   end
 
   def self.blow_exercise_goals
-    [true, false]
+    BlowLabels.goals
   end
 
   def self.speech_exercise_goals

@@ -16,8 +16,12 @@ class User < ApplicationRecord
   # FIXME Add supervisors and patients scopes
   belongs_to :supervisor, class_name: 'User', inverse_of: :patients, required: false
   belongs_to :game_reward, required: false
-  has_many :patients, class_name: 'User', inverse_of: :supervisor
+  has_many :patients,
+    foreign_key: :supervisor_id,
+    inverse_of: :supervisor,
+    class_name: 'User'
 
+  # , foreign_key: :supervisor_id
   has_many :supervised_routines,
     class_name: 'Routine',
     inverse_of: :supervisor,
@@ -37,8 +41,13 @@ class User < ApplicationRecord
 
   scope :list, -> { includes :groups }
   scope :patients, -> { list.where(groups: { name: Group::PATIENT }) }
+  scope :patients_with_supervisor, -> { patients.where.not(supervisor_id: nil) }
+
   scope :owned_or_without_supervision_patients, -> (user) { 
-    patients.where("#{table_name}.supervisor_id = ? OR supervisor_id IS NULL", user.id)
+    patients.where(
+      "#{table_name}.supervisor_id = ? OR #{table_name}.supervisor_id IS NULL",
+      user.id
+    )
   }
 
   def to_s

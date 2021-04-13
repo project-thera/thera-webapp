@@ -1,0 +1,1 @@
+puts "Seeding speech exercises..."
