@@ -9,7 +9,7 @@
       />
     </portal>
 
-    <h1 class="text-uppercase pb-4">
+    <h1 class="pb-4">
       {{ $t("views.exercises.index.title") }}
     </h1>
 

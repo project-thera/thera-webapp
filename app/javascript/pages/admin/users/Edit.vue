@@ -1,6 +1,6 @@
 <template>
   <div v-if="user">
-    <h2>Editar usuario {{ user.username }}</h2>
+    <h1>Editar usuario {{ user.username }}</h1>
     <Form :user="user" />
   </div>
 </template>

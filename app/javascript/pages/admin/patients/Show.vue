@@ -1,7 +1,7 @@
 <template>
   <Suspense :object="patient">
     <div v-if="patient">
-      <h2>Paciente {{ patient.fullname }}</h2>
+      <h1>Paciente {{ patient.fullname }}</h1>
       <ShowTabs :patient="patient" />
     </div>
   </Suspense>

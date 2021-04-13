@@ -1,114 +1,133 @@
 <template>
-  <div>
-    <ValidationObserver ref="form" v-slot="{ handleSubmit }">
-      <v-form @submit.prevent="handleSubmit(onSubmit)">
-        <v-container fluid>
-          <v-row>
-            <v-col cols="12" md="3">
-              <ValidationProvider
-                v-slot="{ errors }"
-                rules="required"
-                vid="name"
+  <ValidationObserver ref="form" v-slot="{ handleSubmit }">
+    <v-form @submit.prevent="handleSubmit(onSubmit)">
+      <v-container fluid>
+        <v-row>
+          <v-col cols="12" md="6">
+            <ValidationProvider
+              v-slot="{ errors }"
+              rules="required"
+              vid="exerciseType"
+            >
+              <v-btn-toggle
+                v-for="exerciseType in exerciseTypeOptions"
+                :key="exerciseType.value"
+                v-model="object.exerciseType"
+                :error-messages="errors"
+                @change="resetExerciseSteps"
               >
-                <v-text-field
-                  v-model="object.name"
-                  :label="$t('attributes.exercise.name')"
-                  :error-messages="errors"
-                />
-              </ValidationProvider>
-            </v-col>
-
-            <v-col cols="12" md="3">
-              <ValidationProvider
-                v-slot="{ errors }"
-                rules="required"
-                vid="name"
-              >
-                <v-select
-                  v-model="object.exerciseType"
-                  :items="exerciseTypeOptions"
-                  :label="$t('attributes.exercise.exerciseType')"
-                  :error-messages="errors"
-                  @change="resetExerciseSteps"
-                />
-              </ValidationProvider>
-            </v-col>
-
-            <v-col cols="12" md="6">
-              <ValidationProvider
-                v-slot="{ errors }"
-                rules="required"
-                vid="description"
-              >
-                <v-text-field
-                  v-model="object.description"
-                  :label="$t('attributes.exercise.description')"
-                  :error-messages="errors"
-                />
-              </ValidationProvider>
-            </v-col>
-          </v-row>
-
-          <template v-if="object.exerciseType">
-            <v-row>
-              <v-col cols="12">
-                <h3 class="mb-2 pr-2 text-uppercase">
-                  {{ $t("attributes.exercise.exerciseSteps") }}
-                </h3>
-              </v-col>
-              <v-col cols="auto">
-                <v-btn
-                  color="success"
-                  small
-                  tile
-                  elevation="0"
-                  @click="addExerciseStep"
-                >
-                  <v-icon left small>{{ $vuetify.icons.values.plus }}</v-icon
-                  >{{ $t("views.exercises.form.addExerciseStep") }}
+                <v-btn :value="exerciseType.value">
+                  <span>{{ exerciseType.text }}</span>
+                  <v-icon right>
+                    {{ exerciseTypeIcon[exerciseType.value] }}
+                  </v-icon>
                 </v-btn>
-                <div
-                  v-for="(exerciseStep, index) in exerciseStepsAttributes"
-                  :key="index"
-                  class="form-row"
-                >
-                  <ExerciseStepForm
-                    :attributes="exerciseStepsAttributes[index]"
-                    :goals="goals"
-                  >
-                    <v-tooltip bottom>
-                      <template #activator="{ on, attrs }">
-                        <v-btn
-                          icon
-                          v-bind="attrs"
-                          v-on="on"
-                          @click="removeExerciseStep(index)"
-                        >
-                          <v-icon color="dark-grey">{{
-                            $vuetify.icons.values.delete
-                          }}</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>{{
-                        $t("views.exercises.form.removeExerciseStep")
-                      }}</span>
-                    </v-tooltip>
-                  </ExerciseStepForm>
-                </div>
-              </v-col>
-            </v-row>
-          </template>
+              </v-btn-toggle>
+            </ValidationProvider>
+          </v-col>
+        </v-row>
 
+        <v-row>
+          <v-col cols="12" md="6">
+            <ValidationProvider v-slot="{ errors }" rules="required" vid="name">
+              <v-text-field
+                v-model="object.name"
+                :label="$t('attributes.exercise.name')"
+                :error-messages="errors"
+              />
+            </ValidationProvider>
+          </v-col>
+        </v-row>
+        <!--
+          <v-col cols="12" md="3">
+            <ValidationProvider v-slot="{ errors }" rules="required" vid="exerciseType">
+              <v-select
+                v-model="object.exerciseType"
+                :items="exerciseTypeOptions"
+                :label="$t('attributes.exercise.exerciseType')"
+                :error-messages="errors"
+                @change="resetExerciseSteps"
+              />
+            </ValidationProvider>
+          </v-col>
+          -->
+        <v-row>
+          <v-col cols="12" md="6">
+            <ValidationProvider
+              v-slot="{ errors }"
+              rules="required"
+              vid="description"
+            >
+              <v-textarea
+                v-model="object.description"
+                :label="$t('attributes.exercise.description')"
+                :error-messages="errors"
+              />
+            </ValidationProvider>
+          </v-col>
+        </v-row>
+
+        <template v-if="object.exerciseType">
           <v-row>
-            <v-col cols="12">
-              <SaveButton />
-              <DiscardButton :to="{ name: 'admin-exercises' }" />
+            <v-col class="d-flex" cols="12" md="6">
+              <h3 class="mb-2 pr-2">
+                {{ $t("attributes.exercise.exerciseSteps") }}
+              </h3>
+              <v-btn
+                color="success"
+                small
+                tile
+                elevation="0"
+                @click="addExerciseStep"
+              >
+                <v-icon left small>{{ $vuetify.icons.values.plus }}</v-icon
+                >{{ $t("views.exercises.form.addExerciseStep") }}
+              </v-btn>
             </v-col>
           </v-row>
-        </v-container>
-      </v-form>
-    </ValidationObserver>
-  </div>
+          <v-row>
+            <v-col cols="12" md="6">
+              <div
+                v-for="(exerciseStep, index) in exerciseStepsAttributes"
+                :key="index"
+                class="form-row"
+              >
+                <ExerciseStepForm
+                  :attributes="exerciseStepsAttributes[index]"
+                  :goals="goals"
+                >
+                  <v-tooltip bottom>
+                    <template #activator="{ on, attrs }">
+                      <v-btn
+                        icon
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="removeExerciseStep(index)"
+                      >
+                        <v-icon color="dark-grey">{{
+                          $vuetify.icons.values.delete
+                        }}</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>{{
+                      $t("views.exercises.form.removeExerciseStep")
+                    }}</span>
+                  </v-tooltip>
+                </ExerciseStepForm>
+              </div>
+            </v-col>
+          </v-row>
+        </template>
+
+        <v-row>
+          <v-col cols="12">
+            <SaveButton />
+            <DiscardButton :to="{ name: 'admin-exercises' }" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-form>
+  </ValidationObserver>
 </template>
 
 <script>
@@ -156,7 +175,12 @@ export default {
       exerciseStepsAttributes,
       exerciseTypeOptions,
       exerciseTypeGoalOptions,
-      goals
+      goals,
+      exerciseTypeIcon: {
+        blow: instance.$vuetify.icons.values.weatherWindy,
+        speech: instance.$vuetify.icons.values.microphone,
+        classification: instance.$vuetify.icons.values.faceRecognition
+      }
     };
   },
   methods: {
@@ -166,7 +190,6 @@ export default {
     resetExerciseSteps(value) {
       this.exerciseStepsAttributes = [this.defaultStep()];
       this.goals = this.exerciseTypeGoalOptions[value];
-      console.log(this.goals);
     },
     addExerciseStep() {
       this.exerciseStepsAttributes.push(this.defaultStep());

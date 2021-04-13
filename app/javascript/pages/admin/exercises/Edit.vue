@@ -1,6 +1,6 @@
 <template>
   <div v-if="exercise">
-    <h2>Editar ejercicio {{ exercise }}</h2>
+    <h1>Editar ejercicio {{ exercise }}</h1>
     <Form :exercise="exercise" />
   </div>
 </template>

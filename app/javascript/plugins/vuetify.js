@@ -38,7 +38,10 @@ import {
   mdiAccountMinus,
   mdiMenuDown,
   mdiSkipNext,
-  mdiCheck
+  mdiCheck,
+  mdiFaceRecognition,
+  mdiWeatherWindy,
+  mdiMicrophone
 } from "@mdi/js";
 
 export default new Vuetify({
@@ -76,7 +79,10 @@ export default new Vuetify({
       accountMinus: mdiAccountMinus,
       menuDown: mdiMenuDown,
       check: mdiCheck,
-      skipNext: mdiSkipNext
+      skipNext: mdiSkipNext,
+      faceRecognition: mdiFaceRecognition,
+      weatherWindy: mdiWeatherWindy,
+      microphone: mdiMicrophone
     }
   },
   theme: {

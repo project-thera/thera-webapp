@@ -1,9 +1,9 @@
 <template>
   <div>
     <article>
-      <h2 class="mb-2 text-uppercase">
+      <h1 class="mb-2">
         {{ $t("views.users.new.title") }}
-      </h2>
+      </h1>
 
       <Form />
     </article>

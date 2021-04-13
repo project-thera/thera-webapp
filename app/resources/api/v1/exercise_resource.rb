@@ -6,5 +6,6 @@ class Api::V1::ExerciseResource < Api::V1::BaseResource
     :created_at,
     :updated_at
   
+  ransack_filters :name_cont
   # attribute :discarded, delegate: :discarded?
 end

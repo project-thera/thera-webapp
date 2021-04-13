@@ -21,7 +21,7 @@
           </v-row>
           <v-row no-gutters>
             <v-col cols="12">
-              <h3 class="mb-2 pr-2 text-uppercase">
+              <h3 class="mb-2 pr-2">
                 {{ $t("attributes.routine.routineExercises") }}
               </h3>
             </v-col>

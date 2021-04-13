@@ -9,7 +9,7 @@
       />
     </portal>
 
-    <h1 class="text-uppercase pb-4">
+    <h1 class="pb-4">
       {{ $t("views.groups.index.title") }}
     </h1>
 
@@ -27,15 +27,15 @@ import GroupResource from "@/resources/Group";
 
 export default {
   components: {
-    GroupsTable,
+    GroupsTable
   },
   data: () => {
     return {
-      groups: null,
+      groups: null
     };
   },
   watch: {
-    $route: "loadGroups",
+    $route: "loadGroups"
   },
   created() {
     this.loadGroups();
@@ -52,13 +52,13 @@ export default {
 
       this.$store.dispatch("filters/add", {
         key: "adminGroups",
-        filters: query,
+        filters: query
       });
 
       this.groups = await GroupResource.list(
         this.$store.state.filters.adminGroups
       );
-    },
-  },
+    }
+  }
 };
 </script>

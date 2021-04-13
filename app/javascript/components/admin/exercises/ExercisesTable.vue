@@ -22,6 +22,7 @@
           <tr>
             <th>{{ $t("attributes.exercise.name") }}</th>
             <th>{{ $t("attributes.exercise.exerciseType") }}</th>
+            <th>{{ $t("attributes.exercise.description") }}</th>
             <th></th>
           </tr>
         </thead>
@@ -47,6 +48,9 @@
             </td>
             <td>
               {{ $serverParameters.exercise_types[exercise.exerciseType] }}
+            </td>
+            <td>
+              {{ exercise.description }}
             </td>
             <td class="object-actions text-right d-none d-md-table-cell">
               <ObjectActions
