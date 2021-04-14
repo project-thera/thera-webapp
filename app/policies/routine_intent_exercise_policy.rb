@@ -14,7 +14,7 @@ class RoutineIntentExercisePolicy < ApplicationPolicy
   end
 
   def index?
-    user.sysadmin? || user.admin?
+    user.sysadmin? || user.admin? || user.supervisor?
   end
 
   def new?
