@@ -4,7 +4,7 @@
       <SearchInput
         route="admin-patients"
         :placeholder="$t('views.patients.index.search')"
-        search-param="usernameCont"
+        search-param="usernameOrEmailOrFullnameCont"
         :filters="$store.state.filters.adminPatients"
       />
     </portal>

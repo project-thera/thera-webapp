@@ -50,9 +50,9 @@ export default {
       required: true
     }
   },
-  data() {
+  data({ filters, searchParam }) {
     return {
-      search: null
+      search: filters[searchParam]
     };
   },
   computed: {

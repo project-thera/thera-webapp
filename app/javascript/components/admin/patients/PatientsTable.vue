@@ -21,6 +21,7 @@
         <thead>
           <tr>
             <th>{{ $t("attributes.user.fullname") }}</th>
+            <th>{{ $t("attributes.user.email") }}</th>
             <th>{{ $t("attributes.user.lastSignInAt") }}</th>
             <th>{{ $t("attributes.user.supervisor") }}</th>
             <th></th>
@@ -45,6 +46,9 @@
                 $vuetify.icons.values.delete
               }}</v-icon>
               {{ patient.fullname }}
+            </td>
+            <td>
+              {{ patient.email }}
             </td>
             <td>{{ parseDate(patient.lastSignInAt) }}</td>
             <td>

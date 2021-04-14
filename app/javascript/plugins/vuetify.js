@@ -41,7 +41,8 @@ import {
   mdiCheck,
   mdiFaceRecognition,
   mdiWeatherWindy,
-  mdiMicrophone
+  mdiMicrophone,
+  mdiMagnify
 } from "@mdi/js";
 
 export default new Vuetify({
@@ -82,7 +83,8 @@ export default new Vuetify({
       skipNext: mdiSkipNext,
       faceRecognition: mdiFaceRecognition,
       weatherWindy: mdiWeatherWindy,
-      microphone: mdiMicrophone
+      microphone: mdiMicrophone,
+      magnify: mdiMagnify
     }
   },
   theme: {
