@@ -105,19 +105,27 @@
             </v-hover>
           </v-col>
         </v-row>
-        <v-btn
-          v-if="$can('addRoutine', patient)"
-          color="primary"
-          :title="$t('views.actions.edit')"
-          @click.stop="
-            $router.push({
-              name: 'admin-patients-add-routine',
-              params: { id: patient.id }
-            })
-          "
-        >
-          Agregar Rutina
-        </v-btn>
+
+        <v-row v-if="routines.length == 0">
+          <p>El paciente no tiene rutinas</p>
+        </v-row>
+
+        <v-row>
+          <v-btn
+            v-if="$can('addRoutine', patient)"
+            class="mt-2"
+            color="primary"
+            :title="$t('views.actions.edit')"
+            @click.stop="
+              $router.push({
+                name: 'admin-patients-add-routine',
+                params: { id: patient.id }
+              })
+            "
+          >
+            Agregar Rutina
+          </v-btn>
+        </v-row>
 
         <div>
           <v-pagination v-model="page" :length="pageCount" @input="paginate" />
