@@ -1,13 +1,21 @@
 <template>
   <fragment>
     <v-tabs v-model="tab">
-      <v-tab v-for="item in Object.keys(tabToComponent)" :key="item">
+      <v-tab
+        v-for="item in Object.keys(tabToComponent)"
+        :key="item"
+        :href="`#${item}`"
+      >
         {{ item }}
       </v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tab">
-      <v-tab-item v-for="item in Object.keys(tabToComponent)" :key="item">
+      <v-tab-item
+        v-for="item in Object.keys(tabToComponent)"
+        :key="item"
+        :value="item"
+      >
         <v-card flat>
           <component :is="tabToComponent[item]" :patient="patient" />
         </v-card>
@@ -38,7 +46,6 @@ export default {
   },
   data() {
     return {
-      tab: null,
       tabToComponent: {
         "Rutinas Activas": "ActiveRoutinesTab",
         Ficha: "FileTab",
@@ -46,6 +53,16 @@ export default {
         "Rutinas Archivadas": "ArchivedRoutinesTab"
       }
     };
+  },
+  computed: {
+    tab: {
+      set(tab) {
+        this.$router.replace({ query: { ...this.$route.query, tab } });
+      },
+      get() {
+        return this.$route.query.tab;
+      }
+    }
   }
 };
 </script>
