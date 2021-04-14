@@ -38,7 +38,7 @@ class RoutinePolicy < ApplicationPolicy
   end
 
   def softable?
-    user.sysadmin? || user.admin?
+    user.sysadmin? || user.admin? || user.supervisor?
   end
 
   def undiscard?

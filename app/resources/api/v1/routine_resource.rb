@@ -13,7 +13,7 @@ class Api::V1::RoutineResource < Api::V1::BaseResource
   has_many :routine_exercises
   has_many :routine_intents
 
-  attributes :supervisor_id, :patient_id
+  attributes :supervisor_id, :patient_id, format: :id
 
   accepts_nested_attributes_for_has_many :routine_exercises, Api::V1::RoutineExerciseResource
 
