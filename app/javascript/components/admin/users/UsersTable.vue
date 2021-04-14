@@ -21,6 +21,8 @@
         <thead>
           <tr>
             <th>{{ $t("attributes.user.username") }}</th>
+            <th>{{ $t("attributes.user.fullname") }}</th>
+            <th>{{ $t("attributes.user.email") }}</th>
             <th>{{ $t("attributes.user.lastSignInAt") }}</th>
             <th>{{ $t("attributes.user.lastSignInIp") }}</th>
             <th></th>
@@ -36,7 +38,7 @@
               $can('show', user) &&
                 $router.push({
                   name: 'users-show',
-                  params: { id: user.id },
+                  params: { id: user.id }
                 })
             "
           >
@@ -45,6 +47,12 @@
                 $vuetify.icons.values.delete
               }}</v-icon>
               {{ user.username }}
+            </td>
+            <td>
+              {{ user.fullname }}
+            </td>
+            <td>
+              {{ user.email }}
             </td>
             <td>{{ parseDate(user.lastSignInAt) }}</td>
             <td>{{ user.lastSignInIp }}</td>
@@ -64,23 +72,23 @@ import ObjectActions from "@/components/admin/users/ObjectActions";
 
 export default {
   components: {
-    ObjectActions,
+    ObjectActions
   },
   props: {
     users: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
   data({ users }) {
     return {
       selectedRow: 0,
       selectedRows: [],
-      usersArray: users.toArray(),
+      usersArray: users.toArray()
     };
   },
   mounted() {
-    this.$bus.$on("toggle-select-all", (allSelected) =>
+    this.$bus.$on("toggle-select-all", allSelected =>
       allSelected ? this.selectAll() : (this.selectedRows = [])
     );
   },
@@ -89,13 +97,13 @@ export default {
   },
   methods: {
     selectAll() {
-      this.selectedRows = this.groupsArray.map((group) => group.id);
+      this.selectedRows = this.groupsArray.map(group => group.id);
     },
     parseDate(date) {
       if (!date) return "";
       return this.$moment(date).format("DD/MM/YYYY hh:mm:ss");
-    },
-  },
+    }
+  }
 };
 </script>
 

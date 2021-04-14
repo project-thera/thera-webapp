@@ -9,7 +9,7 @@ class Api::V1::UserResource < Api::V1::BaseResource
     :updated_at
   
   # attribute :discarded, delegate: :discarded?
-  # attribute :group_ids, format: :ids
+  attribute :group_ids, format: :ids
 
   ransack_filters :username_cont, :username_or_email_or_fullname_cont
 

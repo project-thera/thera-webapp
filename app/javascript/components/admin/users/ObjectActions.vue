@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn
-      v-if="$can('update', exercise)"
+      v-if="$can('update', user)"
       icon
       :title="$t('views.actions.edit')"
       @click.stop="
