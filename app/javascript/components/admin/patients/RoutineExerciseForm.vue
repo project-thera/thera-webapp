@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <v-card class="d-flex pa-4" outlined tile>
+    <v-card class="d-flex pa-4 ma-2" outlined tile>
       <v-row>
         <v-col cols="12" md="8">
           <ValidationProvider

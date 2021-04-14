@@ -4,7 +4,7 @@
       <v-form @submit.prevent="handleSubmit(onSubmit)">
         <v-container fluid>
           <v-row>
-            <v-col cols="12" md="4">
+            <v-col cols="12" md="6">
               <ValidationProvider
                 v-slot="{ errors }"
                 rules="required|min_value:1|integer"
@@ -20,13 +20,11 @@
             </v-col>
           </v-row>
           <v-row no-gutters>
-            <v-col cols="12">
-              <h3 class="mb-2 pr-2">
+            <v-col cols="12" md="6" class="d-flex">
+              <h3 class="mb-2 pr-4">
                 {{ $t("attributes.routine.routineExercises") }}
               </h3>
-            </v-col>
 
-            <v-col cols="auto">
               <v-btn
                 color="success"
                 small
@@ -37,7 +35,10 @@
                 <v-icon left small>{{ $vuetify.icons.values.plus }}</v-icon
                 >{{ $t("views.patients.addRoutineForm.addRoutineExercise") }}
               </v-btn>
-
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6">
               <div
                 v-for="(routineExercise, index) in routineExercisesAttributes"
                 :key="index"
@@ -51,6 +52,7 @@
                     <v-tooltip bottom>
                       <template #activator="{ on, attrs }">
                         <v-btn
+                          class="ma-4"
                           icon
                           v-bind="attrs"
                           v-on="on"
