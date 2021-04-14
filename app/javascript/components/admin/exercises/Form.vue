@@ -23,6 +23,13 @@
                   </v-icon>
                 </v-btn>
               </v-btn-toggle>
+              <div class="v-messages theme--light error--text" role="alert">
+                <div class="v-messages__wrapper">
+                  <div class="v-messages__message">
+                    {{ errors[0] }}
+                  </div>
+                </div>
+              </div>
             </ValidationProvider>
           </v-col>
         </v-row>
