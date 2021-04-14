@@ -1,16 +1,16 @@
 class ExercisePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.sysadmin? || user.admin?
+      if user.sysadmin? || user.admin? || user.supervisor?
         scope
       else
-        scope.kept
+        scope.none
       end
     end
   end
 
   def index?
-    user.sysadmin? || user.admin?
+    user.sysadmin? || user.admin? || user.supervisor?
   end
 
   def new?
