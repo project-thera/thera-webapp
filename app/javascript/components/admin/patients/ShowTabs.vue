@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <div class="pt-8">
     <v-tabs v-model="tab">
       <v-tab
         v-for="item in Object.keys(tabToComponent)"
@@ -16,12 +16,12 @@
         :key="item"
         :value="item"
       >
-        <v-card flat>
+        <v-card flat class="pa-2">
           <component :is="tabToComponent[item]" :patient="patient" />
         </v-card>
       </v-tab-item>
     </v-tabs-items>
-  </fragment>
+  </div>
 </template>
 
 <script>

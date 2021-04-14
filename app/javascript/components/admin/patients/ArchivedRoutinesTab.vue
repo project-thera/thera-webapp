@@ -3,6 +3,7 @@
     :load-routines="loadRoutines"
     v-bind="$data"
     :patient="patient"
+    :loading="loading"
   />
 </template>
 
@@ -24,11 +25,14 @@ export default {
     return {
       routines: [],
       perPage: 4,
-      pageCount: 1
+      pageCount: 1,
+      loading: true
     };
   },
   methods: {
     async loadRoutines(pageNumber) {
+      this.loading = true;
+
       const routineCollection = await this.patient
         .routines()
         .includes({ routineExercises: ["exercise"] })
@@ -41,6 +45,8 @@ export default {
       this.pageCount = Math.ceil(
         routineCollection.meta().recordCount / this.perPage
       );
+
+      this.loading = false;
     }
   }
 };
