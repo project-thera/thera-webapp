@@ -44,13 +44,17 @@ class User < ApplicationRecord
   scope :patients_with_supervisor, -> { patients.where.not(supervisor_id: nil) }
 
   scope :owned_or_without_supervision_patients, -> (user) {
-    list 
-      .where(
-        "#{table_name}.supervisor_id = ? OR #{table_name}.supervisor_id IS NULL OR #{table_name}.id = ?",
-        user.id,
-        user.id,
-      )
-      .where(groups: { name: [Group::PATIENT, Group::SUPERVISOR] })
+      joins(:groups)
+        .where(
+          "
+            ((#{table_name}.supervisor_id = ? OR #{table_name}.supervisor_id IS NULL) AND groups.name = ?)
+            OR #{table_name}.id = ?
+          ",
+          user.id,
+          Group::PATIENT,
+          user.id,
+        )
+      # .where(groups: { name: [Group::PATIENT, Group::SUPERVISOR] })
   }
 
   scope :own_user, -> (user) { 

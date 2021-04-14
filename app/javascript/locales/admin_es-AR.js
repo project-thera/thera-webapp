@@ -43,6 +43,7 @@ export default {
         unarchive: "Desarchivar",
         startSupervision: "Agregar a mis pacientes",
         stopSupervision: "Dejar de supervisar",
+        addRoutine: "Agregar runtina",
         messages: {
           confirm: "¿Desea continuar?",
           alertAction: "La acción no podrá deshacerse.",

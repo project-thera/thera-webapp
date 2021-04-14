@@ -14,11 +14,11 @@ class RoutinePolicy < ApplicationPolicy
   end
 
   def index?
-    user.sysadmin? || user.admin?
+    user.sysadmin? || user.admin? || user.supervisor? || user.patient?
   end
 
   def new?
-    user.sysadmin? || user.admin?
+    user.sysadmin? || user.admin? || user.supervisor?
   end
 
   def create?

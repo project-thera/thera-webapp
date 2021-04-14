@@ -115,7 +115,7 @@
             v-if="$can('addRoutine', patient)"
             class="mt-2"
             color="primary"
-            :title="$t('views.actions.edit')"
+            :title="$t('views.actions.addRoutine')"
             @click.stop="
               $router.push({
                 name: 'admin-patients-add-routine',

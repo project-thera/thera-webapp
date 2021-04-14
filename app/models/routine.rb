@@ -11,6 +11,7 @@ class Routine < ApplicationRecord
   accepts_nested_attributes_for :routine_exercises, allow_destroy: true, reject_if: :all_blank
 
   scope :supervised_by, -> (user) {
+    puts "SUPERVISER"
     where(supervisor: user)
   }
 

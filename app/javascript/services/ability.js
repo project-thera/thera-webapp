@@ -26,8 +26,6 @@ export default function defineAbilityFor(user) {
       cannot("stopSupervision", "User", startSupervisionCondition);
 
       can("index", "Patient");
-      can("show", "Patient");
-      can("addRoutine", "Patient");
 
       can("show", "Routine");
       can("discard", "Routine", discardCondition);
@@ -43,14 +41,14 @@ export default function defineAbilityFor(user) {
     }
 
     if (user.hasGroup("Supervisor")) {
-      const supervisorCondition = { supervisor_id: user.id };
+      const supervisorCondition = { supervisorId: String(user.id) };
 
+      can("show", "User", supervisorCondition);
       can("startSupervision", "User", startSupervisionCondition);
       can("stopSupervision", "User", supervisorCondition);
+      can("addRoutine", "User", supervisorCondition);
 
       can("index", "Patient");
-      can("show", "Patient", supervisorCondition);
-      can("addRoutine", "Patient", supervisorCondition);
 
       can("show", "Routine");
       can("discard", "Routine", {

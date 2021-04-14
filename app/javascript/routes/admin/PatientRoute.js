@@ -13,13 +13,13 @@ const patientRoutes = [
     path: "/admin/pacientes/:id/agregar-rutina",
     name: "admin-patients-add-routine",
     component: AddRoutine,
-    meta: { resource: "Patient", action: "addRoutine" }
+    meta: { resource: "User", action: "addRoutine" }
   },
   {
     path: "/admin/pacientes/:id",
     name: "admin-patients-show",
     component: Show,
-    meta: { resource: "Patient", action: "show" }
+    meta: { resource: "User", action: "show" }
   }
 ];
 

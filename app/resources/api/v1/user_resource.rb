@@ -4,12 +4,13 @@ class Api::V1::UserResource < Api::V1::BaseResource
     :email,
     :last_sign_in_at,
     :last_sign_in_ip,
-    :supervisor_id,
     :created_at,
     :updated_at
   
   # attribute :discarded, delegate: :discarded?
   attribute :group_ids, format: :ids
+  attribute :supervisor_id, format: :id
+
 
   ransack_filters :username_cont, :username_or_email_or_fullname_cont
 
@@ -28,7 +29,6 @@ class Api::V1::UserResource < Api::V1::BaseResource
 
     records
   }
-
 
   filter :own_patients,
     verify: ->(values, context) {
