@@ -99,6 +99,7 @@
                   <v-tooltip bottom>
                     <template #activator="{ on, attrs }">
                       <v-btn
+                        class="ma-4"
                         icon
                         v-bind="attrs"
                         v-on="on"
