@@ -43,11 +43,18 @@ class User < ApplicationRecord
   scope :patients, -> { list.where(groups: { name: Group::PATIENT }) }
   scope :patients_with_supervisor, -> { patients.where.not(supervisor_id: nil) }
 
-  scope :owned_or_without_supervision_patients, -> (user) { 
-    patients.where(
-      "#{table_name}.supervisor_id = ? OR #{table_name}.supervisor_id IS NULL",
-      user.id
-    )
+  scope :owned_or_without_supervision_patients, -> (user) {
+    list 
+      .where(
+        "#{table_name}.supervisor_id = ? OR #{table_name}.supervisor_id IS NULL OR #{table_name}.id = ?",
+        user.id,
+        user.id,
+      )
+      .where(groups: { name: [Group::PATIENT, Group::SUPERVISOR] })
+  }
+
+  scope :own_user, -> (user) { 
+    where(id: user.id)
   }
 
   def to_s

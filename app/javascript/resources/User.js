@@ -47,7 +47,7 @@ class User extends BaseResource {
     const { page, ...filters } = params;
 
     const res = await this.where(filters)
-      .includes("supervisor", "gameReward")
+      .includes("supervisor")
       .where({ patients: true })
       .order({ updatedAt: "desc" })
       .perPage(PAGE_SIZE)

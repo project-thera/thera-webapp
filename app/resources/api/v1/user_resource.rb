@@ -30,17 +30,17 @@ class Api::V1::UserResource < Api::V1::BaseResource
   }
 
 
-  filter :own_patients, 
+  filter :own_patients,
     verify: ->(values, context) {
       if ActiveModel::Type::Boolean.new.cast(values[0])
-        return context[:user].id
+        return context[:user]
       end
 
       return nil
     },
     apply: ->(records, value, _options) {
       unless value == nil
-        return records.where(supervisor_id: value)
+        return records.where(supervisor: value)
       end
 
       records
