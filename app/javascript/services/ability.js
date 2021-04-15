@@ -27,7 +27,7 @@ export default function defineAbilityFor(user) {
 
       can("index", "Patient");
 
-      can("show", "Routine");
+      //can("show", "Routine");
       can("discard", "Routine", discardCondition);
       can("undiscard", "Routine", undiscardCondition);
       can("destroy", "Routine");
@@ -50,7 +50,7 @@ export default function defineAbilityFor(user) {
 
       can("index", "Patient");
 
-      can("show", "Routine");
+      //can("show", "Routine");
       can("discard", "Routine", {
         ...discardCondition,
         ...supervisorCondition

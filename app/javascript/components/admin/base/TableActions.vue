@@ -131,7 +131,7 @@ export default {
       return Math.ceil(this.resources.meta().recordCount / PAGE_SIZE);
     },
     startItem() {
-      return (this.page - 1) * PAGE_SIZE + 1;
+      return (this.currentPage - 1) * PAGE_SIZE + 1;
     },
     endItem() {
       return Math.min(this.startItem + PAGE_SIZE - 1, this.recordCount);
