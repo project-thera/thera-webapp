@@ -107,7 +107,6 @@
       </v-row>
 
       <v-row v-if="routines.length == 0">
-        {{ routines }}
         <p>El paciente no tiene rutinas</p>
       </v-row>
 
