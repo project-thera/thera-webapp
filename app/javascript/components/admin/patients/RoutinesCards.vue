@@ -1,15 +1,15 @@
 <template>
   <div>
-    <LoadingIcon v-if="loading" />
+    <v-container v-if="loading">
+      <v-row>
+        <v-col v-for="i in 4" :key="i" cols="12" md="3">
+          <v-skeleton-loader type="card" />
+        </v-col>
+      </v-row>
+    </v-container>
     <v-container v-else>
       <v-row>
-        <v-col
-          v-for="routine in routines"
-          :key="routine.id"
-          cols="12"
-          sm="12"
-          md="3"
-        >
+        <v-col v-for="routine in routines" :key="routine.id" cols="12" md="3">
           <v-hover v-slot="{ hover }">
             <v-card
               :elevation="hover ? 8 : 2"
