@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer v-model="isOpen" app width="275px" class="pt-12">
+    <v-navigation-drawer v-model="isOpen" app width="275px" class="pt-16">
       <!-- <v-img class="mx-8" aspect-ratio="1.7" contain :src="Logo" /> -->
 
       <v-list nav>
@@ -84,8 +84,8 @@ export default {
   props: {
     drawer: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
@@ -96,45 +96,45 @@ export default {
           icon: this.$vuetify.icons.values.account,
           title: this.$t("views.menu.exercises"),
           route: "admin-exercises",
-          if: this.$can("index", "Exercise"),
+          if: this.$can("index", "Exercise")
         },
         {
           icon: this.$vuetify.icons.values.account,
           title: this.$t("views.menu.patients"),
           route: "admin-patients",
-          if: this.$can("index", "Patient"),
-        },
+          if: this.$can("index", "Patient")
+        }
       ],
       adminLinks: [
         {
           icon: this.$vuetify.icons.values.account,
           title: this.$t("views.menu.users"),
           route: "admin-users",
-          if: this.$can("index", "User"),
+          if: this.$can("index", "User")
         },
         {
           icon: this.$vuetify.icons.values.accountGroup,
           title: this.$t("views.menu.groups"),
           route: "admin-groups",
-          if: this.$can("index", "Group"),
-        },
+          if: this.$can("index", "Group")
+        }
       ],
-      title: this.$t("views.app.title"),
+      title: this.$t("views.app.title")
     };
   },
   computed: {
     visibleLinks() {
-      return this.links.filter((item) => item.if);
+      return this.links.filter(item => item.if);
     },
     visibleAdminLinks() {
-      return this.adminLinks.filter((item) => item.if);
-    },
+      return this.adminLinks.filter(item => item.if);
+    }
   },
   watch: {
     drawer() {
       this.isOpen = !this.isOpen;
-    },
-  },
+    }
+  }
 };
 </script>
 
