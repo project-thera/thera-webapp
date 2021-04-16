@@ -2,7 +2,7 @@
   <fragment>
     <v-card class="d-flex pa-4 ma-2" outlined>
       <v-row>
-        <v-col cols="12" md="8">
+        <v-col v-if="fields.includes('goal')" cols="12" md="8">
           <template v-if="goals">
             <ValidationProvider v-slot="{ errors }" rules="required" vid="goal">
               <v-select
@@ -24,7 +24,7 @@
           </template>
         </v-col>
 
-        <v-col cols="12" md="4">
+        <v-col v-if="fields.includes('time')" cols="12" md="4">
           <ValidationProvider
             v-slot="{ errors }"
             rules="required|min_value:1000|integer"
@@ -54,6 +54,10 @@ export default {
     goals: {
       type: Array,
       default: () => []
+    },
+    fields: {
+      type: Array,
+      required: true
     }
   }
 };

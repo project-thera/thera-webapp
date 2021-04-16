@@ -18,6 +18,14 @@ class Exercise < ApplicationRecord
     }
   end
 
+  def self.exercise_type_step_fields
+    {
+      EXERCISE_TYPE_BLOW => ['goal', 'time'],
+      EXERCISE_TYPE_SPEECH => ['goal'],
+      EXERCISE_TYPE_CLASSIFICATION => ['goal', 'time']
+    }
+  end
+
   def self.blow_exercise_goals
     BlowLabels.goals
   end

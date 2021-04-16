@@ -102,6 +102,7 @@
                 <ExerciseStepForm
                   :attributes="exerciseStepsAttributes[index]"
                   :goals="goals"
+                  :fields="stepFields"
                 >
                   <v-tooltip bottom>
                     <template #activator="{ on, attrs }">
@@ -158,11 +159,13 @@ export default {
     const { exercise } = instance;
     const {
       exerciseTypeOptions,
-      exerciseTypeGoalOptions
+      exerciseTypeGoalOptions,
+      exerciseTypeStepFields
     } = exerciseTypeAndGoalsOptions(instance.$serverParameters);
 
     let exerciseStepsAttributes;
     let goals = null;
+    let stepFields = [];
 
     try {
       exerciseStepsAttributes = JSON.parse(exercise.steps);
@@ -176,14 +179,19 @@ export default {
 
     if (exercise.exerciseType) {
       goals = exerciseTypeGoalOptions[exercise.exerciseType];
+      stepFields = exerciseTypeStepFields[exercise.exerciseType];
     }
 
     return {
       object: exercise.attributes(),
+      // Current exercise
+      stepFields,
+      goals,
       exerciseStepsAttributes,
+      // Exercise configuration
       exerciseTypeOptions,
       exerciseTypeGoalOptions,
-      goals,
+      exerciseTypeStepFields,
       exerciseTypeIcon: {
         blow: instance.$vuetify.icons.values.weatherWindy,
         speech: instance.$vuetify.icons.values.microphone,
@@ -198,6 +206,7 @@ export default {
     resetExerciseSteps(value) {
       this.exerciseStepsAttributes = [this.defaultStep()];
       this.goals = this.exerciseTypeGoalOptions[value];
+      this.stepFields = this.exerciseTypeStepFields[value];
     },
     addExerciseStep() {
       this.exerciseStepsAttributes.push(this.defaultStep());

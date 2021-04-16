@@ -9,7 +9,11 @@ function translateLabels(goals) {
 }
 
 export function exerciseTypeAndGoalsOptions(serverParameters) {
-  const { exercise_types, exercise_type_goals } = serverParameters;
+  const {
+    exercise_types,
+    exercise_type_goals,
+    exercise_type_step_fields
+  } = serverParameters;
 
   const exerciseTypeGoalOptions = Object.fromEntries(
     exercise_type_goals.map(function(element) {
@@ -22,7 +26,8 @@ export function exerciseTypeAndGoalsOptions(serverParameters) {
 
   return {
     exerciseTypeOptions: objectToOptions(exercise_types),
-    exerciseTypeGoalOptions
+    exerciseTypeGoalOptions,
+    exerciseTypeStepFields: exercise_type_step_fields
   };
 }
 
