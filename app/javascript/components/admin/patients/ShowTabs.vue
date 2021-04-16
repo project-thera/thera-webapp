@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       tabToComponent: {
-        Informacion: "InformationTab",
+        Información: "InformationTab",
         "Rutinas Activas": "ActiveRoutinesTab",
         Seguimiento: "TrackingTab",
         "Rutinas Archivadas": "ArchivedRoutinesTab"
