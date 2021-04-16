@@ -27,14 +27,14 @@
 import User from "@/resources/User";
 import ActiveRoutinesTab from "./ActiveRoutinesTab";
 import ArchivedRoutinesTab from "./ArchivedRoutinesTab";
-import FileTab from "./FileTab";
+import InformationTab from "./InformationTab";
 import TrackingTab from "./TrackingTab";
 
 export default {
   components: {
     ActiveRoutinesTab,
     ArchivedRoutinesTab,
-    FileTab,
+    InformationTab,
     TrackingTab
   },
   props: {
@@ -46,8 +46,8 @@ export default {
   data() {
     return {
       tabToComponent: {
+        Informacion: "InformationTab",
         "Rutinas Activas": "ActiveRoutinesTab",
-        Ficha: "FileTab",
         Seguimiento: "TrackingTab",
         "Rutinas Archivadas": "ArchivedRoutinesTab"
       }

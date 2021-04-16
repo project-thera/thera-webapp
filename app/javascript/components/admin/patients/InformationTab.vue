@@ -6,7 +6,7 @@
           <v-textarea
             v-model="file"
             :disabled="!editing"
-            label="Ficha del paciente"
+            :label="$t('attributes.user.file')"
           />
           <v-btn
             v-if="$can('updateFile', patient)"

@@ -240,6 +240,7 @@ export default {
       user: {
         username: "Nombre de usuario",
         fullname: "Nombre completo",
+        file: "Ficha",
         email: "Correo electrónico",
         lastSignInAt: "Último inicio de sesión",
         lastSignInIp: "Última dirección IP",
