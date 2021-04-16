@@ -9,38 +9,14 @@
     </v-container>
     <v-container v-else>
       <v-row>
-        <v-col v-for="routine in routines" :key="routine.id" cols="12" md="3">
-          <v-hover v-slot="{ hover }">
-            <v-card
-              :elevation="hover ? 8 : 2"
-              :class="{ 'on-hover': hover }"
-              class="ma-4 pa-4"
-            >
-              <v-card-title>{{ routine.toString() }}</v-card-title>
-              <v-card-subtitle
-                >Creada
-                {{ $minifyUpdatedAt(routine.createdAt) }}</v-card-subtitle
-              >
-              <v-list>
-                <v-list-item
-                  v-for="routineExercise in routine
-                    .routineExercises()
-                    .toArray()"
-                  :key="routineExercise.id"
-                  :style="{ minHeight: '28px' }"
-                >
-                  <v-list-item-content class="pa-0">
-                    <v-list-item-title
-                      >{{ routineExercise.exercise().name }} ({{
-                        routineExercise.repetitions
-                      }})</v-list-item-title
-                    >
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-              <RoutineCardActions :routine="routine" />
-            </v-card>
-          </v-hover>
+        <v-col
+          v-for="routine in routines"
+          :key="routine.id"
+          cols="12"
+          lg="3"
+          sm="12"
+        >
+          <RoutineCard :routine="routine" />
         </v-col>
       </v-row>
 
@@ -74,11 +50,11 @@
 
 <script>
 import User from "@/resources/User";
-import RoutineCardActions from "./RoutineCardActions";
+import RoutineCard from "./RoutineCard";
 
 export default {
   components: {
-    RoutineCardActions
+    RoutineCard
   },
   props: {
     patient: {
