@@ -1,7 +1,25 @@
 <template>
   <Suspense :object="patient">
     <div v-if="patient">
-      <h1>Paciente {{ patient.fullname }}</h1>
+      <h1 class="mb-8">Paciente {{ patient.fullname }}</h1>
+
+      <v-btn
+        v-if="$can('addRoutine', patient)"
+        dark
+        color="primary"
+        :text="false"
+        :title="$t('views.actions.addRoutine')"
+        @click.stop="
+          $router.push({
+            name: 'admin-patients-add-routine',
+            params: { id: patient.id }
+          })
+        "
+      >
+        <v-icon>{{ $vuetify.icons.values.plus }}</v-icon>
+        Agregar Rutina
+      </v-btn>
+
       <ShowTabs :patient="patient" />
     </div>
   </Suspense>

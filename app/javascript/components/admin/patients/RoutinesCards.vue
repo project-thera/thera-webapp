@@ -24,6 +24,7 @@
         <p>El paciente no tiene rutinas</p>
       </v-row>
 
+      <!--
       <v-row>
         <v-btn
           v-if="$can('addRoutine', patient)"
@@ -40,6 +41,7 @@
           Agregar Rutina
         </v-btn>
       </v-row>
+      -->
 
       <div>
         <v-pagination v-model="page" :length="pageCount" @input="paginate" />
