@@ -3,7 +3,7 @@
     <v-card
       :elevation="hover ? 8 : 2"
       :class="{ 'on-hover': hover }"
-      class="ma-4 pa-4"
+      class="mx-2"
       height="100%"
     >
       <v-container fluid fill-height class="d-flex flex-column align-start">
