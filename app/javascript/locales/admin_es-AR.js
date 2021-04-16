@@ -112,6 +112,9 @@ export default {
         },
         destroy: {
           notice: "La rutina %{routine} fue eliminada definitivamente."
+        },
+        create: {
+          notice: "La rutina %{routine} ha sido creada existosamente."
         }
       },
       users: {

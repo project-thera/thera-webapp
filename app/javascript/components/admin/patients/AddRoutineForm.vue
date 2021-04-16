@@ -161,11 +161,11 @@ export default {
 
           this.$router.push({
             name: "admin-patients-show",
-            params: { id: this.patient.id }
+            params: { id: this.patient.id, tab: "Rutinas Activas" }
           });
 
           this.$toasted.success(
-            this.$t("views.routine.create.notice", {
+            this.$t("views.routines.create.notice", {
               routine: this.routine.toString()
             })
           );
