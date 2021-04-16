@@ -12,6 +12,7 @@ services:
       - traefik.http.routers.therawebapp.rule=Host(`app.proyectothera.com.ar`)
       - traefik.http.routers.therawebapp.tls=true
       - traefik.http.routers.therawebapp.tls.certresolver=heimdallrResolver
+      - traefik.docker.network=heimdallr
     networks:
       - heimdallr
 
