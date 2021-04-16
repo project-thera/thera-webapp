@@ -1,7 +1,7 @@
 <template>
   <!-- FIXME -->
   <v-btn tile text title="Cancelar" @click="$router.back()">
-    Cancelar
+    {{ $t("views.actions.cancel") }}
   </v-btn>
 </template>
 

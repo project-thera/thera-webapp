@@ -2,17 +2,17 @@ class Api::V1::UserResource < Api::V1::BaseResource
   attributes :username,
     :fullname,
     :email,
+    :file,
     :last_sign_in_at,
     :last_sign_in_ip,
     :created_at,
     :updated_at
   
-  # attribute :discarded, delegate: :discarded?
+  attribute :discarded, delegate: :discarded?
   attribute :group_ids, format: :ids
   attribute :supervisor_id, format: :id
 
-
-  ransack_filters :username_cont, :username_or_email_or_fullname_cont
+  ransack_filters :username_or_email_or_fullname_cont
 
   has_many :groups
   has_many :supervised_routines

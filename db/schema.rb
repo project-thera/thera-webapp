@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_221908) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "username", null: false
     t.string "fullname", null: false
+    t.text "file"
     t.bigint "supervisor_id"
     t.bigint "game_reward_id"
     t.datetime "created_at", precision: 6, null: false

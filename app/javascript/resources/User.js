@@ -20,6 +20,7 @@ class User extends BaseResource {
     this.attributes(
       "username",
       "fullname",
+      "file",
       "discarded",
       "lastSignInAt",
       "lastSignInIp",

@@ -24,6 +24,7 @@ export default function defineAbilityFor(user) {
       can("startSupervision", "User", startSupervisionCondition);
       can("stopSupervision", "User");
       cannot("stopSupervision", "User", startSupervisionCondition);
+      can("updateFile", "User");
 
       can("index", "Patient");
 
@@ -47,6 +48,7 @@ export default function defineAbilityFor(user) {
       can("startSupervision", "User", startSupervisionCondition);
       can("stopSupervision", "User", supervisorCondition);
       can("addRoutine", "User", supervisorCondition);
+      can("updateFile", "User", supervisorCondition);
 
       can("index", "Patient");
 

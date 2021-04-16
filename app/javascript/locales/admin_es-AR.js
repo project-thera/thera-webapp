@@ -101,6 +101,11 @@ export default {
         },
         startSupervision: {
           notice: "Se ha comenzado supervisar el paciente %{patient}."
+        },
+        updateFile: {
+          notice: "Se ha actualizado la ficha del paciente %{patient}.",
+          alert:
+            "No se ha podido actualizar la ficha del paciente %{patient}. Intentelo de nuevo mas tarde."
         }
       },
       routines: {
