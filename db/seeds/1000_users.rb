@@ -86,3 +86,13 @@ create_patients('sin_confirmar', count: USERS_COUNT, confirmed: false)
 
 supervisor_with_patients = create_supervisors('con_pacientes')
 create_patients('con_supervision', count: USERS_COUNT, supervisor: supervisor_with_patients)
+
+User.create(
+  username: 'paciente',
+  password: 'dev',
+  email: 'paciente@thera.com.ar',
+  fullname: Faker::Name.unique.name,
+  confirmed_at: Faker::Time.backward(days: 30),
+  supervisor: supervisor_with_patients,
+  groups: [patient_group]
+)
