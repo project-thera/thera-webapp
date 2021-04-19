@@ -18,7 +18,7 @@ class RoutineIntentPolicy < ApplicationPolicy
   end
 
   def new?
-    user.sysadmin? || user.admin? || (user.patient? && routine.patient_id == user.id)
+    user.sysadmin? || user.admin? || user.patient? # && record.routine.patient_id == user.id)
   end
 
   def create?
