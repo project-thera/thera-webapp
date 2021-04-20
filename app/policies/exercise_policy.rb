@@ -1,7 +1,7 @@
 class ExercisePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.sysadmin? || user.admin? || user.supervisor?
+      if user.sysadmin? || user.admin? || user.supervisor? || user.patient?
         scope
       else
         scope.none
@@ -10,7 +10,7 @@ class ExercisePolicy < ApplicationPolicy
   end
 
   def index?
-    user.sysadmin? || user.admin? || user.supervisor?
+    user.sysadmin? || user.admin? || user.supervisor? || user.patient?
   end
 
   def new?

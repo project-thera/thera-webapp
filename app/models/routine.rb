@@ -15,6 +15,6 @@ class Routine < ApplicationRecord
   }
 
   scope :owned_by, -> (user) {
-    where(patient: user)
+    where(patient: user).kept
   }
 end

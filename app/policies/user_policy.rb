@@ -12,7 +12,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    puts user.supervisor?
     user.sysadmin? || user.admin? || user.supervisor?
   end
 
