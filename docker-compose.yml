@@ -1,0 +1,53 @@
+# https://docs.docker.com/compose/rails/
+
+version: '3.8'
+
+services:
+  db:
+    image: linuxserver/mariadb:latest
+    environment:
+      - TZ=America/Argentina/Buenos_Aires
+    volumes:
+      - db_data:/config
+    logging:
+      driver: none
+
+  web: &web
+    build:
+      context: .
+      dockerfile: docker/development/web/Dockerfile
+      args:
+        # downgraded because of this
+        # https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements
+        RUBY_VERSION: '2.6.6-alpine3.12'
+        BUNDLER_VERSION: '2.2.14'
+    env_file: docker/development/.env
+    volumes:
+      - .:/usr/local/app:cached
+      - gems:/usr/local/bundle
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+
+  webpacker:
+    build:
+      context: .
+      dockerfile: docker/development/webpacker/Dockerfile
+    ports:
+      - 3035:3035
+    depends_on:
+      - web
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 80:80
+    logging:
+      driver: none
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+  gems:

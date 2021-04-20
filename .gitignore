@@ -27,6 +27,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials/production.key
 
 /public/packs
 /public/packs-test
@@ -35,11 +36,7 @@
 yarn-debug.log*
 .yarn-integrity
 
-docker-compose.yml
-.env
-# /config/database.yml
-
+/docker/development/.env
+!/docker/development/.env.example
 /docker/production/.env
 !/docker/production/.env.example
-
-/config/credentials/production.key
