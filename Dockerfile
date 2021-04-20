@@ -1,4 +1,5 @@
-FROM ruby:2.6.5
+ARG RUBY_VERSION
+FROM ruby:$RUBY_VERSION
 
 # make sure your domain is accepted
 RUN mkdir /root/.ssh/ && \
@@ -15,6 +16,9 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
 WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
-RUN gem install bundler
+
+ARG BUNDLER_VERSION
+RUN gem update --system
+RUN gem install bundler:$BUNDLER_VERSION
 
 RUN echo 'gem: --no-document' >> ~/.gemrc
