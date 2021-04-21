@@ -4,6 +4,14 @@ class Api::V1::BaseResource < JSONAPI::Resource
 
   abstract
 
+  def self.updatable_fields(context)
+    super - [:created_at, :updated_at]
+  end
+
+  def self.creatable_fields(context)
+    super - [:created_at, :updated_at]
+  end
+
   def self.ransack_filters(*names)
     self.const_set('RANSACK_FILTERS', names.freeze)
 

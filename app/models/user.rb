@@ -15,7 +15,10 @@ class User < ApplicationRecord
   # https://stackoverflow.com/questions/56617857/how-do-i-create-a-self-referential-association-table-rails-migration
   # FIXME Add supervisors and patients scopes
   belongs_to :supervisor, class_name: 'User', inverse_of: :patients, required: false
-  belongs_to :game_reward, required: false
+  belongs_to :game_reward, required: true
+
+  before_validation :build_game_reward, on: :create
+
   has_many :patients,
     foreign_key: :supervisor_id,
     inverse_of: :supervisor,
@@ -63,14 +66,6 @@ class User < ApplicationRecord
 
   def to_s
     username
-  end
-
-  def game_reward
-    if game_reward_id
-      return super
-    end
-
-    create_game_reward
   end
 
   def cached_groups

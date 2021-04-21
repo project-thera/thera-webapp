@@ -16,7 +16,7 @@ class GameRewardPolicy < ApplicationPolicy
   end
 
   def new?
-    user.sysadmin? || user.admin?
+    false
   end
 
   def create?
@@ -24,7 +24,7 @@ class GameRewardPolicy < ApplicationPolicy
   end
 
   def edit?
-    create?
+    user.patient? && record.user.id == user.id
   end
 
   def update?

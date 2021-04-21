@@ -5,6 +5,8 @@ class UserPolicy < ApplicationPolicy
         scope
       elsif user.supervisor?
         scope.kept.owned_or_without_supervision_patients(user)
+      elsif user.patient?
+        scope.kept.where(id: user.id)
       else
         scope.none
       end
@@ -12,7 +14,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    user.sysadmin? || user.admin? || user.supervisor?
+    user.sysadmin? || user.admin? || user.supervisor? || user.patient?
   end
 
   def new?
