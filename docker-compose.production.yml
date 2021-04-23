@@ -7,11 +7,11 @@ services:
     env_file: docker/production/.env
     volumes:
       - db_data:/config
-    # logging:
-    #   driver: none
+    logging:
+      driver: none
     restart: unless-stopped
-    # networks:
-    #   - default
+    networks:
+      - default
 
   web:
     container_name: app.proyectothera.com.ar_web
@@ -25,7 +25,7 @@ services:
         # https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements
         RUBY_VERSION: '2.6.6-alpine3.12'
     env_file: docker/production/.env
-    # restart: unless-stopped
+    restart: unless-stopped
     volumes:
       # - web_gems:/usr/local/bundle
       - web_log:/usr/local/app/log
@@ -33,10 +33,8 @@ services:
       - web_uploads:/usr/local/app/private/uploads
     depends_on:
       - db
-    ports:
-      - 3000:3000
-    # networks:
-    #   - default
+    networks:
+      - default
 
 volumes:
   db_data:
