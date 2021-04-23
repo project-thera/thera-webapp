@@ -17,10 +17,10 @@ services:
       context: .
       dockerfile: docker/development/web/Dockerfile
       args:
+        BUNDLER_VERSION: '2.2.16'
         # downgraded because of this
         # https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements
         RUBY_VERSION: '2.6.6-alpine3.12'
-        BUNDLER_VERSION: '2.2.14'
     env_file: docker/development/.env
     volumes:
       - .:/usr/local/app:cached

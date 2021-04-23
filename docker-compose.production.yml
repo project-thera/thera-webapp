@@ -7,11 +7,11 @@ services:
     env_file: docker/production/.env
     volumes:
       - db_data:/config
-    logging:
-      driver: none
+    # logging:
+    #   driver: none
     restart: unless-stopped
-    networks:
-      - default
+    # networks:
+    #   - default
 
   web:
     container_name: app.proyectothera.com.ar_web
@@ -20,25 +20,27 @@ services:
       context: .
       dockerfile: docker/production/web/Dockerfile
       args:
+        BUNDLER_VERSION: '2.2.16'
         # downgraded because of this
         # https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements
-        - RUBY_VERSION=2.6.6-alpine3.12
-        - BUNDLER_VERSION=2.2.15
+        RUBY_VERSION: '2.6.6-alpine3.12'
     env_file: docker/production/.env
-    restart: unless-stopped
+    # restart: unless-stopped
     volumes:
-      - web_gems:/usr/local/bundle
-      - web_logs:/usr/local/app/logs
-      - web_modules:/usr/local/app/node_modules
+      # - web_gems:/usr/local/bundle
+      - web_log:/usr/local/app/log
+      # - web_modules:/usr/local/app/node_modules
       - web_uploads:/usr/local/app/private/uploads
     depends_on:
       - db
-    networks:
-      - default
+    ports:
+      - 3000:3000
+    # networks:
+    #   - default
 
 volumes:
   db_data:
-  web_gems:
-  web_logs:
-  web_modules:
+  # web_gems:
+  web_log:
+  # web_modules:
   web_uploads:
