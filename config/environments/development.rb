@@ -57,8 +57,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.delivery_method = :smtp
-  host = ENV['MAILER_HOST']
-  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.default_url_options = { host: ENV.fetch('MAILER_HOST') { 'localhost' }, protocol: ENV.fetch('MAILER_PROTOCOL') { 'http' } }
   
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
