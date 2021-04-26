@@ -36,6 +36,7 @@ export default {
         .routines()
         .includes({ routineExercises: ["exercise"] })
         .where({ discarded: false })
+        .order({ updatedAt: "desc" })
         .page(pageNumber)
         .perPage(this.perPage)
         .all();
