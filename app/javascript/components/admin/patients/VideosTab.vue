@@ -16,7 +16,7 @@
           lg="2"
           sm="12"
         >
-          <video height="320" controls>
+          <video v-if="$can('show', patientVideo)" height="320" controls>
             <source :src="patientVideo.links().video" />
           </video>
         </v-col>

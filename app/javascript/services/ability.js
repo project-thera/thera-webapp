@@ -28,6 +28,8 @@ export default function defineAbilityFor(user) {
 
       can("index", "Patient");
 
+      can("show", "PatientVideo");
+
       //can("show", "Routine");
       can("discard", "Routine", discardCondition);
       can("undiscard", "Routine", undiscardCondition);
@@ -51,6 +53,9 @@ export default function defineAbilityFor(user) {
       can("updateFile", "User", supervisorCondition);
 
       can("index", "Patient");
+
+      // TODO add supervisor condition
+      can("show", "PatientVideo");
 
       //can("show", "Routine");
       can("discard", "Routine", {

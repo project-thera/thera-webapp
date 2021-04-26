@@ -4,15 +4,12 @@ class PatientVideo < ApplicationRecord
     class_name: 'User',
     required: true
 
-  has_one :supervisor,
-    through: :patient
-
   mount_base64_uploader :video, VideoUploader
 
   validates :video, presence: true
 
   scope :supervised_by, -> (user) {
-    where(supervisor: user)
+    joins(:patient).where(users: { supervisor_id: user.id })
   }
 
   scope :owned_by, -> (user) {
