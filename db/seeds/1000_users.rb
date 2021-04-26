@@ -27,6 +27,7 @@ def create_patients(type, count: 1, supervisor: nil, confirmed: true)
       password: 'dev',
       email: "paciente_#{type}_#{i}@thera.com.ar",
       fullname: Faker::Name.unique.name,
+      file: Faker::Lorem.paragraph(sentence_count: 10, random_sentences_to_add: 10),
       confirmed_at: confirmed ? Faker::Time.backward(days: 30) : nil,
       supervisor: supervisor,
       groups: [patient_group]
