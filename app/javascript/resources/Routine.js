@@ -15,7 +15,7 @@ class Routine extends BaseResource {
   static modelName = "Routine";
 
   static define() {
-    this.attributes("id", "daily_limit", "supervisorId", "patientId");
+    this.attributes("id", "name", "daily_limit", "supervisorId", "patientId");
 
     // this.belongsTo("patient", { className: "User" });
     // this.belongsTo("supervisor", { className: "User" });
@@ -25,7 +25,7 @@ class Routine extends BaseResource {
   }
 
   toString() {
-    return `Rutina #${this.id}`;
+    return `Rutina ${this.name}`;
   }
 }
 

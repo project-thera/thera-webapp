@@ -1,5 +1,6 @@
 class Api::V1::RoutineResource < Api::V1::BaseResource
-  attributes :daily_limit,
+  attributes :name,
+    :daily_limit,
     :created_at,
     :updated_at
   

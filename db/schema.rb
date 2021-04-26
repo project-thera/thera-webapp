@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
   end
 
   create_table "routines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
     t.bigint "supervisor_id", null: false
     t.bigint "patient_id", null: false
     t.integer "daily_limit", limit: 1, default: 1

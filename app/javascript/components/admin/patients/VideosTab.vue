@@ -2,7 +2,7 @@
   <div>
     <v-container v-if="loading">
       <v-row>
-        <v-col v-for="i in 4" :key="i" cols="12" md="2">
+        <v-col v-for="i in 12 / colSize" :key="i" cols="12" :lg="colSize">
           <v-skeleton-loader type="card" />
         </v-col>
       </v-row>
@@ -13,8 +13,7 @@
           v-for="patientVideo in patientVideos"
           :key="patientVideo.id"
           cols="12"
-          lg="2"
-          sm="12"
+          :lg="colSize"
         >
           <video v-if="$can('show', patientVideo)" height="320" controls>
             <source :src="patientVideo.links().video" />
@@ -62,12 +61,16 @@ export default {
     }
   },
   data() {
+    const colSize = 2;
+    const perPage = 6;
+
     return {
       patientVideos: [],
-      perPage: 6,
       pageCount: 1,
       page: 1,
-      loading: true
+      loading: true,
+      perPage,
+      colSize
     };
   },
   mounted() {

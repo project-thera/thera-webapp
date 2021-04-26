@@ -10,6 +10,8 @@ class Routine < ApplicationRecord
 
   accepts_nested_attributes_for :routine_exercises, allow_destroy: true, reject_if: :all_blank
 
+  validates :name, presence: true, uniqueness: { scope: :patient_id }
+
   scope :supervised_by, -> (user) {
     where(supervisor: user)
   }

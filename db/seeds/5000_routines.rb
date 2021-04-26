@@ -31,10 +31,11 @@ def generate_routines(
   routine_exercises_count: 1,
   routine_intents_count: 1
 )
-  rand(1..routines_count).times do
+  rand(1..routines_count).times do | i |
     exercises = random_exercises(count: routine_exercises_count)
 
     Routine.create(
+      name: "número ##{patient.id} ##{i}",
       supervisor: patient.supervisor,
       patient: patient,
       routine_exercises: exercises.map{ | exercise | RoutineExercise.new(exercise: exercise) },
