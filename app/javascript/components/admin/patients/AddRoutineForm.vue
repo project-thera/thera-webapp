@@ -7,6 +7,21 @@
             <v-col cols="12" md="6">
               <ValidationProvider
                 v-slot="{ errors }"
+                rules="required"
+                vid="name"
+              >
+                <v-text-field
+                  v-model="object.name"
+                  :label="$t('attributes.routine.name')"
+                  :error-messages="errors"
+                />
+              </ValidationProvider>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6">
+              <ValidationProvider
+                v-slot="{ errors }"
                 rules="required|min_value:1|integer"
                 vid="dailyLimit"
               >
@@ -161,7 +176,8 @@ export default {
 
           this.$router.push({
             name: "admin-patients-show",
-            params: { id: this.patient.id, tab: "Rutinas Activas" }
+            params: { id: this.patient.id },
+            query: { tab: "Rutinas Activas" }
           });
 
           this.$toasted.success(

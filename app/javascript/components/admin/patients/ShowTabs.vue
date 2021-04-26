@@ -59,9 +59,11 @@ export default {
   computed: {
     tab: {
       set(tab) {
+        console.log(tab);
         this.$router.replace({ query: { ...this.$route.query, tab } });
       },
       get() {
+        console.log(this.$route.query.tab);
         return this.$route.query.tab;
       }
     }
