@@ -65,3 +65,6 @@ gem 'jsonapi-authorization'
 gem 'jsonapi-utils'
 gem 'pundit'
 gem 'ransack'
+
+gem 'carrierwave'
+gem 'carrierwave-base64'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_221908) do
+ActiveRecord::Schema.define(version: 2021_04_22_203016) do
 
   create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 2021_04_12_221908) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_groups_users_on_group_id"
     t.index ["user_id"], name: "index_groups_users_on_user_id"
+  end
+
+  create_table "patient_videos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "patient_id", null: false
+    t.string "video", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_patient_videos_on_patient_id"
   end
 
   create_table "routine_exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -107,6 +115,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_221908) do
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 
+  add_foreign_key "patient_videos", "users", column: "patient_id"
   add_foreign_key "routines", "users", column: "patient_id"
   add_foreign_key "routines", "users", column: "supervisor_id"
   add_foreign_key "users", "users", column: "supervisor_id"

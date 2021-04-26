@@ -18,6 +18,7 @@ class Api::V1::UserResource < Api::V1::BaseResource
   has_many :supervised_routines
   has_many :routines
   has_many :routine_intents
+  has_many :patient_videos
 
   has_one :supervisor
   has_one :game_reward

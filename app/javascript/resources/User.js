@@ -5,6 +5,7 @@ import "./Group";
 import "./Routine";
 import "./RoutineIntent";
 import "./GameReward";
+import "./PatientVideo";
 
 class User extends BaseResource {
   // required by active-resource
@@ -34,6 +35,7 @@ class User extends BaseResource {
     this.hasMany("groups");
     this.hasMany("routines");
     this.hasMany("routineIntents");
+    this.hasMany("patientVideos");
   }
 
   toString() {

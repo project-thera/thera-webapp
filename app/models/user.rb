@@ -36,6 +36,10 @@ class User < ApplicationRecord
 
   has_many :routine_intents, through: :routines
 
+  has_many :patient_videos,
+    inverse_of: :patient,
+    foreign_key: :patient_id
+
   has_and_belongs_to_many :groups
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }

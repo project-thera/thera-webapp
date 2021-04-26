@@ -28,6 +28,7 @@ import User from "@/resources/User";
 import ActiveRoutinesTab from "./ActiveRoutinesTab";
 import ArchivedRoutinesTab from "./ArchivedRoutinesTab";
 import InformationTab from "./InformationTab";
+import VideosTab from "./VideosTab";
 import TrackingTab from "./TrackingTab";
 
 export default {
@@ -35,6 +36,7 @@ export default {
     ActiveRoutinesTab,
     ArchivedRoutinesTab,
     InformationTab,
+    VideosTab,
     TrackingTab
   },
   props: {
@@ -49,6 +51,7 @@ export default {
         Información: "InformationTab",
         "Rutinas Activas": "ActiveRoutinesTab",
         Seguimiento: "TrackingTab",
+        Videos: "VideosTab",
         "Rutinas Archivadas": "ArchivedRoutinesTab"
       }
     };

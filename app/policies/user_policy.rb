@@ -13,6 +13,11 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  # def add_to_video_patients?(new_video_patients)
+  #   aaa
+  #   record.published && new_comments.all? { |comment| comment.author == user }
+  # end
+
   def index?
     user.sysadmin? || user.admin? || user.supervisor? || user.patient?
   end

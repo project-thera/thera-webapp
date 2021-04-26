@@ -29,6 +29,9 @@ Rails.application.routes.draw do
       jsonapi_resources :routine_intents
       jsonapi_resources :routine_intent_exercises
       jsonapi_resources :game_rewards
+      jsonapi_resources :patient_videos do
+        get :video, on: :member
+      end
     end
   end
 

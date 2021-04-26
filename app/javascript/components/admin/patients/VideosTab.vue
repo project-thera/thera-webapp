@@ -2,7 +2,7 @@
   <div>
     <v-container v-if="loading">
       <v-row>
-        <v-col v-for="i in 4" :key="i" cols="12" md="3">
+        <v-col v-for="i in 4" :key="i" cols="12" md="2">
           <v-skeleton-loader type="card" />
         </v-col>
       </v-row>
@@ -10,18 +10,20 @@
     <v-container v-else>
       <v-row>
         <v-col
-          v-for="routine in routines"
-          :key="routine.id"
+          v-for="patientVideo in patientVideos"
+          :key="patientVideo.id"
           cols="12"
-          lg="3"
+          lg="2"
           sm="12"
         >
-          <RoutineCard :routine="routine" />
+          <video height="320" controls>
+            <source :src="patientVideo.links().video" />
+          </video>
         </v-col>
       </v-row>
 
-      <v-row v-if="routines.length == 0">
-        <p>El paciente no tiene rutinas</p>
+      <v-row v-if="patientVideos.length == 0">
+        <p>El paciente no tiene videos</p>
       </v-row>
 
       <!--
@@ -49,60 +51,56 @@
     </v-container>
   </div>
 </template>
-
 <script>
 import User from "@/resources/User";
-import RoutineCard from "./RoutineCard";
 
 export default {
-  components: {
-    RoutineCard
-  },
   props: {
     patient: {
       type: User,
-      required: true
-    },
-    loadRoutines: {
-      type: Function,
-      required: true
-    },
-    perPage: {
-      type: Number,
-      required: true
-    },
-    pageCount: {
-      type: Number,
-      required: true
-    },
-    routines: {
-      type: Array,
-      required: true
-    },
-    loading: {
-      type: Boolean,
       required: true
     }
   },
   data() {
     return {
-      page: 1
+      patientVideos: [],
+      perPage: 6,
+      pageCount: 1,
+      page: 1,
+      loading: true
     };
   },
   mounted() {
-    this.$bus.$on("update:resource", () => this.loadRoutines(this.page));
+    this.$bus.$on("update:resource", () => this.loadPatientVideos(this.page));
   },
   beforeDestroy() {
     this.$bus.$off("update:resource");
   },
   async created() {
-    this.loadRoutines(this.page);
+    this.loadPatientVideos(this.page);
   },
   methods: {
+    async loadPatientVideos(pageNumber) {
+      this.loading = true;
+
+      const videoPatientsCollection = await this.patient
+        .patientVideos()
+        .page(pageNumber)
+        .perPage(this.perPage)
+        .all();
+
+      console.log(videoPatientsCollection);
+      this.patientVideos = videoPatientsCollection.toArray();
+      this.pageCount = Math.ceil(
+        videoPatientsCollection.meta().recordCount / this.perPage
+      );
+
+      this.loading = false;
+    },
     paginate(pageNumber) {
       this.page = pageNumber;
 
-      this.loadRoutines(pageNumber);
+      this.loadPatientVideos(pageNumber);
     }
   }
 };
