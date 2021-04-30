@@ -2,6 +2,9 @@ puts "Seeding users..."
 
 USERS_COUNT = 20
 
+MAX_CREDITS = 2000
+MAX_ROBOTS = 100
+
 def sysadmin_group
   Group.find_or_create_by(name: Group::SYSADMIN)
 end
@@ -22,12 +25,19 @@ def create_patients(type, count: 1, supervisor: nil, confirmed: true)
   patients = []
 
   count.times do |i|
+    game_reward = GameReward.new(
+      credits: rand(0..MAX_CREDITS),
+      robots: rand(0..MAX_ROBOTS),
+      current_robot: rand(0..GameReward::MAX_CURRENT_ROBOT)
+    )
+
     patients << User.create(
       username: "paciente_#{type}_#{i}",
       password: 'dev',
       email: "paciente_#{type}_#{i}@thera.com.ar",
       fullname: Faker::Name.unique.name,
       file: Faker::Lorem.paragraph(sentence_count: 10, random_sentences_to_add: 10),
+      game_reward: game_reward,
       confirmed_at: confirmed ? Faker::Time.backward(days: 30) : nil,
       supervisor: supervisor,
       groups: [patient_group]

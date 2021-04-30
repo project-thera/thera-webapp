@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
   create_table "game_rewards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "credits", default: 0, null: false
     t.integer "robots", default: 0, null: false
-    t.text "current_robot"
+    t.integer "current_robot", default: 0, null: false
   end
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|

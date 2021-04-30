@@ -3,8 +3,7 @@ class CreateGameRewards < ActiveRecord::Migration[6.0]
     create_table :game_rewards do |t|
       t.integer :credits, default: 0, null: false
       t.integer :robots, default: 0, null: false
-
-      t.text :current_robot
+      t.integer :current_robot, default: 0, null: false
     end
   end
 end

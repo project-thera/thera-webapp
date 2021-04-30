@@ -17,7 +17,7 @@ class User < ApplicationRecord
   belongs_to :supervisor, class_name: 'User', inverse_of: :patients, required: false
   belongs_to :game_reward, required: true
 
-  before_validation :build_game_reward, on: :create
+  before_validation :build_game_reward_if_empty, on: :create
 
   has_many :patients,
     foreign_key: :supervisor_id,
@@ -114,6 +114,10 @@ class User < ApplicationRecord
     self.supervisor_id = nil
 
     save
+  end
+
+  def build_game_reward_if_empty
+    build_game_reward unless game_reward.present?
   end
 
   #  def can_enable?
