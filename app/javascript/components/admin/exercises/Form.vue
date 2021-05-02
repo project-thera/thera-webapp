@@ -231,7 +231,7 @@ export default {
           });
 
           this.$toasted.success(
-            this.$t("views.exercise.create.notice", {
+            this.$t("views.exercises.create.notice", {
               exercise: this.exercise.toString()
             })
           );

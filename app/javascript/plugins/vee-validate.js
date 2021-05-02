@@ -7,7 +7,9 @@ import {
   ext,
   min_value,
   max_value,
-  integer
+  integer,
+  mimes,
+  size
 } from "vee-validate/dist/rules";
 
 import { extend } from "vee-validate";
@@ -28,6 +30,16 @@ extend("max_value", {
 extend("integer", {
   ...integer,
   message: "debe ser un número entero"
+});
+
+extend("mimes", {
+  ...mimes,
+  message: "formato no permitido"
+});
+
+extend("size", {
+  ...size,
+  message: "tamañano no permitido"
 });
 
 extend("numeric", {

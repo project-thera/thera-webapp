@@ -33,6 +33,7 @@ import "@/plugins/moment";
 import "@/plugins/portal";
 import "@/plugins/vee-validate";
 import "@/plugins/vue-horizontal";
+import "@/plugins/base64encode";
 
 import i18n from "@/plugins/admin/i18n";
 import routes from "@/plugins/admin/routes";

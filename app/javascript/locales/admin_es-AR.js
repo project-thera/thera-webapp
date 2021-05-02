@@ -85,6 +85,9 @@ export default {
         },
         destroy: {
           notice: "El ejercicio %{exercise} fue eliminado definitivamente."
+        },
+        create: {
+          notice: "El ejericicio %{exercise} ha sido creado existosamente."
         }
       },
       patients: {
@@ -219,7 +222,8 @@ export default {
       },
       exerciseStep: {
         goal: "Objetivo",
-        time: "Tiempo"
+        time: "Tiempo",
+        image: "Imagen"
       },
       routine: {
         name: "Nombre",
