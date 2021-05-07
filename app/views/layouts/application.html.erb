@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TheraWebapp</title>
+    <title><%= content_for?(:title) ? yield(:title) : "Thera Web App" %></title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +10,40 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
+  <style>
+  html, body {
+    height: 100%;
+  }
+  .wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background: #089de3; */
+    background: #eee !important;
+  }
+  .card {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+    min-height: 500px;
+    max-height: 600px;
+    min-width: 500px;
+    padding: 40px;
+  }
+  </style>
+
   <body>
-    <%= yield %>
+    <div class="theme--light v-application wrapper">
+      <div class="card grow v-card v-sheet v-sheet--outlined theme--light elevation-2">
+        <%= yield %>
+      </div>
+      <div style="display: none">
+        <div id="app"></div>
+      </div>
+    </div>
   </body>
 </html>

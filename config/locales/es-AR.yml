@@ -1,4 +1,7 @@
 es-AR:
+  errors:
+    messages:
+      form: "Se han encontrado los siguientes errores:"
   'false': 'No'
   'true': Si
   activerecord:

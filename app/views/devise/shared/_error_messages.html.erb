@@ -1,15 +1,29 @@
 <% if resource.errors.any? %>
   <div id="error_explanation">
-    <h2>
-      <%= I18n.t("errors.messages.not_saved",
-                 count: resource.errors.count,
-                 resource: resource.class.model_name.human.downcase)
-       %>
-    </h2>
+    <div role="alert" class="v-alert v-sheet theme--dark error">
+      <div class="v-alert__wrapper">
+        <span aria-hidden="true" class="v-icon notranslate v-alert__icon theme--dark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" class="v-icon__svg">
+          <path d="M8.27,3L3,8.27V15.73L8.27,21H15.73C17.5,19.24 21,15.73 21,15.73V8.27L15.73,3M9.1,5H14.9L19,9.1V14.9L14.9,19H9.1L5,14.9V9.1M11,15H13V17H11V15M11,7H13V13H11V7">
+        </path>
+        </svg>
+        </span>
+          <div class="v-alert__content"><%= I18n.t("errors.messages.not_saved", count: resource.errors.count, resource: resource.class.model_name.human.downcase)%>
+        </div>
+      </div>
+    </div>
     <ul>
-      <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      <div class="v-messages theme--light error--text" role="alert">
+        <div class="v-messages__wrapper">
+          <div class="v-messages__message">
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </ul>
   </div>
 <% end %>
+
+
