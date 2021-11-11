@@ -21,6 +21,8 @@ class Api::V1::BaseResource < JSONAPI::Resource
     end
   end
 
+
+  # This is an extract of a gem that is in our private repository in class JSONAPI::Resource::Ransackable
   def self.apply_filter(records, filter, value, options)
     if self.const_defined?('RANSACK_FILTERS') && self::RANSACK_FILTERS.include?(filter)
       if needs_array?(filter)
