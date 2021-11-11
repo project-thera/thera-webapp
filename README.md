@@ -1,24 +1,22 @@
-# README
+# Thera Webapp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development
 
-Things you may want to cover:
+To run the project copy file `docker/development/.env.example` to `docker/development/.env`
 
-* Ruby version
+Then:
+```
+docker-compose build web
+docker-compose run web bundle install -j4
+docker-compose run web yarn install
 
-* System dependencies
+docker-compose build webpacker
 
-* Configuration
+docker-compose restart
 
-* Database creation
+docker-compose exec web db:create
+docker-compose exec web db:migrate
+docker-compose exec web db:seed
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can access with user `matiasarrech@gmail.com` and password `dev`.
