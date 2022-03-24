@@ -21,8 +21,6 @@ services:
       context: .
       dockerfile: docker/development/web/Dockerfile
       args:
-        # downgraded because of this
-        # https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements
         # [Choice] Ruby version: 2, 2.7, 2.7.4
         RUBY_VERSION: 2.7.4
         # [Choice] Node.js version: lts, 16, 14, 12, 10

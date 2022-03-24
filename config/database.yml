@@ -50,6 +50,6 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV['MARIADB_DATABASE'] %>
-  username: <%= ENV['MARIADB_USER'] %>
-  password: <%= ENV['MARIADB_PASSWORD'] %>
+  database: <%= ENV.fetch("MARIADB_DATABASE") { 'thera-webapp' } %>
+  username: <%= ENV.fetch("MARIADB_USER") { 'thera-webapp_user' } %>
+  password: <%= ENV.fetch("MARIADB_PASSWORD") { '' }  %>
