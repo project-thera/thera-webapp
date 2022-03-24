@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.7.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
@@ -57,14 +57,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'devise'
-gem 'devise-i18n'
-gem 'discard', '~> 1.2'
-gem 'faker'
-gem 'jsonapi-authorization'
-gem 'jsonapi-utils'
-gem 'pundit'
-gem 'ransack'
-
-gem 'carrierwave'
+gem 'carrierwave', '~> 2.0.0'
 gem 'carrierwave-base64'
+gem 'devise', '~> 4.7.0'
+gem 'devise-i18n', '~> 1.9.0'
+gem 'discard', '~> 1.2.0'
+gem 'faker'
+gem 'jsonapi-authorization', '~> 3.0.0'
+gem 'jsonapi-utils', '~> 0.7.0'
+gem 'pundit', '~> 2.1.0'
+gem 'ransack', '~> 2.4.0'

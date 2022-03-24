@@ -4,36 +4,51 @@ version: '3.8'
 
 services:
   db:
-    image: linuxserver/mariadb:latest
-    environment:
-      - TZ=America/Argentina/Buenos_Aires
+    env_file: docker/development/.env
+    image: mariadb:10
+    # environment:
+    #   - TZ=America/Argentina/Buenos_Aires
     volumes:
-      - db_data:/config
+      - db_data:/var/lib/mysql
+    # volumes:
+    #   - db_data:/config
     logging:
       driver: none
 
   web: &web
+    env_file: docker/development/.env
     build:
       context: .
       dockerfile: docker/development/web/Dockerfile
       args:
-        BUNDLER_VERSION: '2.2.16'
         # downgraded because of this
         # https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements
-        RUBY_VERSION: '2.6.6-alpine3.12'
-    env_file: docker/development/.env
+        # [Choice] Ruby version: 2, 2.7, 2.7.4
+        RUBY_VERSION: 2.7.4
+        # [Choice] Node.js version: lts, 16, 14, 12, 10
+        NODE_VERSION: "14.19.0-r0"
+        # [Choice] Rails version: 6.1, 6.1.4
+        RAILS_VERSION: 6.0.0
+        # On Linux, you may need to update USER_UID and USER_GID below if not your local UID is not 1000.
+        UID: 1000
+        GID: 1000
+    tty: true
+    stdin_open: true
     volumes:
       - .:/usr/local/app:cached
       - gems:/usr/local/bundle
-    ports:
-      - 3000:3000
+    command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - db
+    ports:
+      - 3000:3000
 
   webpacker:
-    build:
-      context: .
-      dockerfile: docker/development/webpacker/Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: docker/development/webpacker/Dockerfile
+    <<: *web
+    command: sh -c "rm -rf public/packs; ./bin/webpack-dev-server --inline --hot true"
     ports:
       - 3035:3035
     depends_on:
