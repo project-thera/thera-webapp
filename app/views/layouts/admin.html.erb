@@ -3,7 +3,7 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Thera Web App" %></title>
 
-    <%#= favicon_pack_tag 'media/assets/favicon.ico' %>
+    <%= favicon_pack_tag 'media/assets/favicon.ico' %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

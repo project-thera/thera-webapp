@@ -29,7 +29,7 @@ services:
         UID: 1000
         GID: 1000
     env_file: docker/production/.env
-    # restart: unless-stopped
+    restart: unless-stopped
     # volumes:
     #   # - web_gems:/usr/local/bundle
     #   - web_log:/usr/local/app/log
