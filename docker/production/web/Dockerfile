@@ -71,5 +71,4 @@ EXPOSE 3000
 
 # CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 # CMD [ "sh", "-c", "bundle exec rake db:create db:migrate && bundle exec rails server -b 0.0.0.0" ]
-CMD [ "sh", "-c", "bundle exec rails server -b 0.0.0.0" ]
-
+CMD [ "sh", "-c", "bundle exec rake db:migrate && bundle exec puma -C config/puma.rb" ]

@@ -29,13 +29,13 @@ services:
         UID: 1000
         GID: 1000
     env_file: docker/production/.env
-    restart: unless-stopped
+    # restart: unless-stopped
     # volumes:
     #   # - web_gems:/usr/local/bundle
     #   - web_log:/usr/local/app/log
     #   # - web_modules:/usr/local/app/node_modules
     #   - web_uploads:/usr/local/app/private/web_uploads
-    command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - db
     ports:
