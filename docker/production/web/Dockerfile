@@ -42,10 +42,11 @@ RUN apk update -qq && \
     rm -rf node_modules tmp/cache vendor/assets test
 
 FROM ruby:${RUBY_VERSION}-alpine
-ENV RAILS_APP=/usr/local/app \
-    RAILS_ENV=production \
-    RAILS_SERVE_STATIC_FILES=true \
-    TZ=America/Buenos_Aires
+# ENV RAILS_APP=/usr/local/app \
+#     RAILS_ENV=production \
+#     RAILS_SERVE_STATIC_FILES=true \
+#     TZ=America/Buenos_Aires
+ENV RAILS_APP=/usr/local/app
 
 WORKDIR ${RAILS_APP}
 
