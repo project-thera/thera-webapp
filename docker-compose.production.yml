@@ -2,12 +2,13 @@ version: '3.8'
 services:
   db:
     container_name: app.proyectothera.com.ar_db
-    image: mariadb:10
+    # this is the only implementation compatible with armv7
+    image: linuxserver/mariadb:10.5.15
     env_file: docker/production/.env
     logging:
       driver: none
-    # volumes:
-    #   - db_data:/var/lib/mysql
+    volumes:
+      - db_data:/config
     restart: unless-stopped
     networks:
       - default
@@ -28,19 +29,19 @@ services:
         GID: 1000
     env_file: docker/production/.env
     restart: unless-stopped
-    # volumes:
-    #   # - web_gems:/usr/local/bundle
-    #   - web_log:/usr/local/app/log
-    #   # - web_modules:/usr/local/app/node_modules
-    #   - web_uploads:/usr/local/app/private/web_uploads
+    volumes:
+      # - web_gems:/usr/local/bundle
+      - web_log:/usr/local/app/log
+      # - web_modules:/usr/local/app/node_modules
+      - web_uploads:/usr/local/app/private/web_uploads
     depends_on:
       - db
     ports:
       - 3000:3000
 
-# volumes:
-#   # db_data:
-#   # web_gems:
-#   web_log:
-#   # web_modules:
-#   web_uploads:
+volumes:
+  db_data:
+  # web_gems:
+  web_log:
+  # web_modules:
+  web_uploads:
