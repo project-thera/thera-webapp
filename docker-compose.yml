@@ -1,17 +1,11 @@
-# https://docs.docker.com/compose/rails/
-
 version: '3.8'
-
 services:
   db:
     env_file: docker/development/.env
-    image: mariadb:10
-    # environment:
-    #   - TZ=America/Argentina/Buenos_Aires
+    # this is the only implementation compatible with armv7
+    image: linuxserver/mariadb:10.5.15
     volumes:
-      - db_data:/var/lib/mysql
-    # volumes:
-    #   - db_data:/config
+      - db_data:/config
     logging:
       driver: none
 
@@ -22,12 +16,12 @@ services:
       dockerfile: docker/development/web/Dockerfile
       args:
         # [Choice] Ruby version: 2, 2.7, 2.7.4
-        RUBY_VERSION: 2.7.4
+        RUBY_VERSION: "2.7.4"
         # [Choice] Node.js version: lts, 16, 14, 12, 10
-        NODE_VERSION: "14.19.0-r0"
+        NODE_VERSION: "14"
         # [Choice] Rails version: 6.1, 6.1.4
-        RAILS_VERSION: 6.0.0
-        # On Linux, you may need to update USER_UID and USER_GID below if not your local UID is not 1000.
+        RAILS_VERSION: "6.0.0"
+        # On Linux, you may need to update UID and GID below if not your local UID is not 1000.
         UID: 1000
         GID: 1000
     tty: true
@@ -35,16 +29,13 @@ services:
     volumes:
       - .:/usr/local/app:cached
       - gems:/usr/local/bundle
-    command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - db
     ports:
       - 3000:3000
 
   webpacker:
-    # build:
-    #   context: .
-    #   dockerfile: docker/development/webpacker/Dockerfile
     <<: *web
     command: sh -c "rm -rf public/packs; ./bin/webpack-dev-server --inline --hot true"
     ports:

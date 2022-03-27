@@ -2,7 +2,7 @@ ARG RUBY_VERSION=2.7.4
 
 FROM ruby:${RUBY_VERSION}-alpine
 
-ARG NODE_VERSION=14.19.0-r0
+ARG NODE_VERSION=14
 ARG RAILS_VERSION=6.0.0
 ARG USR=appuser
 ARG GRP=appgroup
@@ -17,7 +17,6 @@ RUN apk update && apk add --no-cache \
   git \
   mariadb-dev \
   nodejs~=${NODE_VERSION} \
-  npm \
   shared-mime-info \
   sudo \
   tzdata \
@@ -54,3 +53,5 @@ RUN gem install rails -v "~> ${RAILS_VERSION}"
 RUN gem install ruby-debug-ide debase solargraph
 
 WORKDIR ${RAILS_APP}
+
+CMD ["sh", "-c", "./docker/development/web/start.sh"]

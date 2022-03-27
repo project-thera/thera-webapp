@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_04_22_203016) do
 
-  create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "exercise_type", null: false
     t.string "description"
@@ -21,20 +21,20 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "game_rewards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "game_rewards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "credits", default: 0, null: false
     t.integer "robots", default: 0, null: false
     t.integer "current_robot", default: 0, null: false
   end
 
-  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
   end
 
-  create_table "groups_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "groups_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "group_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
     t.index ["user_id"], name: "index_groups_users_on_user_id"
   end
 
-  create_table "patient_videos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "patient_videos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "patient_id", null: false
     t.string "video", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
     t.index ["patient_id"], name: "index_patient_videos_on_patient_id"
   end
 
-  create_table "routine_exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "routine_exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "routine_id", null: false
     t.bigint "exercise_id", null: false
     t.integer "repetitions", default: 1
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
     t.index ["routine_id"], name: "index_routine_exercises_on_routine_id"
   end
 
-  create_table "routine_intent_exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "routine_intent_exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "routine_intent_id", null: false
     t.bigint "exercise_id", null: false
     t.integer "status", limit: 1, default: 1, comment: "skipped: 0, completed: 1"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
     t.index ["routine_intent_id"], name: "index_routine_intent_exercises_on_routine_intent_id"
   end
 
-  create_table "routine_intents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "routine_intents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "routine_id", null: false
     t.datetime "started_at", null: false
     t.datetime "finished_at"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
     t.index ["routine_id"], name: "index_routine_intents_on_routine_id"
   end
 
-  create_table "routines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "routines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "supervisor_id", null: false
     t.bigint "patient_id", null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_203016) do
     t.index ["supervisor_id"], name: "index_routines_on_supervisor_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "username", null: false
     t.string "fullname", null: false
     t.text "file"

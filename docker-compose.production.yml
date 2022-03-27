@@ -1,5 +1,4 @@
-version: '3'
-
+version: '3.8'
 services:
   db:
     container_name: app.proyectothera.com.ar_db
@@ -7,7 +6,6 @@ services:
     env_file: docker/production/.env
     logging:
       driver: none
-    # restart: unless-stopped
     # volumes:
     #   - db_data:/var/lib/mysql
     restart: unless-stopped
@@ -22,10 +20,10 @@ services:
       dockerfile: docker/production/web/Dockerfile
       args:
         # [Choice] Ruby version: 2, 2.7, 2.7.4
-        RUBY_VERSION: 2.7.4
+        RUBY_VERSION: "2.7.4"
         # [Choice] Node.js version: lts, 16, 14, 12, 10
-        NODE_VERSION: "14.19.0-r0"
-        # On Linux, you may need to update USER_UID and USER_GID below if not your local UID is not 1000.
+        NODE_VERSION: "14"
+        # On Linux, you may need to update UID and GID below if not your local UID is not 1000.
         UID: 1000
         GID: 1000
     env_file: docker/production/.env
@@ -35,12 +33,10 @@ services:
     #   - web_log:/usr/local/app/log
     #   # - web_modules:/usr/local/app/node_modules
     #   - web_uploads:/usr/local/app/private/web_uploads
-    # command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - db
     ports:
       - 3000:3000
-
 
 # volumes:
 #   # db_data:

@@ -1,15 +1,15 @@
-ARG RUBY_VERSION=2.7.4
+ARG RUBY_VERSION="2.7.4"
 
 FROM ruby:${RUBY_VERSION}-alpine AS builder
 
-ARG NODE_VERSION=14.19.0-r0
+ARG NODE_VERSION="14"
 
-ENV BUNDLER_VERSION=2.2.16 \
-    NODE_ENV=production \
-    RAILS_APP=/usr/local/app \
-    RAILS_ENV=production \
-    RACK_ENV=production \
-    SECRET_KEY_BASE=a-fake-secret-key
+ENV BUNDLER_VERSION="2.2.16" \
+    NODE_ENV="production" \
+    RAILS_APP="/usr/local/app" \
+    RAILS_ENV="production" \
+    RACK_ENV="production" \
+    SECRET_KEY_BASE="production"
 
 WORKDIR ${RAILS_APP}
 
@@ -19,8 +19,9 @@ RUN apk update -qq && \
     apk add -q --no-cache \
       build-base \
       git \
-      nodejs~=${NODE_VERSION} \
       mariadb-dev \
+      nodejs~=${NODE_VERSION} \
+      python2 \
       shared-mime-info \
       tzdata \
       yarn && \
@@ -43,12 +44,13 @@ RUN apk update -qq && \
 
 FROM ruby:${RUBY_VERSION}-alpine
 
-ARG USR=appuser
-ARG GRP=appgroup
-ARG UID=1000
-ARG GID=1000
+ARG USR="appuser"
+ARG GRP="appgroup"
+ARG UID="1000"
+ARG GID="1000"
 
-ENV RAILS_APP=/usr/local/app
+ENV RAILS_APP="/usr/local/app" \
+    RAILS_ENV="production"
 
 RUN addgroup --gid "${GID}" -S "${GRP}"
 
@@ -82,18 +84,19 @@ COPY --from=builder /usr/local/bundle /usr/local/bundle
 
 # COPY --from=builder ${RAILS_APP} ${RAILS_APP}
 
-COPY --from=builder ${RAILS_APP}/app ${RAILS_APP}/app
-COPY --from=builder ${RAILS_APP}/bin ${RAILS_APP}/bin
-COPY --from=builder ${RAILS_APP}/config ${RAILS_APP}/config
-COPY --from=builder ${RAILS_APP}/db ${RAILS_APP}/db
-COPY --from=builder ${RAILS_APP}/lib ${RAILS_APP}/lib
-COPY --from=builder ${RAILS_APP}/public ${RAILS_APP}/public
-COPY --from=builder ${RAILS_APP}/storage ${RAILS_APP}/storage
-COPY --from=builder ${RAILS_APP}/vendor ${RAILS_APP}/vendor
-COPY --from=builder ${RAILS_APP}/Gemfile ${RAILS_APP}/Gemfile.lock ${RAILS_APP}/config.ru ${RAILS_APP}/Rakefile ${RAILS_APP}/
+COPY --chown=${UID}:${GID} --from=builder ${RAILS_APP}/app ${RAILS_APP}/app
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/bin ${RAILS_APP}/bin
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/config ${RAILS_APP}/config
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/db ${RAILS_APP}/db
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/lib ${RAILS_APP}/lib
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/public ${RAILS_APP}/public
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/storage ${RAILS_APP}/storage
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/vendor ${RAILS_APP}/vendor
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/Gemfile ${RAILS_APP}/Gemfile.lock ${RAILS_APP}/config.ru ${RAILS_APP}/Rakefile ${RAILS_APP}/
+COPY --chown=${USR}:${GID} --from=builder ${RAILS_APP}/docker/production/web/start.sh ${RAILS_APP}/
 
 RUN mkdir -p ${RAILS_APP}/tmp/pids
 
 EXPOSE 3000
 
-CMD [ "sh", "-c", "bundle exec rake db:migrate && bundle exec puma -C config/puma.rb" ]
+CMD ["sh", "-c", "./start.sh"]
