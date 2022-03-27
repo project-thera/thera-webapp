@@ -36,8 +36,8 @@ services:
       - web_uploads:/usr/local/app/private/web_uploads
     depends_on:
       - db
-    ports:
-      - 3000:3000
+    networks:
+      - default
 
 volumes:
   db_data:
