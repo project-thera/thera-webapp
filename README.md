@@ -1,55 +1,68 @@
 # Thera Webapp
 
-## Environment Variables
+## Quick reference
+* **Maintained by** [daniffig](https://github.com/daniffig/) and Matías Arrech
+* **Where to get help?** You can [submit your ticket](https://github.com/project-thera/thera-webapp/issues) as an issue.
+* **Live app** at [Proyecto: Thera App](https://app.proyectothera.com.ar)
 
-### Application
-| key | description | required? |
-| --- | ----------- | --------- |
-| **NODE_ENV** | Node environment. You should use *production*. | yes |
-| **RAILS_ENV** | Rails environment. You should use *production*. | yes |
-| **RAILS_LOG_TO_STDOUT** | #TODO | yes |
-| **RAILS_SERVE_STATIC_FILES** | #TODO | yes |
-| **TZ** | #TODO | yes |
+## What is Proyecto: Thera?
 
-### Database
-| key | description | required? |
-| --- | ----------- | --------- |
-| MYSQL_DATABASE | #TODO | yes |
-| MYSQL_HOST | #TODO | yes |
-| MYSQL_USER | #TODO | yes |
-| MYSQL_PASSWORD | #TODO | yes |
-| MYSQL_ROOT_PASSWORD | #TODO | yes |
+## How to setup this application
 
-### Mailer
-| key | description | required? |
-| --- | ----------- | --------- |
-| MAILER_PROTOCOL | #TODO | yes |
-| MAILER_HOST | #TODO | yes |
-| MAILER_USER_NAME | #TODO | yes |
-| MAILER_PASSWORD | #TODO | yes |
+### Requirements
+* MySQL ~> v5.6.0 or MariaDB ~> v10.0
+* an email account
 
-| MAILER_PROTOCOL | #TODO | yes |
-| MAILER_PROTOCOL | #TODO | yes |
-| MAILER_PROTOCOL | #TODO | yes |
-| MAILER_PROTOCOL | #TODO | yes |
+### Docker Compose
+The easiest way to get this app working is to setup its environment with Docker Compose. In the example provided below we use [linuxserver.io MariaDB image](https://hub.docker.com/r/linuxserver/mariadb) because it has better compatibility with our Raspberry Pi infraestructure.
 
-## Development
+```yaml
+# docker-compose.yml
 
-To run the project copy file `docker/development/.env.example` to `docker/development/.env`
+version: '3'
 
-Then:
-```
-docker-compose build web
-docker-compose run web bundle install -j4
-docker-compose run web yarn install
+services:
+  db:
+    image: linuxserver/mariadb:10.5.15
+    env_file: production.env
+    volumes:
+      - db_data:/config
+    restart: unless-stopped
 
-docker-compose build webpacker
+  web:
+    image: ghcr.io/project-thera/thera-webapp
+    env_file: production.env
+    ports:
+      - 3000:3000/tcp
+    volumes:
+      - web_log:/usr/local/app/log
+      - web_uploads:/usr/local/app/private/web_uploads
+    restart: unless-stopped
+    depends_on:
+      - db
 
-docker-compose restart
-
-docker-compose exec web db:create
-docker-compose exec web db:migrate
-docker-compose exec web db:seed
+volumes:
+  db_data:
+  web_log:
+  web_uploads:
 ```
 
-You can access with user `matiasarrech@gmail.com` and password `dev`.
+As you may observe we define three volumes: *db_data* to persist the data saved in our database instance, *web_log* to save the logs generate by the web app and *web_uploads* to persist the files uploaded to the web app.
+
+We also make use of a *production.env* file that we share between our *db* and *web* containers. You *MUST* set the following env variables among others.
+
+```
+# production.env
+
+MAILER_PROTOCOL=
+MAILER_HOST=
+MAILER_USER_NAME=
+MAILER_PASSWORD=
+MYSQL_ROOT_PASSWORD=
+MYSQL_HOST=
+MYSQL_DATABASE="thera-webapp"
+MYSQL_USER="thera-webapp_user"
+MYSQL_PASSWORD=
+SECRET_KEY_BASE=
+TZ="America/Argentina/Buenos_Aires"
+```

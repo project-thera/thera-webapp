@@ -39,6 +39,7 @@ jobs:
         context: .
         platforms: |
           linux/amd64
+          linux/arm/v7
         file: docker/production/web/Dockerfile
         tags: |
           ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
