@@ -32,7 +32,7 @@ RUN apk update -qq && \
     bundle config set jobs 8 && \
     bundle config set retry 5 && \
     bundle config set without development:test:ubuntu && \
-    bundle install && \
+    bundle install --clean --development && \
     rm -rf /usr/local/bundle/cache/*.gem && \
     find /usr/local/bundle/gems/ -name "*.c" -delete && \
     find /usr/local/bundle/gems/ -name "*.o" -delete && \
@@ -50,7 +50,9 @@ ARG UID="1000"
 ARG GID="1000"
 
 ENV RAILS_APP="/usr/local/app" \
-    RAILS_ENV="production"
+    RAILS_ENV="production" \
+    RAILS_LOG_TO_STDOUT=1 \
+    RAILS_SERVE_STATIC_FILES=1
 
 RUN addgroup --gid "${GID}" -S "${GRP}"
 
