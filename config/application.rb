@@ -33,7 +33,7 @@ module TheraWebapp
     config.i18n.default_locale = :'es-AR'
     config.i18n.available_locales = :'es-AR', :en
 
-    config.x.application_name = 'Thera Web App'
-    config.x.version = '0.1.0'
+    config.x.application_name = 'Proyecto Thera Web App'
+    config.x.version = '0.2.0'
   end
 end

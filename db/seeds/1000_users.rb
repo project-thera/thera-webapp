@@ -97,7 +97,7 @@ create_supervisors('sin_pacientes', count: USERS_COUNT)
 create_patients('sin_confirmar', count: USERS_COUNT, confirmed: true)
 
 supervisor_with_patients = create_supervisors('con_pacientes')
-create_patients('con_supervision', count: USERS_COUNT, supervisor: supervisor_with_patients)
+create_patients('con_supervision', count: USERS_COUNT, supervisor: supervisor_with_patients, confirmed: true)
 
 User.create(
   username: 'paciente',
