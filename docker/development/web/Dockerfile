@@ -20,7 +20,16 @@ RUN apk update && apk add --no-cache \
   shared-mime-info \
   sudo \
   tzdata \
+  # arm
+  gcompat \
+  python2 \
+  # rails erd
+  graphviz \
+  font-noto \
+  fontconfig \
   yarn
+
+RUN fc-cache -f
 
 RUN addgroup --gid "${GID}" -S "${GRP}"
 

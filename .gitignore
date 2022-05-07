@@ -36,6 +36,8 @@
 yarn-debug.log*
 .yarn-integrity
 
+.DS_Store
+
 /docker/development/.env
 !/docker/development/.env.example
 /docker/production/.env

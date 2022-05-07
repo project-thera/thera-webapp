@@ -11,3 +11,7 @@ es-AR:
           attributes:
             email:
               not_found: "el usuario no se encuentra registrado, diríjase a Registrarse para continuar"
+  admin:
+    base:
+      patient_confirmation:
+        title: 'El registro ha sido exitoso, puede continuar usando la app'

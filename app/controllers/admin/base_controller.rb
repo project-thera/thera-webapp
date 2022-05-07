@@ -4,12 +4,16 @@ module Admin
 
     # before_action :redirect_to_sign_in, unless: :user_signed_in?
 
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:patient_confirmation]
 
     def index
       @current_user = current_user
       
       render html: nil, layout: true
+    end
+
+    def patient_confirmation
+      render layout: 'application'
     end
   
     private
