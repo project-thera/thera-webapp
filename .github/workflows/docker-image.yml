@@ -1,14 +1,17 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+  # https://stackoverflow.com/questions/59518658/how-to-use-github-release-version-number-in-github-action
+  release:
+    types: [published]
 
 env:
   IMAGE_NAME: "ghcr.io/${{ github.repository }}"
-  VERSION: "0.1.0"
+  VERSION: "${{ github.event.release.tag_name }}"
 
 jobs:
 
@@ -40,6 +43,7 @@ jobs:
         platforms: |
           linux/amd64
           linux/arm/v7
+          linux/arm64/v8
         file: docker/production/web/Dockerfile
         tags: |
           ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
