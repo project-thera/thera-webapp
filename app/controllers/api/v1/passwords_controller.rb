@@ -4,10 +4,10 @@ class Api::V1::PasswordsController < Devise::PasswordsController
   respond_to :json
 
   def respond_with(resource, opts = {})
-    if resource.errors.present?
-      render json: { errors: resource.errors }
-    else
+    if opts[:location].present?
       render json: resource
+    else
+      render json: { errors: resource.errors }
     end
   end
 end
