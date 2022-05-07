@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  devise_for :users
+  devise_for :users, controllers: { confirmations: 'admin/confirmations' }
 
   concern :soft_deletable do
     member do
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'patient_confirmation', to: 'admin/base#patient_confirmation'
   get 'admin', to: 'admin/base#index'
   get 'admin/*path', to: 'admin/base#index'
 
